@@ -4,7 +4,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env) => {
   const entry = {
-    Avatar: './src/components/Avatar/Avatar',
+    Avatar: './src/components/Avatar/index.jsx',
+    Button: './src/components/Button/index.jsx',
+    Card: './src/components/Card/index.jsx',
+    Divider: './src/components/Divider/index.jsx',
+    Icon: './src/components/Icon/index.jsx',
+    List: './src/components/List/index.jsx',
+    Subheader: './src/components/Subheader/index.jsx',
+    Title: './src/components/Title/index.jsx',
+    Toolbar: './src/components/Toolbar/index.jsx',
     'foodle-ui': [
       './src/FoodleUI.scss'
     ]
@@ -43,6 +51,9 @@ module.exports = (env) => {
   ];
   return {
     devtool: 'source-map',
+    resolve: {
+      extensions: ['.js', '.jsx', '.scss', '.css']
+    },
     entry,
     output,
     module: { loaders },
