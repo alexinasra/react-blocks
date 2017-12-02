@@ -1,0 +1,18 @@
+$avatar-mobile-radius: 16px !default;
+$avatar-tablet-radius: 24px !default;
+$avatar-desktop-radius: 36px !default;
+
+$avatar-label-color: $color-text-caption !default;
+.avatar{
+  display: inline-block;
+
+  width: $avatar-desktop-radius;
+  height: $avatar-desktop-radius;
+  margin: 0;
+  padding: 0;
+
+  cursor: default;
+  user-select: none;
+
+  border-radius: 50%;
+}

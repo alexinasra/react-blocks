@@ -1,0 +1,101 @@
+$context-direction: "both" !default;
+
+@if $context-direction == "rtl" {
+  html {
+    direction: rtl !important;
+  }
+}
+@mixin rtl {
+  @if $context-direction == "both" {
+    html[dir = "rtl"] & {
+      @content;
+    }
+  }
+  @else if $context-direction =="rtl" {
+    @content;
+  }
+}
+@mixin ltr {
+  @if $context-direction == "both" {
+    html:not([dir = "rtl"]) & {
+      @content;
+    }
+  }
+  @else if $context-direction == "ltr" or $context-direction != "rtl" {
+    @content;
+  }
+}
+
+@mixin padding-left($pad:auto) {
+  @include ltr {
+    padding-left: $pad !important;
+  }
+  @include rtl {
+    padding-right: $pad !important;
+  }
+}
+
+@mixin padding-right($pad:auto) {
+  @include ltr {
+    padding-right: $pad !important;
+  }
+  @include rtl {
+    padding-left: $pad !important;
+  }
+}
+
+@mixin margin-left($pad:auto) {
+  @include ltr {
+    margin-left: $pad !important;
+  }
+  @include rtl {
+    margin-right: $pad !important;
+  }
+}
+
+@mixin margin-right($pad:auto) {
+  @include ltr {
+    margin-right: $pad !important;
+  }
+  @include rtl {
+    margin-left: $pad !important;
+  }
+}
+
+
+@mixin left($pad:auto) {
+  @include ltr {
+    left: $pad !important;
+  }
+  @include rtl {
+    right: $pad !important;
+  }
+}
+
+@mixin right($pad:auto) {
+  @include ltr {
+    right: $pad !important;
+  }
+  @include rtl {
+    left: $pad !important;
+  }
+}
+@mixin float-none() {
+  float:none;
+}
+@mixin float-left {
+  @include ltr{
+    float: left;
+  }
+  @include rtl{
+    float: right;
+  };
+}
+@mixin float-right {
+  @include ltr{
+    float: right;
+  }
+  @include rtl{
+    float: left;
+  }
+}

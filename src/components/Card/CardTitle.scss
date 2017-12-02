@@ -1,0 +1,24 @@
+.card-title {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  padding:  24px 24px;
+  &.has-subtitle {
+    .title{
+      font-size: 14px;
+    }
+  }
+  &.has-avatar{
+    padding: 16px 24px;
+    .avatar-container {
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+    .text-container {
+      @include margin-left(16px);
+    }
+  }
+}

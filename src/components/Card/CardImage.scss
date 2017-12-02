@@ -1,0 +1,42 @@
+.card-image {
+
+  padding: 0;
+  margin: 0;
+  img {
+    width: 100%;
+  }
+  .card.row & {
+    flex-direction: row;
+    &:first-child img {
+      @include ltr {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      };
+      @include rtl {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      };
+    }
+    &:last-child img {
+      @include ltr {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      };
+      @include rtl {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      };
+    }
+  }
+  .card.column & {
+    flex-direction: column;
+    &:first-child img {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+    &:last-child img {
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
+}

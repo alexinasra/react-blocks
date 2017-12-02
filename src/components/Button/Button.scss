@@ -1,0 +1,162 @@
+$flat_button-focused-background: darken($color-background, 15%);
+$flat_button-pressed-background: darken($color-background, 30%);
+.button {
+  @extend %ripple;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: $color-text-button;
+  border-radius: 2px;
+  padding: 0 8px;
+  margin: 0 8px;
+  height: 36px;
+  min-width: 88px;
+}
+.button.flat {
+  border: 8px;
+  &:focus, &:hover {
+    background: $flat_button-focused-background;
+  }
+
+}
+
+.flat.button.primary {
+  color: $color-primary;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button.secondary {
+  color: $color-secondary;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button.success {
+  color: $color-success;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button.info {
+  color: $color-info;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button.warning {
+  color: $color-warning;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button.danger {
+  color: $color-danger;
+  &:focus {
+    background: $flat_button-focused-background;
+  }
+}
+
+.flat.button:disabled {
+  background-color: darken($color-white, 12%);
+  color: $color-text-disabled;
+}
+.raised.button {
+  margin: 4px 8px;
+  box-shadow: 0 1px 2px 1px rgba($color-black, 0.5);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-black, 0.5);
+  }
+  &:focus {
+    background-color: $flat_button-focused-background;
+  }
+  &:disabled {
+    background-color: darken($color-white, 12%);
+    color: $color-text-disabled;
+  }
+}
+.raised.button.primary {
+  background: $color-primary;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-primary, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-primary, 0.7);
+  }
+  &:focus {
+    background: darken($color-primary, 5%);
+  }
+}
+
+.raised.button.secondary {
+  background: $color-secondary;
+  color: $color-white;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-secondary, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-secondary, 0.7);
+  }
+  &:focus {
+    background: darken($color-secondary, 5%);
+  }
+}
+
+.raised.button.success {
+  background: $color-success;
+  color: $color-white;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-success, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-success, 0.7);
+  }
+  &:focus {
+    background: darken($color-success, 5%);
+  }
+}
+
+.raised.button.info {
+  background: $color-info;
+  color: $color-white;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-info, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-info, 0.7);
+  }
+  &:focus {
+    background: darken($color-info, 5%);
+  }
+}
+
+.raised.button.warning {
+  background: $color-warning;
+  color: $color-white;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-warning, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-warning, 0.7);
+  }
+  &:focus {
+    background: darken($color-warning, 5%);
+  }
+}
+
+.raised.button.danger {
+  background: $color-danger;
+  color: $color-white;
+  color: $color-white;
+  box-shadow: 0 1px 2px 1px rgba($color-danger, 0.7);
+  &:active {
+    box-shadow: 0 1px 4px 2px rgba($color-danger, 0.7);
+  }
+  &:focus {
+    background: darken($color-danger, 5%);
+  }
+}

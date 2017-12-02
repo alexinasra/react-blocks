@@ -1,0 +1,117 @@
+@import './variables.scss';
+@import './mixins/context-direction.scss';
+@import './mixins/include-media.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900');
+body {
+  color: $color-text-display;
+  font-family: 'Roboto', sans-serif;
+  @include rtl {
+    line-height: 1.2;
+  }
+}
+.white-text {
+  color: $color-white;
+}
+.white-background {
+  background: $color-white;
+}
+.black-text {
+  color: $color-black;
+}
+.black-background {
+  background: $color-black;
+}
+.primary-text {
+  color: $color-primary;
+}
+.primary-background {
+  background: $color-primary;
+}
+.secondary-text {
+  color: $color-secondary;
+}
+.secondary-background {
+  background: $color-secondary;
+}
+.success-text {
+  color: $color-success;
+}
+.success-background {
+  background: $color-success;
+}
+.info-text {
+  color: $color-info;
+}
+.info-background {
+  background: $color-info;
+}
+.warning-text {
+  color: $color-warning;
+}
+.warning-background {
+  background: $color-warning;
+}
+.danger-text {
+  color: $color-danger;
+}
+.danger-background {
+  background: $color-danger;
+}
+
+
+%caption {
+  color: $color-text-caption;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+%display {
+  color: $color-text-display;
+}
+%display-1 {
+  @extend %display;
+  font-size: 76px;
+}
+%ripple {
+  position: relative;
+  overflow: hidden;
+  //transform: translate3d(0, 0, 0);
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    transform: scale(10,10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+
+  &:active:after {
+    transform: scale(0,0);
+    opacity: .2;
+    transition: 0s;
+  }
+}
+//components
+@import './components/Avatar/Avatar';
+@import './components/Icon/Icon';
+@import './components/Button/Button';
+@import './components/Divider/Divider';
+@import './components/Title/Title';
+@import './components/Subheader/Subheader';
+@import './components/List/List';
+@import './components/List/ListItem';
+@import './components/Card/Card';
+@import './components/Card/CardTitle';
+@import './components/Card/CardSection';
+@import './components/Card/CardImage';
+@import './components/Card/CardParagraph';
+@import './components/Toolbar/Toolbar';

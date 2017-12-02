@@ -1,0 +1,10 @@
+.subheader {
+  display: block;
+  font-family: 'Roboto', sans-serf;
+  font-weight: 300;
+  font-size: 12px;
+  color: $color-text-caption;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}

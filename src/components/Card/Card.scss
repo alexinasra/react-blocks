@@ -1,0 +1,50 @@
+.card {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-around;
+
+  margin: 24px;
+  padding: 0;
+
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0px rgba($color-black, 0.12);
+  &:hover {
+    box-shadow: 0 2px 4px 2px rgba($color-black, 0.12);
+
+  }
+  &.row {
+    flex-direction: row;
+    & > :first-child {
+      @include ltr {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      };
+      @include rtl {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      };
+    }
+    & > :last-child {
+      @include ltr {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      };
+      @include rtl {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      };
+    }
+  }
+  &.column {
+    flex-direction: column;
+    & > :first-child {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+    & > :last-child {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+}

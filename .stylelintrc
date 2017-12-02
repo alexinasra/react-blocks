@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-scss",
+  "indentation": "tab",
+  "rules": {
+    "number-leading-zero": null
+  }
+}
