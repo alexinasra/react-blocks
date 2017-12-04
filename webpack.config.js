@@ -22,7 +22,7 @@ const STYLE = path.join(__dirname, 'src', 'FoodleUI.scss');
 const DEMO = path.join(__dirname, 'demo');
 
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 6161;
 
 module.exports = {
   entry: {

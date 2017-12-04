@@ -1,0 +1,46 @@
+
+.scrollbar {
+  position: relative;
+  border: 1px solid black;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  .scrollbar-vbar{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left:0;
+
+    height: 6px;
+  }
+  .scrollbar-hbar {
+    position: absolute;
+    top:0;
+    bottom: 6px;
+    background: $color-text-disabled;
+    border-radius: 3px;
+    width: 6px;
+
+    @include right(0);
+  }
+  .scrollbar-scrollarea {
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    @include padding-right(6px);
+    .scrollbar-content {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .scrollbar-vbar-scroll, .scrollbar-hbar-scroll {
+
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    border-radius: 3px;
+    background: $color-text-caption;
+  }
+}
