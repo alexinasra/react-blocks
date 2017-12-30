@@ -1,0 +1,15 @@
+
+.collapse {
+  box-sizing: border-box;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  border: 1px solid;
+  transition: 300ms;
+  overflow: hidden;
+  &.is-collapsed {
+    height: auto;
+    opacity: 1;
+  }
+}

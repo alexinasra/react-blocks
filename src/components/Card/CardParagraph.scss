@@ -3,5 +3,8 @@
   font-family: 'Roboto', sans-serif;
   text-indent: 24px;
   color: $color-text-display;
-  padding: 16px 24px;
+  height: 320px;
+  .scrollbar-content{
+    padding: 16px 24px !important;
+  }
 }

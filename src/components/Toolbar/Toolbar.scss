@@ -8,11 +8,16 @@
   padding: 8px 16px;
 
   user-select: none;
-
-  box-shadow: 0 2px 4px 0 rgba($color-black, 0.17);
-  margin-bottom: 16px;
-  .actions-container {
+  background: $color-primary;
+  color: $color-white;
+  //margin-bottom: 16px;
+  .siparator{
     flex-grow: 1;
+  }
+  .actions-container {
+    * {
+      color: $color-white;
+    }
   }
   .title-container {
 

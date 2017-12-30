@@ -1,0 +1,20 @@
+.text-counter {
+  font-size: 9px;
+  .out-of {
+  }
+  .max, .count {
+  }
+  &.to-long {
+    .max, .count {
+      color: $color-danger;
+      font-weight: bold;
+    }
+  }
+  &.to-short {
+    .count {
+      color: $color-danger;
+      font-weight: bold;
+    }
+  }
+
+}

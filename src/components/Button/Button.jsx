@@ -8,7 +8,7 @@ const Button = ({ className, raised, label, ...props }) => (
 Button.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
-  raised: PropTypes.boolean
+  raised: PropTypes.bool
 };
 Button.defaultProps = {
   className: '',

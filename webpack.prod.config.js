@@ -5,12 +5,20 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = (env) => {
   const entry = {
     Avatar: './src/components/Avatar/index.jsx',
+    BottomLine: './src/components/BottomLine/index.jsx',
     Button: './src/components/Button/index.jsx',
     Card: './src/components/Card/index.jsx',
+    Collapse: './src/components/Collapse/index.jsx',
     Divider: './src/components/Divider/index.jsx',
+    Form: './src/components/Form/index.jsx',
+    GridLayout: './src/components/GridLayout/index.jsx',
+    GridList: './src/components/GridList/index.jsx',
     Icon: './src/components/Icon/index.jsx',
     List: './src/components/List/index.jsx',
+    Nav: './src/components/Nav/index.jsx',
+    Scrollbar: './src/components/Scrollbar/index.jsx',
     Subheader: './src/components/Subheader/index.jsx',
+    TextCounter: './src/components/TextCounter/index.jsx',
     Title: './src/components/Title/index.jsx',
     Toolbar: './src/components/Toolbar/index.jsx',
     'foodle-ui': [

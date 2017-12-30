@@ -26,6 +26,7 @@ const Toolbar = ({ menuButton, title, subheader, logo, className, children, ...p
         {subheader && (<Subheader>{subheader}</Subheader>)}
       </div>
     )}
+    <div className="siparator" />
     <div className="actions-container">
       {children}
     </div>
@@ -34,7 +35,7 @@ const Toolbar = ({ menuButton, title, subheader, logo, className, children, ...p
 
 Toolbar.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   menuButton: PropTypes.node,
   logo: PropTypes.node,
   title: PropTypes.string,
@@ -45,7 +46,8 @@ Toolbar.defaultProps = {
   menuButton: false,
   logo: false,
   title: '',
-  subheader: ''
+  subheader: '',
+  children: ''
 };
 
 export default Toolbar;

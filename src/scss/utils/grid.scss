@@ -1,0 +1,41 @@
+$grid-columns: 12;
+$grid-column-width: calc(100% / 12);
+@mixin grid-container() {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+@mixin grid-row(){
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+@mixin grid-col($span: 1) {
+  box-sizing: border-box;
+  display: inline-block;
+  width:  (100% / 12) * $span;
+  padding: 0;
+}
+
+
+.grid-container{
+  @include grid-container;
+}
+.grid-row {
+   @include grid-row;
+}
+@for $i from 1 to ($grid-columns + 1) {
+  .grid-col-#{$i} {
+    @include grid-col($i);
+  }
+}
+.grid-col-grow{
+  @include grid-col;
+  flex-grow: 1;
+}

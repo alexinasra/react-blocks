@@ -1,0 +1,10 @@
+body {
+  color: $color-text-display;
+  font-family: 'Roboto', sans-serif;
+  @include rtl {
+    line-height: 1.2;
+  }
+}
+*:active {
+  outline: none;
+}

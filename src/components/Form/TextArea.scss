@@ -1,0 +1,33 @@
+
+.textarea {
+  margin: 3px;
+
+  border: 1px solid $color-text-caption;
+  border-radius: 2px;
+  .label-container {
+    padding: 8px 16px;
+    font-size: 10px;
+  }
+  .scrollbar{
+    box-sizing: border-box;
+    height: 80px;
+    //overflow: auto;
+  }
+
+  textarea {
+    overflow: hidden;
+
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 80px;
+    margin: 0;
+    padding: 0;
+
+    resize: none;
+
+    border: none;
+    &:active, &:focus {
+      outline: none;
+    }
+  }
+}
