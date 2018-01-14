@@ -26,6 +26,9 @@
       content: ' ';
 
       background: $color-text-disabled;
+      .invert & {
+        background: darken($color-white, 5%);
+      }
 
     }
   }
@@ -52,6 +55,11 @@
       content: ' ';
 
       background: $color-text-disabled;
+
+
+      .invert & {
+        background: darken($color-white, 5%);
+      }
 
     }
   }
@@ -90,6 +98,10 @@
       content: ' ';
 
       background: $color-text-caption;
+
+      .invert & {
+        background: darken($color-white, 15%);
+      }
     }
     &:hover::after, &:active::after {
       background: $color-primary;
@@ -114,6 +126,9 @@
 
       background: $color-text-caption;
 
+      .invert & {
+        background: darken($color-white, 15%);
+      }
       @include left(2px);
     }
     &:hover::after, &:active::after {

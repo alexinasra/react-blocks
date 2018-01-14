@@ -15,17 +15,18 @@ $color-primary:           #FF911D !default;
 $color-secondary:             #177D9F !default;
 $color-white:               #FFF !default;
 $color-black:               #000 !default;
-$color-background:          $color-white !default;
-$color-background-alternate: $color-primary;
 $color-text:                lighten($color-black, 15%) !default;
-$color-text-alternate: $color-white;
+$color-text-alternate:      $color-white;
+$color-background:          $color-white !default;
+$color-background-alternate: $color-text;
 
 $color-success:             #4dbd74 !default;
 $color-info:                #63c2de !default;
 $color-warning:             #f8cb00 !default;
-$color-danger:              #f86c6b !default;
+$color-danger:              #f83c3b !default;
 
 $color-text-display: darken($color-white, 54%);
+$color-text-display-alternate: $color-text-alternate;
 $color-text-headline: darken($color-white, 87%);
 $color-text-title: darken($color-white, 87%);
 $color-text-subheading: darken($color-white, 87%);

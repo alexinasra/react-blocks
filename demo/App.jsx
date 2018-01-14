@@ -14,6 +14,8 @@ import GridList, { GridListTile } from '../src/components/GridList';
 import Nav, { TabsNav } from '../src/components/Nav';
 import Form, { TextField, TextArea } from '../src/components/Form';
 import GridLayout, { GridRow, GridColumn } from '../src/components/GridLayout';
+import Menu, { MenuItem } from '../src/components/Menu';
+import Dropdown from '../src/components/Dropdown';
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class App extends Component {
     this.state = {
       isSidebarOpen: true,
       isMainMenuOpen: false,
-      ratingVal: 0
+      ratingVal: 0,
+      boolVal: false
 
     };
     this.index = 0;
@@ -51,24 +54,122 @@ class App extends Component {
   render() {
     return (
       <div id="DEMO_APP">
-        <Card>
-          <Toolbar>
-            <ToggleIcon onName="arrow_drop_up"
-              offName="arrow_drop_down"
-              onToggle={this.handlePrimaryMenuToggle} />
-          </Toolbar>
-          <CardSection>
-            <Form onSubmit={() => {}}>
-              <GridLayout>
-                <GridRow>
-                  <GridColumn span={2}>
-                    <TextArea label="First Name" />
-                  </GridColumn>
-                </GridRow>
-              </GridLayout>
-            </Form>
-          </CardSection>
-        </Card>
+        <GridLayout>
+          <GridColumn span="3">
+            <Dropdown open={this.state.boolVal}
+              menu={<Menu>
+                <div>
+                  <Avatar src='http://www.funnytop.com/uploads/avatar/7_25680.png' />
+                  <Button label="logout" />
+                </div>
+                <Divider />
+                <MenuItem onClick={() => {console.log('clicked')}} iconName="menu" label="Open file"  shortcut="ctrl-o"/>
+                <MenuItem label="Save" shortcut="ctrl-s"/>
+                <MenuItem label="Save as" />
+                <Divider />
+                <MenuItem label="Long long to long item" shortcut="ctrl-s"/>
+                <Divider />
+                <MenuItem label="Exit" shortcut="alt-f4"/>
+              </Menu>}>
+              <Button raised className="primary" iconName="menu" onClick={() => { this.setState({ boolVal: !this.state.boolVal}) }} onBlur={() => { setTimeout(() => { this.setState({ boolVal: false}); }, 120) }} />
+            </Dropdown>
+          </GridColumn>
+          <GridColumn span="grow">
+            <div className="comments">
+              <div className="comment">
+                <GridLayout>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      top
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="1">
+                      <Avatar src="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-15.png"/>
+                    </GridColumn>
+                    <GridColumn span="grow">
+                      Improved own provided blessing may peculiar domestic.
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      bottom
+                    </GridColumn>
+                  </GridRow>
+                </GridLayout>
+              </div>
+              <div className="comment">
+                <GridLayout>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      top
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="1">
+                      <Avatar src="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-15.png"/>
+                    </GridColumn>
+                    <GridColumn span="grow">
+                      Improved own provided blessing may peculiar domestic.
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      bottom
+                    </GridColumn>
+                  </GridRow>
+                </GridLayout>
+              </div>
+              <div className="comment">
+                <GridLayout>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      top
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="1">
+                      <Avatar src="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-15.png"/>
+                    </GridColumn>
+                    <GridColumn span="grow">
+                      Improved own provided blessing may peculiar domestic.
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      bottom
+                    </GridColumn>
+                  </GridRow>
+                </GridLayout>
+              </div>
+              <div className="comment">
+                <GridLayout>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      top
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="1">
+                      <Avatar src="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-15.png"/>
+                    </GridColumn>
+                    <GridColumn span="grow">
+                      Improved own provided blessing may peculiar domestic.
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow>
+                    <GridColumn span="grow">
+                      bottom
+                    </GridColumn>
+                  </GridRow>
+                </GridLayout>
+              </div>
+            </div>
+          </GridColumn>
+          <GridColumn span="3">
+            right
+          </GridColumn>
+        </GridLayout>
       </div>
     );
   }

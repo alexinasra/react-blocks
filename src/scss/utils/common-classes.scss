@@ -1,0 +1,99 @@
+
+.primary, .primary * {
+  color: $color-primary;
+}
+
+.secondary, .secondary * {
+  color: $color-secondary;
+}
+
+.success, .success * {
+  color: $color-success;
+}
+
+.info, .info * {
+  color: $color-info;
+}
+
+.warning, .warning * {
+  color: $color-warning;
+}
+
+.danger, .danger * {
+  color: $color-danger;
+}
+
+.disabled, .disabled * {
+  background-color: darken($color-white, 12%);
+  color: $color-text-disabled;
+}
+
+.invert, .invert *,
+.raised, .raised * {
+  color: $color-text-alternate;
+}
+.invert, .raised {
+  background: $color-background-alternate;
+}
+.raised {
+  box-shadow: 0 1px 2px 1px rgba($color-white, 0.7);
+}
+.raised.invert {
+  box-shadow: 0 1px 2px 1px rgba($color-black, 0.7);
+}
+
+.invert.primary {
+  background: $color-primary;
+}
+
+.invert.secondary {
+  background: $color-secondary
+}
+
+.invert.success {
+  background: $color-success;
+}
+
+.invert.info {
+  background: $color-info;
+}
+
+.invert.warning {
+  background: $color-warning;
+}
+
+.invert.danger {
+  background: $color-danger;
+}
+
+
+.raised.primary {
+  background: $color-primary;
+  box-shadow: 0 1px 2px 1px rgba($color-primary, 0.7);
+}
+
+.raised.secondary {
+  background: $color-secondary;
+  box-shadow: 0 1px 2px 1px rgba($color-secondary, 0.7);
+
+}
+
+.raised.success {
+  background: $color-success;
+  box-shadow: 0 1px 2px 1px rgba($color-success, 0.7);
+}
+
+.raised.info {
+  background: $color-info;
+  box-shadow: 0 1px 2px 1px rgba($color-info, 0.7);
+}
+
+.raised.warning {
+  background: $color-warning;
+  box-shadow: 0 1px 2px 1px rgba($color-warning, 0.7);
+}
+
+.raised.danger {
+  background: $color-danger;
+  box-shadow: 0 1px 2px 1px rgba($color-danger, 0.7);
+}

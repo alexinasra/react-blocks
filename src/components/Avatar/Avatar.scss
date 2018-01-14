@@ -1,13 +1,15 @@
 $avatar-mobile-radius: 16px !default;
 $avatar-tablet-radius: 24px !default;
-$avatar-desktop-radius: 36px !default;
+$avatar-desktop-small-radius: 24px !default;
+$avatar-desktop-default-radius: 48px !default;
+$avatar-desktop-large-radius: 72px !default;
 
 $avatar-label-color: $color-text-caption !default;
 .avatar{
   display: inline-block;
 
-  width: $avatar-desktop-radius;
-  height: $avatar-desktop-radius;
+  width: $avatar-desktop-default-radius;
+  height: $avatar-desktop-default-radius;
   margin: 0;
   padding: 0;
 
@@ -15,4 +17,13 @@ $avatar-label-color: $color-text-caption !default;
   user-select: none;
 
   border-radius: 50%;
+  &.small {
+    width: $avatar-desktop-small-radius;
+    height: $avatar-desktop-small-radius;
+  }
+  &.large {
+    width: $avatar-desktop-large-radius;
+    height: $avatar-desktop-large-radius;
+  }
+
 }

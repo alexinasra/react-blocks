@@ -1,15 +1,27 @@
 ```javascript
-<Card direction="column">
+<Card direction="column" className="primary">
   <CardImage src="https://about.canva.com/wp-content/uploads/sites/3/2017/01/christmasart_card.png" />
   <CardTitle title="Avatar Title" />
-  <CardParagraph>
+  <CardParagraph className="invert">
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
+    Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
     Every recognizable dentist prosecutes near the scheme. An oriental axis courts a poke below a peak guidance. The sky chooses! A duplicate shines.
   </CardParagraph>
-  <CardSection direction="row">
-    <Button className="primary" label="my button"/>
-    <Button label="my button"/>
-    <Button label="my button"/>
-    <Button label="my button"/>
+  <CardSection direction="row" className="primary invert">
+    <ButtonGroup>
+      <Button className="primary" label="my button"/>
+      <Button label="my button"/>
+      <Button label="my button"/>
+      <Button label="my button"/>
+    </ButtonGroup>
   </CardSection>
 </Card>
 ```

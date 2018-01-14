@@ -49,12 +49,14 @@ class Scrollbar extends Component {
     this.adjustSizes();
     this.scrollAreaElm.style.overflow = 'hidden';
     this.scrollContentElm.addEventListener('resize', this.adjustSizes);
-    if (this.props.watchSize)
+    if (this.props.watchSize) {
       this.interval = setInterval(this.adjustSizes, 200);
+    }
   }
   componentWillUnmount() {
-    if (this.props.watchSize)
+    if (this.props.watchSize) {
       clearInterval(this.interval);
+    }
   }
   innerHeigh = 0
   height = 0
@@ -62,7 +64,7 @@ class Scrollbar extends Component {
     const innerHeigh = this.scrollAreaElm.scrollHeight;
     const height = this.scrollAreaElm.clientHeight;
     const hratio = (innerHeigh / height);
-    const hbarHeight = (height / hratio) - 12;
+    const hbarHeight = (height / hratio) - hratio - 6;
     const hBarVisible = (this.props.horizontal === 'visible') ||
       ((this.props.horizontal === 'auto') && (height < innerHeigh));
 
@@ -108,6 +110,11 @@ class Scrollbar extends Component {
     this.setState({ hbarTopMargin: (val / this.state.hratio) });
   }
   handleOnWheel(e) {
+    if (((this.scrollAreaElm.scrollTop <= 0) && (e.deltaY < 0)) ||
+      ((this.scrollAreaElm.scrollTop + (e.deltaY * this.state.hratio) >= this.state.innerHeigh - this.state.height) && (e.deltaY > 0))) {
+      return;
+    }
+
     if (e.preventDefault) { e.preventDefault(); }
     if (e.stopPropagation) { e.stopPropagation(); }
     this.scrollTop(this.scrollAreaElm.scrollTop + (e.deltaY * this.state.hratio));
@@ -175,7 +182,8 @@ class Scrollbar extends Component {
   render() {
     const { vertical, horizontal, className, watchSize, ...props } = this.props;
     return (
-      <div className={classnames('scrollbar', className)}
+      <div onWheel={this.handleOnWheel}
+        className={classnames('scrollbar', className)}
         {...props}>
         {(this.state.vBarVisible) && (
           <div className="scrollbar-vbar">
@@ -202,7 +210,7 @@ class Scrollbar extends Component {
               className="scrollbar-hbar-scroll" />
           </div>
         )}
-        <div onWheel={this.handleOnWheel} ref={(elm) => { this.scrollAreaElm = elm; }} className="scrollbar-scrollarea">
+        <div ref={(elm) => { this.scrollAreaElm = elm; }} className="scrollbar-scrollarea">
           <div className="scrollbar-content">
             <div ref={(elm) => { this.scrollContentElm = elm; }}>
               {this.props.children}

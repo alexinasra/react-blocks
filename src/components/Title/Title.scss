@@ -6,3 +6,6 @@
   text-transform: capitalize;
   color: $color-text-display;
 }
+.title.invert, .invert .title {
+  color: $color-text-display-alternate;
+}

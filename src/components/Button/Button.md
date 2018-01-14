@@ -1,8 +1,8 @@
 Simle Usage :
 ```javascript
 <div>
-  <Button label="flat button"/>
-  <Button raised label="raised button"/>
+  <Button iconName="dashboard" label="flat button"/>
+  <Button iconName="menu" raised label="raised button"/>
 </div>
 ```
 Disabled example :
@@ -16,7 +16,8 @@ Color variants:
 ```javascript
 <div>
   <div>
-    <Button className="primary" label="primary button"/>
+    <Button iconName="menu" className="primary"/>
+    <Button iconName="menu" raised className="primary"/>
     <Button className="secondary" label="secondary button"/>
     <Button className="success" label="success button"/>
     <Button className="info" label="info button"/>

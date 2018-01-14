@@ -10,6 +10,7 @@
 @import './scss/placeholders/ripple.scss';
 @import './scss/placeholders/caption.scss';
 @import './scss/utils/grid.scss';
+@import './scss/utils/common-classes.scss';
 
 %display {
   color: $color-text-display;
@@ -23,7 +24,10 @@
 @import './components/Avatar/Avatar';
 @import './components/Icon/Icon';
 @import './components/Button/Button';
+@import './components/Button/ButtonGroup';
 @import './components/Divider/Divider';
+@import './components/Menu/Menu';
+@import './components/Dropdown/Dropdown';
 @import './components/BottomLine/BottomLine';
 @import './components/TextCounter/TextCounter';
 @import './components/Title/Title';
