@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
 import Menu from '../Menu';
 
 class Dropdown extends Component {
   static propTypes = {
+    onOpen: PropTypes.func,
+    onClose: PropTypes.func,
+    onRef: PropTypes.func,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    open: PropTypes.bool,
     menu: PropTypes.objectOf(Menu).isRequired,
     direction: PropTypes.oneOf(['down', 'top', 'left', 'right', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'])
   }
   static defaultProps = {
+    onOpen: () => {},
+    onClose: () => {},
+    onRef: () => {},
     className: undefined,
-    open: false,
     direction: 'bottomRight'
   }
-  state = {}
+  constructor(props) {
+    super(props);
+    this.state = { isOpen: false };
+
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+  }
   componentDidMount() {
     const height = this.domRef.clientHeight;
     const width = this.domRef.clientWidth;
@@ -25,14 +37,6 @@ class Dropdown extends Component {
     const heightDiff = Math.abs(containerHeight - height);
     const widthDiff = Math.abs(containerWidth - width);
 
-    console.log({
-      height,
-      width,
-      containerHeight,
-      containerWidth,
-      heightDiff,
-      widthDiff
-    });
     switch (this.props.direction) {
     case 'top':
       this.setPosition({
@@ -99,6 +103,10 @@ class Dropdown extends Component {
         bottom: 'auto'
       });
     }
+    this.props.onRef(this);
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined);
   }
   setPosition(pos) {
     const tmpPos = { ...pos };
@@ -106,14 +114,31 @@ class Dropdown extends Component {
       tmpPos.right = pos.left;
       tmpPos.left = pos.right;
     }
-    console.log(tmpPos);
     this.setState(tmpPos);
   }
+  open() {
+    this.setState({ isOpen: true });
+    document.addEventListener('click', this.handleOutsideClick, false);
+    this.props.onOpen();
+  }
+  close() {
+    this.setState({ isOpen: false });
+    document.removeEventListener('click', this.handleOutsideClick, false);
+    this.props.onClose();
+  }
+  handleOutsideClick(e) {
+    // ignore clicks on the component itself
+    if (this.domRef.contains(e.target)) {
+      return;
+    }
+    this.close();
+  }
   render() {
-    const { open, menu, direction, className, ...props } = this.props;
+    const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
     return (
       <div ref={(elm) => { this.domRef = elm; }}
-        className={classnames('dropdown', className, `open-${direction}`, { 'is-open': open })}>
+        className={classnames('dropdown', className, `open-${direction}`, { 'is-open': this.state.isOpen })}
+        {...props}>
         {props.children}
         <div ref={(elm) => { this.containerDomRef = elm; }}
           style={{ top: this.state.top, bottom: this.state.bottom, right: this.state.right, left: this.state.left }}
