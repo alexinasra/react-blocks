@@ -1,58 +1,13 @@
 .nav {
-  &.column .scrollbar-content {
-    flex-direction: column;
-  }
-  &.row .scrollbar-content {
-    flex-direction: row;
-  }
-  .scrollbar-scrollarea {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-  }
-  .scrollbar-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 
-    box-sizing: border-box;
-    & > a {
-      min-width: 60px;
-
-      text-align: center;
-      vertical-align: text-top;
-      text-decoration: none;
-
-      color: $color-text-display;
-
-      font-family: 'Roboto';
-      font-size: 16px;
-      font-weight: bold;
-
-      &:hover, &:active, &.active {
-        color: $color-primary;
-      }
-
-    }
-  }
-}
-.tabs-nav {
-  padding: 6px 24px;
   a {
+    vertical-align: middle;
+    line-height: 36px;
+    text-decoration: none;
 
-    &::after {
-      display: block;
-
-      height: 2px;
-      content: '';
-
-      background: $color-text-disabled;
-    }
-  }
-  a:hover, a:active, a.active {
-    &::after {
-      background: $color-primary;
-    }
   }
 }

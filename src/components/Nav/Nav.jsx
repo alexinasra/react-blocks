@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Scrollbar from '../Scrollbar';
-
 const Nav = ({ direction, className, ...props }) => (
-  <Scrollbar className={classnames('nav', direction, className)} {...props}>
+  <div className={classnames('nav', direction, className)} {...props}>
     {props.children}
-  </Scrollbar>
+  </div>
 );
 
 Nav.propTypes = {
