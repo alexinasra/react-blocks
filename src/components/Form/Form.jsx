@@ -11,9 +11,10 @@ const Form = ({ className, ...props }) => (
 Form.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func
 };
 Form.defaultProps = {
-  className: ''
+  className: '',
+  onSubmit: undefined
 };
 export default Form;
