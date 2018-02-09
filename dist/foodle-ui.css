@@ -786,31 +786,37 @@
     .textarea textarea:active, .textarea textarea:focus {
       outline: none; }
 
-.select .value {
-  text-transform: capitalize;
-  min-width: 90px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
-  background: #FFF;
-  border-radius: 2px;
+.checkbox:active, .checkbox:focus {
+  outline: none; }
+
+.select {
   display: block; }
-  .select .value .text {
-    display: inline-block;
+  .select .menu-container {
+    width: 100%; }
+  .select .value {
+    text-transform: capitalize;
+    min-width: 90px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+    background: #FFF;
+    border-radius: 2px;
+    display: block; }
+    .select .value .text {
+      display: inline-block;
+      height: 24px;
+      line-height: 24px; }
+    .select .value .icon {
+      padding: 0;
+      margin: 0;
+      font-size: 20px; }
+      html:not([dir="rtl"]) .select .value .icon {
+        float: right; }
+      html[dir="rtl"] .select .value .icon {
+        float: left; }
+  .select .select-item {
     height: 24px;
     line-height: 24px; }
-  .select .value .icon {
-    padding: 0;
-    margin: 0;
-    font-size: 20px; }
-    html:not([dir="rtl"]) .select .value .icon {
-      float: right; }
-    html[dir="rtl"] .select .value .icon {
-      float: left; }
-
-.select .select-item {
-  height: 24px;
-  line-height: 24px; }
-  .select .select-item.is-selected {
-    background: rgba(0, 0, 0, 0.2); }
+    .select .select-item.is-selected {
+      background: rgba(0, 0, 0, 0.2); }
 
 .card {
   display: flex;
