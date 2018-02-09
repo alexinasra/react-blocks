@@ -1,16 +1,19 @@
 .select {
   display: block;
+  cursor: pointer;
   .menu-container {
     width: 100%;
   }
   .value {
     text-transform: capitalize;
     min-width: 90px;
-    box-shadow: 0 1px 2px 0 rgba($color-black, 0.7);
     background: $color-background;
     border-radius: 2px;
     display: block;
 
+    &:active, &:focus {
+      outline: none;
+    }
     .text {
       display: inline-block;
       height: 24px;
@@ -28,6 +31,13 @@
     line-height: 24px;
     &.is-selected {
       background: rgba($color-black, 0.2);
+    }
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    .value {
+      color: $color-text-disabled;
     }
   }
 }

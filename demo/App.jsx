@@ -12,7 +12,7 @@ import Collapse from '../src/components/Collapse';
 import Toolbar from '../src/components/Toolbar';
 import GridList, { GridListTile } from '../src/components/GridList';
 import Nav, { TabsNav } from '../src/components/Nav';
-import Form, { TextField, TextArea, Select, Checkbox } from '../src/components/Form';
+import Form, { TextField, TextArea, Select, Checkbox, Radio } from '../src/components/Form';
 import GridLayout, { GridRow, GridColumn } from '../src/components/GridLayout';
 import Menu, { MenuItem } from '../src/components/Menu';
 import Dropdown from '../src/components/Dropdown';
@@ -56,7 +56,9 @@ class App extends Component {
     return (
       <div id="DEMO_APP">
         <Form>
-          <Select value={this.state.value}
+          <Select
+
+          value={this.state.value}
           label="select"
           onSelect={(value) => this.setState({ value })}
           items={[
@@ -81,6 +83,20 @@ class App extends Component {
             disabled
             onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
             label="Ckecked Checkbox" />
+          <Radio options={[
+            {key:'a', label:'a', value: 'a'},
+            {key:'b', label:'b', value: 'b'},
+            {key:'d', label:'d', value: 'd'},
+            {key:'e', label:'e', value: 'e'},
+            {key:'f', label:'f', value: 'f'},
+            {key:'g', label:'g', value: 'g'},
+            {key:'h', label:'h', value: 'h'},
+            {key:'i', label:'i', value: 'i'},
+            {key:'j', label:'j', value: 'j'},
+            {key:'k', label:'k', value: 'k'},
+            {key:'l', label:'l', value: 'l'},
+            {key:'m', label:'m', value: 'm'},
+          ]} value={this.state.value} onChange={(value) => this.setState({ value })} />
         </Form>
       </div>
     );

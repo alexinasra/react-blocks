@@ -51,7 +51,9 @@ export default class Checkbox extends Component {
     this.setState({ active: false });
   }
   handleKeyPress(e) {
-    this.toggle();
+    if (e.key === ' ' || e.key === 'Enter') {
+      this.toggle();
+    }
   }
   render() {
     const {
@@ -71,7 +73,6 @@ export default class Checkbox extends Component {
         onClick={this.handleClick}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
-        onKeyPress={this.handleKeyPress}
         {...props}>
         <Icon name={value ? 'check_box' : 'check_box_outline_blank'} />
         <span className="label">

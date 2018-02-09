@@ -4,6 +4,7 @@ import TextField from './TextField';
 import TextArea from './TextArea';
 import Select from './Select';
 import Checkbox from './Checkbox';
+import Radio from './Radio';
 
 export default Form;
 export {
@@ -11,5 +12,6 @@ export {
   TextArea,
   TextField,
   Select,
-  Checkbox
+  Checkbox,
+  Radio
 };
