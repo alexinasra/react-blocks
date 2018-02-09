@@ -23,7 +23,8 @@ class App extends Component {
       isSidebarOpen: true,
       isMainMenuOpen: false,
       ratingVal: 0,
-      boolVal: false
+      boolVal: false,
+      value: undefined
 
     };
     this.index = 0;
@@ -54,10 +55,23 @@ class App extends Component {
     return (
       <div id="DEMO_APP">
         <Form>
-          <Select items={[
+          <Select value={this.state.value}
+          label="select"
+          onSelect={(value) => this.setState({ value })}
+          items={[
+            {key:'empty', label:'', value: ''},
             {key:'a', label:'a', value: 'a'},
             {key:'b', label:'b', value: 'b'},
-            {key:'c', label:'c', value: 'c'}
+            {key:'d', label:'d', value: 'd'},
+            {key:'e', label:'e', value: 'e'},
+            {key:'f', label:'f', value: 'f'},
+            {key:'g', label:'g', value: 'g'},
+            {key:'h', label:'h', value: 'h'},
+            {key:'i', label:'i', value: 'i'},
+            {key:'j', label:'j', value: 'j'},
+            {key:'k', label:'k', value: 'k'},
+            {key:'l', label:'l', value: 'l'},
+            {key:'m', label:'m', value: 'm'},
           ]} />
         </Form>
       </div>

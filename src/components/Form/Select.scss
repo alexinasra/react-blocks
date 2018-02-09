@@ -1,0 +1,28 @@
+.select {
+  .value {
+    text-transform: capitalize;
+    min-width: 90px;
+    box-shadow: 0 1px 2px 0 rgba($color-black, 0.7);
+    background: $color-background;
+    border-radius: 2px;
+    display: block;
+    .text {
+      display: inline-block;
+      height: 24px;
+      line-height: 24px;
+    }
+    .icon {
+      padding: 0;
+      margin: 0;
+      font-size: 20px;
+      @include float-right;
+    }
+  }
+  .select-item {
+    height: 24px;
+    line-height: 24px;
+    &.is-selected {
+      background: rgba($color-black, 0.2);
+    }
+  }
+}
