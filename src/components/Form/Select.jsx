@@ -20,13 +20,15 @@ export default class Select extends Component {
       key: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    disabled: PropTypes.bool
   }
   static defaultProps = {
     className: undefined,
     label: undefined,
     value: undefined,
-    onSelect: () => {}
+    onSelect: () => {},
+    disabled: false
   }
   constructor(props) {
     super(props);
@@ -58,7 +60,8 @@ export default class Select extends Component {
     const menuItems = items.map(item => (
       <MenuItem key={item.key}
         className={classnames('select-item', {
-          'is-selected': this.props.value && (this.props.value.key === item.key)
+          'is-selected': this.props.value && (this.props.value.key === item.key),
+          'is-disabled': this.props.disabled
         })}
         onClick={() => { this.select(item); }}
         label={item.label} />
