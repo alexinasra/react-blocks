@@ -6915,6 +6915,25 @@ exports['default'] = ToggleIcon;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _Scrollbar = __webpack_require__(137);
+
+var _Scrollbar2 = _interopRequireDefault(_Scrollbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+exports['default'] = _Scrollbar2['default'];
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.MenuItem = undefined;
 
 var _Menu = __webpack_require__(140);
@@ -6931,7 +6950,7 @@ exports['default'] = _Menu2['default'];
 exports.MenuItem = _MenuItem2['default'];
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6948,25 +6967,6 @@ var _BottomLine2 = _interopRequireDefault(_BottomLine);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 exports['default'] = _BottomLine2['default'];
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Scrollbar = __webpack_require__(137);
-
-var _Scrollbar2 = _interopRequireDefault(_Scrollbar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-exports['default'] = _Scrollbar2['default'];
 
 /***/ }),
 /* 137 */
@@ -7644,7 +7644,7 @@ var _classnames = __webpack_require__(26);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _Menu = __webpack_require__(134);
+var _Menu = __webpack_require__(135);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -8018,7 +8018,7 @@ var _classnames = __webpack_require__(26);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _BottomLine = __webpack_require__(135);
+var _BottomLine = __webpack_require__(136);
 
 var _BottomLine2 = _interopRequireDefault(_BottomLine);
 
@@ -8254,7 +8254,7 @@ var _classnames = __webpack_require__(26);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _BottomLine = __webpack_require__(135);
+var _BottomLine = __webpack_require__(136);
 
 var _BottomLine2 = _interopRequireDefault(_BottomLine);
 
@@ -8456,11 +8456,11 @@ var _classnames = __webpack_require__(26);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _Scrollbar = __webpack_require__(136);
+var _Scrollbar = __webpack_require__(134);
 
 var _Scrollbar2 = _interopRequireDefault(_Scrollbar);
 
-var _BottomLine = __webpack_require__(135);
+var _BottomLine = __webpack_require__(136);
 
 var _BottomLine2 = _interopRequireDefault(_BottomLine);
 
@@ -8594,9 +8594,17 @@ var _Dropdown = __webpack_require__(143);
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
-var _Menu = __webpack_require__(134);
+var _Menu = __webpack_require__(135);
 
 var _Menu2 = _interopRequireDefault(_Menu);
+
+var _Scrollbar = __webpack_require__(134);
+
+var _Scrollbar2 = _interopRequireDefault(_Scrollbar);
+
+var _Icon = __webpack_require__(132);
+
+var _Icon2 = _interopRequireDefault(_Icon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -8636,6 +8644,16 @@ var Select = function (_Component) {
       return handleMenuClose;
     }()
   }, {
+    key: 'select',
+    value: function () {
+      function select(item) {
+        this.props.onSelect(item);
+        this.dropdown.close();
+      }
+
+      return select;
+    }()
+  }, {
     key: 'render',
     value: function () {
       function render() {
@@ -8649,7 +8667,18 @@ var Select = function (_Component) {
             props = (0, _objectWithoutProperties3['default'])(_props, ['className', 'items', 'label', 'value']);
 
         var menuItems = items.map(function (item) {
-          return _react2['default'].createElement(_Menu.MenuItem, { key: item.key, label: item.label });
+          return _react2['default'].createElement(_Menu.MenuItem, { key: item.key,
+            className: (0, _classnames2['default'])('select-item', {
+              'is-selected': _this2.props.value && _this2.props.value.key === item.key
+            }),
+            onClick: function () {
+              function onClick() {
+                _this2.select(item);
+              }
+
+              return onClick;
+            }(),
+            label: item.label });
         });
         var displayText = '';
         if (value) {
@@ -8660,26 +8689,33 @@ var Select = function (_Component) {
           displayText = items[0].label;
         }
         return _react2['default'].createElement(
-          'div',
-          { className: (0, _classnames2['default'])('select', className) },
-          _react2['default'].createElement(
-            _Dropdown2['default'],
-            { onRef: function () {
-                function onRef(dropdown) {
-                  _this2.dropdown = dropdown;
-                }
+          _Dropdown2['default'],
+          { className: (0, _classnames2['default'])('select', className),
+            onRef: function () {
+              function onRef(dropdown) {
+                _this2.dropdown = dropdown;
+              }
 
-                return onRef;
-              }(), className: 'value', menu: _react2['default'].createElement(
-                _Menu2['default'],
-                null,
+              return onRef;
+            }(),
+            menu: _react2['default'].createElement(
+              _Menu2['default'],
+              { style: { height: '140px' } },
+              _react2['default'].createElement(
+                _Scrollbar2['default'],
+                { watchSize: true, vertical: 'hidden', horizontal: 'visible' },
                 menuItems
-              ) },
+              )
+            ) },
+          _react2['default'].createElement(
+            'span',
+            { className: 'value', role: 'button', tabIndex: 0, onClick: this.handleMenuOpen },
             _react2['default'].createElement(
-              'button',
-              { onClick: this.handleMenuOpen },
+              'span',
+              { className: 'text' },
               displayText
-            )
+            ),
+            _react2['default'].createElement(_Icon2['default'], { name: 'arrow_drop_down' })
           )
         );
       }
@@ -8693,6 +8729,7 @@ var Select = function (_Component) {
 Select.propTypes = {
   className: _propTypes2['default'].string,
   label: _propTypes2['default'].string,
+  onSelect: _propTypes2['default'].func,
   value: _propTypes2['default'].shape({
     key: _propTypes2['default'].string.isRequired,
     value: _propTypes2['default'].string.isRequired,
@@ -8707,7 +8744,12 @@ Select.propTypes = {
 Select.defaultProps = {
   className: undefined,
   label: undefined,
-  value: undefined
+  value: undefined,
+  onSelect: function () {
+    function onSelect() {}
+
+    return onSelect;
+  }()
 };
 exports['default'] = Select;
 
