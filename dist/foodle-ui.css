@@ -786,20 +786,44 @@
     .textarea textarea:active, .textarea textarea:focus {
       outline: none; }
 
-.checkbox:active, .checkbox:focus {
-  outline: none; }
+.checkbox {
+  user-select: none;
+  cursor: pointer; }
+  .checkbox:active, .checkbox:focus {
+    outline: none; }
+  .checkbox.is-disabled {
+    color: #bfbfbf;
+    cursor: not-allowed; }
+  .checkbox .label, .checkbox .icon {
+    vertical-align: middle; }
+  html:not([dir="rtl"]) .checkbox .icon {
+    padding-right: 16px !important; }
+  html[dir="rtl"] .checkbox .icon {
+    padding-left: 16px !important; }
+
+.radio {
+  display: flex;
+  flex-direction: row; }
+  .radio:focus, .radio:active {
+    outline: none; }
+  .radio .radio-option:focus, .radio .radio-option:active {
+    outline: none; }
+  .radio .radio-option .label, .radio .radio-option .icon {
+    vertical-align: middle; }
 
 .select {
-  display: block; }
+  display: block;
+  cursor: pointer; }
   .select .menu-container {
     width: 100%; }
   .select .value {
     text-transform: capitalize;
     min-width: 90px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
     background: #FFF;
     border-radius: 2px;
     display: block; }
+    .select .value:active, .select .value:focus {
+      outline: none; }
     .select .value .text {
       display: inline-block;
       height: 24px;
@@ -817,6 +841,10 @@
     line-height: 24px; }
     .select .select-item.is-selected {
       background: rgba(0, 0, 0, 0.2); }
+  .select.is-disabled {
+    cursor: not-allowed; }
+    .select.is-disabled .value {
+      color: #bfbfbf; }
 
 .card {
   display: flex;
