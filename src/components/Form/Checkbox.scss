@@ -1,0 +1,5 @@
+.checkbox {
+  &:active, &:focus {
+    outline: none;
+  }
+}

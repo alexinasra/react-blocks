@@ -12,7 +12,7 @@ import Collapse from '../src/components/Collapse';
 import Toolbar from '../src/components/Toolbar';
 import GridList, { GridListTile } from '../src/components/GridList';
 import Nav, { TabsNav } from '../src/components/Nav';
-import Form, { TextField, TextArea, Select } from '../src/components/Form';
+import Form, { TextField, TextArea, Select, Checkbox } from '../src/components/Form';
 import GridLayout, { GridRow, GridColumn } from '../src/components/GridLayout';
 import Menu, { MenuItem } from '../src/components/Menu';
 import Dropdown from '../src/components/Dropdown';
@@ -24,6 +24,7 @@ class App extends Component {
       isMainMenuOpen: false,
       ratingVal: 0,
       boolVal: false,
+      boolval2: true,
       value: undefined
 
     };
@@ -73,6 +74,12 @@ class App extends Component {
             {key:'l', label:'l', value: 'l'},
             {key:'m', label:'m', value: 'm'},
           ]} />
+          <Checkbox value={this.state.boolVal}
+            onChange={(boolVal) => { this.setState({ boolVal }); }}
+            label="Unckecked Checkbox" />
+          <Checkbox value={this.state.boolVal2}
+            onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
+            label="Ckecked Checkbox" />
         </Form>
       </div>
     );
