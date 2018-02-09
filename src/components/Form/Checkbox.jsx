@@ -10,13 +10,15 @@ export default class Checkbox extends Component {
     onChange: PropTypes.func,
     value: PropTypes.bool,
     label: PropTypes.string.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
+    disabled: PropTypes.bool
   };
   static defaultProps = {
     onRef: () => {},
     onChange: () => {},
     value: false,
-    className: undefined
+    className: undefined,
+    disabled: false
   };
   constructor(props) {
     super(props);
@@ -35,7 +37,12 @@ export default class Checkbox extends Component {
     this.props.onRef(this);
   }
   handleClick(e) {
-    this.props.onChange(!this.props.value);
+    this.toggle();
+  }
+  toggle() {
+    if (!this.props.disabled) {
+      this.props.onChange(!this.props.value);
+    }
   }
   handleFocus(e) {
     this.setState({ active: true });
@@ -44,9 +51,7 @@ export default class Checkbox extends Component {
     this.setState({ active: false });
   }
   handleKeyPress(e) {
-    if (e.key === ' ') {
-      this.props.onChange(!this.props.value);
-    }
+    this.toggle();
   }
   render() {
     const {
@@ -55,9 +60,10 @@ export default class Checkbox extends Component {
       onChange,
       value,
       className,
+      disabled,
       ...props } = this.props;
     return (
-      <div className={classnames('checkbox', className)}
+      <div className={classnames('checkbox', className, { 'is-disabled': disabled })}
         tabIndex={0}
         role="checkbox"
         aria-checked={value}
@@ -71,7 +77,7 @@ export default class Checkbox extends Component {
         <span className="label">
           {label}
         </span>
-        <BottomLine active={this.state.active} />
+        <BottomLine active={this.state.active} disabled={this.props.disabled} />
       </div>
     );
   }

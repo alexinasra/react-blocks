@@ -78,6 +78,7 @@ class App extends Component {
             onChange={(boolVal) => { this.setState({ boolVal }); }}
             label="Unckecked Checkbox" />
           <Checkbox value={this.state.boolVal2}
+            disabled
             onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
             label="Ckecked Checkbox" />
         </Form>

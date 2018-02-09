@@ -1,5 +1,17 @@
 .checkbox {
+  user-select: none;
+  cursor: pointer;
   &:active, &:focus {
     outline: none;
+  }
+  &.is-disabled {
+    color: $color-text-disabled;
+    cursor: not-allowed;
+  }
+  .label, .icon {
+    vertical-align: middle;
+  }
+  .icon {
+    @include padding-right(16px);
   }
 }
