@@ -1,0 +1,16 @@
+.radio {
+  display: flex;
+  flex-direction: row;
+
+  &:focus, &:active {
+    outline: none;
+  }
+  .radio-option {
+    &:focus, &:active {
+      outline: none;
+    }
+    .label, .icon {
+      vertical-align: middle;
+    }
+  }
+}
