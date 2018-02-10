@@ -12,7 +12,7 @@ import Collapse from '../src/components/Collapse';
 import Toolbar from '../src/components/Toolbar';
 import GridList, { GridListTile } from '../src/components/GridList';
 import Nav, { TabsNav } from '../src/components/Nav';
-import Form, { TextField, TextArea, Select, Checkbox, Radio } from '../src/components/Form';
+import Form, { TextField, TextArea, Select, Checkbox, CheckboxGroup, Radio } from '../src/components/Form';
 import GridLayout, { GridRow, GridColumn } from '../src/components/GridLayout';
 import Menu, { MenuItem } from '../src/components/Menu';
 import Dropdown from '../src/components/Dropdown';
@@ -76,13 +76,19 @@ class App extends Component {
             {key:'l', label:'l', value: 'l'},
             {key:'m', label:'m', value: 'm'},
           ]} />
-          <Checkbox value={this.state.boolVal}
-            onChange={(boolVal) => { this.setState({ boolVal }); }}
-            label="Unckecked Checkbox" />
-          <Checkbox value={this.state.boolVal2}
-            disabled
-            onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
-            label="Ckecked Checkbox" />
+          <span id="myLabel">Select Checkboxes</span>
+          <CheckboxGroup labelledBy="myLabel">
+            <Checkbox checked={this.state.boolVal}
+              onChange={(boolVal) => { this.setState({ boolVal }); }}
+              label="Unckecked Checkbox" />
+            <Checkbox checked='mixed'
+              onChange={(boolVal) => { this.setState({ boolVal }); }}
+              label="Unckecked Checkbox" />
+            <Checkbox checked={this.state.boolVal2}
+              disabled
+              onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
+              label="Ckecked Checkbox" />
+          </CheckboxGroup>
           <Radio options={[
             {key:'a', label:'a', value: 'a'},
             {key:'b', label:'b', value: 'b'},

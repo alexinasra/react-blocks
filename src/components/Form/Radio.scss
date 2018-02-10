@@ -1,7 +1,7 @@
 .radio {
   display: flex;
   flex-direction: row;
-
+  user-select: none;
   &:focus, &:active {
     outline: none;
   }
@@ -11,6 +11,9 @@
     }
     .label, .icon {
       vertical-align: middle;
+    }
+    .label {
+      text-transform: uppercase;
     }
   }
 }

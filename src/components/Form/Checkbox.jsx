@@ -8,15 +8,15 @@ export default class Checkbox extends Component {
   static propTypes = {
     onRef: PropTypes.func,
     onChange: PropTypes.func,
-    value: PropTypes.bool,
+    checked: PropTypes.oneOf([true, false, 'mixed']),
     label: PropTypes.string.isRequired,
     className: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
   };
   static defaultProps = {
     onRef: () => {},
     onChange: () => {},
-    value: false,
+    checked: false,
     className: undefined,
     disabled: false
   };
@@ -41,7 +41,7 @@ export default class Checkbox extends Component {
   }
   toggle() {
     if (!this.props.disabled) {
-      this.props.onChange(!this.props.value);
+      this.props.onChange(!this.props.checked);
     }
   }
   handleFocus(e) {
@@ -60,21 +60,27 @@ export default class Checkbox extends Component {
       onRef,
       label,
       onChange,
-      value,
+      checked,
       className,
       disabled,
       ...props } = this.props;
+    let iconName = 'check_box_outline_blank';
+
+    if (checked === 'mixed') {
+      iconName = 'indeterminate_check_box';
+    } else if (checked) {
+      iconName = 'check_box';
+    }
     return (
       <div className={classnames('checkbox', className, { 'is-disabled': disabled })}
         tabIndex={0}
         role="checkbox"
-        aria-checked={value}
-        aria-labelledby={label}
+        aria-checked={checked}
         onClick={this.handleClick}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         {...props}>
-        <Icon name={value ? 'check_box' : 'check_box_outline_blank'} />
+        <Icon name={iconName} />
         <span className="label">
           {label}
         </span>
