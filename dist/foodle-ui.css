@@ -425,63 +425,6 @@
       border-radius: 125px / 12px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.52); }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  user-select: none;
-  min-width: 90px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
-  background: #FFF;
-  border-radius: 2px; }
-  .menu .menu-item {
-    display: flex;
-    flex-direction: row;
-    padding: 2px;
-    cursor: default;
-    font-family: "Roboto";
-    font-size: 12px;
-    font-weight: bold;
-    color: #212121;
-    text-transform: capitalize;
-    white-space: nowrap; }
-    .menu .menu-item .icon {
-      font-size: 14px;
-      padding: 0;
-      vertical-align: middle;
-      margin: 0 2px; }
-    .menu .menu-item .label {
-      margin-left: 18px;
-      margin-right: 2px;
-      flex-grow: 1;
-      vertical-align: middle; }
-    .menu .menu-item .icon + .label {
-      margin-left: 0; }
-    .menu .menu-item .shortcut {
-      font-size: 8px;
-      color: #757575;
-      vertical-align: middle; }
-    .menu .menu-item:active, .menu .menu-item:focus {
-      outline: none; }
-    .menu .menu-item:hover {
-      background: rgba(0, 0, 0, 0.4); }
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0; }
-  .dropdown .menu-container {
-    position: absolute;
-    opacity: 0;
-    transform: translate(0, -9999px);
-    transition: opacity 300ms;
-    z-index: 99; }
-  .dropdown.is-open .menu-container {
-    opacity: 1;
-    transform: translate(0, 0); }
-
 .bottom-line {
   position: relative;
   height: 2px; }
@@ -543,6 +486,63 @@
   color: #757575; }
   .subheader:first-letter {
     text-transform: uppercase; }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  user-select: none;
+  min-width: 90px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+  background: #FFF;
+  border-radius: 2px; }
+  .menu .menu-item {
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    cursor: default;
+    font-family: "Roboto";
+    font-size: 12px;
+    font-weight: bold;
+    color: #212121;
+    text-transform: capitalize;
+    white-space: nowrap; }
+    .menu .menu-item .icon {
+      font-size: 14px;
+      padding: 0;
+      vertical-align: middle;
+      margin: 0 2px; }
+    .menu .menu-item .label {
+      margin-left: 18px;
+      margin-right: 2px;
+      flex-grow: 1;
+      vertical-align: middle; }
+    .menu .menu-item .icon + .label {
+      margin-left: 0; }
+    .menu .menu-item .shortcut {
+      font-size: 8px;
+      color: #757575;
+      vertical-align: middle; }
+    .menu .menu-item:active, .menu .menu-item:focus {
+      outline: none; }
+    .menu .menu-item:hover {
+      background: rgba(0, 0, 0, 0.4); }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
+  .dropdown .menu-container {
+    position: absolute;
+    opacity: 0;
+    transform: translate(0, -9999px);
+    transition: opacity 300ms;
+    z-index: 99; }
+  .dropdown.is-open .menu-container {
+    opacity: 1;
+    transform: translate(0, 0); }
 
 .scrollbar {
   position: relative;
@@ -803,13 +803,16 @@
 
 .radio {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  user-select: none; }
   .radio:focus, .radio:active {
     outline: none; }
   .radio .radio-option:focus, .radio .radio-option:active {
     outline: none; }
   .radio .radio-option .label, .radio .radio-option .icon {
     vertical-align: middle; }
+  .radio .radio-option .label {
+    text-transform: uppercase; }
 
 .select {
   display: block;

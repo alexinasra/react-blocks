@@ -1193,6 +1193,27 @@ module.exports = function (it, key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (obj, keys) {
+  var target = {};
+
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+
+  return target;
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -1258,7 +1279,7 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1641,7 +1662,7 @@ module.exports = ReactComponentTreeHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1658,27 +1679,6 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, keys) {
-  var target = {};
-
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-
-  return target;
-};
 
 /***/ }),
 /* 24 */
@@ -1892,7 +1892,7 @@ var ReactNoopUpdateQueue = __webpack_require__(36);
 var canDefineProperty = __webpack_require__(11);
 var emptyObject = __webpack_require__(37);
 var invariant = __webpack_require__(1);
-var lowPriorityWarning = __webpack_require__(20);
+var lowPriorityWarning = __webpack_require__(21);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -2229,7 +2229,7 @@ module.exports = getIteratorFn;
 
 
 var ReactCurrentOwner = __webpack_require__(12);
-var ReactComponentTreeHook = __webpack_require__(21);
+var ReactComponentTreeHook = __webpack_require__(22);
 var ReactElement = __webpack_require__(3);
 
 var checkReactTypeSpec = __webpack_require__(68);
@@ -2237,7 +2237,7 @@ var checkReactTypeSpec = __webpack_require__(68);
 var canDefineProperty = __webpack_require__(11);
 var getIteratorFn = __webpack_require__(39);
 var warning = __webpack_require__(2);
-var lowPriorityWarning = __webpack_require__(20);
+var lowPriorityWarning = __webpack_require__(21);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -2484,7 +2484,7 @@ var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 var assign = __webpack_require__(5);
 
-var ReactPropTypesSecret = __webpack_require__(22);
+var ReactPropTypesSecret = __webpack_require__(23);
 var checkPropTypes = __webpack_require__(73);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -3344,7 +3344,7 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(20);
+  var lowPriorityWarning = __webpack_require__(21);
   var canDefineProperty = __webpack_require__(11);
   var ReactElementValidator = __webpack_require__(40);
   var didWarnPropTypesDeprecated = false;
@@ -4204,7 +4204,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(21);
+  ReactComponentTreeHook = __webpack_require__(22);
 }
 
 var loggedTypeFailures = {};
@@ -4246,7 +4246,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(21);
+            ReactComponentTreeHook = __webpack_require__(22);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -4378,7 +4378,7 @@ module.exports = function(isValidElement) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(1);
   var warning = __webpack_require__(2);
-  var ReactPropTypesSecret = __webpack_require__(22);
+  var ReactPropTypesSecret = __webpack_require__(23);
   var loggedTypeFailures = {};
 }
 
@@ -5407,7 +5407,7 @@ module.exports = onlyChild;
 
 var emptyFunction = __webpack_require__(10);
 var invariant = __webpack_require__(1);
-var ReactPropTypesSecret = __webpack_require__(22);
+var ReactPropTypesSecret = __webpack_require__(23);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -5848,7 +5848,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -5902,7 +5902,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -6983,7 +6983,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -7400,7 +7400,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -7453,7 +7453,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -7528,7 +7528,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -7604,7 +7604,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -7919,7 +7919,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8002,7 +8002,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8127,7 +8127,7 @@ exports['default'] = FieldContainer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Radio = exports.Checkbox = exports.Select = exports.TextField = exports.TextArea = exports.FieldContainer = undefined;
+exports.Radio = exports.CheckboxGroup = exports.Checkbox = exports.Select = exports.TextField = exports.TextArea = exports.FieldContainer = undefined;
 
 var _Form = __webpack_require__(168);
 
@@ -8153,7 +8153,11 @@ var _Checkbox = __webpack_require__(172);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
-var _Radio = __webpack_require__(173);
+var _CheckboxGroup = __webpack_require__(173);
+
+var _CheckboxGroup2 = _interopRequireDefault(_CheckboxGroup);
+
+var _Radio = __webpack_require__(174);
 
 var _Radio2 = _interopRequireDefault(_Radio);
 
@@ -8165,6 +8169,7 @@ exports.TextArea = _TextArea2['default'];
 exports.TextField = _TextField2['default'];
 exports.Select = _Select2['default'];
 exports.Checkbox = _Checkbox2['default'];
+exports.CheckboxGroup = _CheckboxGroup2['default'];
 exports.Radio = _Radio2['default'];
 
 /***/ }),
@@ -8182,7 +8187,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8564,7 +8569,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8831,7 +8836,7 @@ var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8919,7 +8924,7 @@ var Checkbox = function (_Component) {
     value: function () {
       function toggle() {
         if (!this.props.disabled) {
-          this.props.onChange(!this.props.value);
+          this.props.onChange(!this.props.checked);
         }
       }
 
@@ -8962,23 +8967,29 @@ var Checkbox = function (_Component) {
             onRef = _props.onRef,
             label = _props.label,
             onChange = _props.onChange,
-            value = _props.value,
+            checked = _props.checked,
             className = _props.className,
             disabled = _props.disabled,
-            props = (0, _objectWithoutProperties3['default'])(_props, ['onRef', 'label', 'onChange', 'value', 'className', 'disabled']);
+            props = (0, _objectWithoutProperties3['default'])(_props, ['onRef', 'label', 'onChange', 'checked', 'className', 'disabled']);
 
+        var iconName = 'check_box_outline_blank';
+
+        if (checked === 'mixed') {
+          iconName = 'indeterminate_check_box';
+        } else if (checked) {
+          iconName = 'check_box';
+        }
         return _react2['default'].createElement(
           'div',
           (0, _extends3['default'])({ className: (0, _classnames2['default'])('checkbox', className, { 'is-disabled': disabled }),
             tabIndex: 0,
             role: 'checkbox',
-            'aria-checked': value,
-            'aria-labelledby': label,
+            'aria-checked': checked,
             onClick: this.handleClick,
             onFocus: this.handleFocus,
             onBlur: this.handleBlur
           }, props),
-          _react2['default'].createElement(_Icon2['default'], { name: value ? 'check_box' : 'check_box_outline_blank' }),
+          _react2['default'].createElement(_Icon2['default'], { name: iconName }),
           _react2['default'].createElement(
             'span',
             { className: 'label' },
@@ -8997,7 +9008,7 @@ var Checkbox = function (_Component) {
 Checkbox.propTypes = {
   onRef: _propTypes2['default'].func,
   onChange: _propTypes2['default'].func,
-  value: _propTypes2['default'].bool,
+  checked: _propTypes2['default'].oneOf([true, false, 'mixed']),
   label: _propTypes2['default'].string.isRequired,
   className: _propTypes2['default'].string,
   disabled: _propTypes2['default'].bool
@@ -9013,7 +9024,7 @@ Checkbox.defaultProps = {
 
     return onChange;
   }(),
-  value: false,
+  checked: false,
   className: undefined,
   disabled: false
 };
@@ -9030,11 +9041,62 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _objectWithoutProperties2 = __webpack_require__(20);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _react = __webpack_require__(15);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(16);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(26);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var CheckboxGroup = function CheckboxGroup(_ref) {
+  var labelledBy = _ref.labelledBy,
+      className = _ref.className,
+      props = (0, _objectWithoutProperties3['default'])(_ref, ['labelledBy', 'className']);
+  return _react2['default'].createElement(
+    'div',
+    { className: (0, _classnames2['default'])('checkbox_group', className), role: 'group', 'aria-labelledby': labelledBy },
+    props.children
+  );
+};
+
+CheckboxGroup.propTypes = {
+  labelledBy: _propTypes2['default'].string.isRequired,
+  className: _propTypes2['default'].string,
+  children: _propTypes2['default'].node.isRequired
+};
+CheckboxGroup.defaultProps = {
+  className: undefined
+};
+
+exports['default'] = CheckboxGroup;
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _extends2 = __webpack_require__(24);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _objectWithoutProperties2 = __webpack_require__(23);
+var _objectWithoutProperties2 = __webpack_require__(20);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
