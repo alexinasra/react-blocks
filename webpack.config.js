@@ -80,8 +80,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    // progress: true,
-
+    progress: true,
+    inline: true,
     stats: 'errors-only',
 
     host: HOST,

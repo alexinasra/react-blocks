@@ -23,7 +23,7 @@ class App extends Component {
       isSidebarOpen: true,
       isMainMenuOpen: false,
       ratingVal: 0,
-      boolVal: false,
+      boolVal: true,
       boolval2: true,
       value: undefined
 
