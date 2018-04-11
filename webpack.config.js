@@ -17,7 +17,7 @@ const path = require('path');
 const SRC = path.join(__dirname, 'src');
 const BUILD = path.join(__dirname, 'build');
 const NODE_MODULES = path.join(__dirname, 'node_modules');
-const STYLE = path.join(__dirname, 'src', 'FoodleUI.scss');
+const STYLE = path.join(__dirname, 'src', 'react-blocks.scss');
 
 const DEMO = path.join(__dirname, 'demo');
 
