@@ -39,7 +39,11 @@ module.exports = (env) => {
   const loaders = [
     {
       test: /\.jsx$/,
-      loader: 'babel-loader',
+      use: [{
+        loader: 'eslint-loader'
+      }, {
+        loader: 'babel-loader?cacheDirectory'
+      }],
       exclude: /node_modules/
     },
     {

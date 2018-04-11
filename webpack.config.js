@@ -64,7 +64,11 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use: ['babel-loader?cacheDirectory'],
+        use: [{
+          loader: 'eslint-loader'
+        }, {
+          loader: 'babel-loader?cacheDirectory'
+        }],
         exclude: NODE_MODULES
       },
       {
