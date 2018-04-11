@@ -6,11 +6,11 @@ This library is in early stages, any help or suggestion would be appreciated .
 
 
 #### Install:
-
+```sh
+npm install --save "https://github.com/alexinasra/react-blocks.git"
+```
 
 #### usage:
-
-
 ```scss
 /* ltr only css */
 $context-direction: "ltr"
@@ -42,7 +42,7 @@ const PrimaryRaisedButton = (props) => (
 
 #### Prepare setup
 ```sh
-git clone 'todo:url'
+git clone https://github.com/alexinasra/react-blocks.git
 cd react-blocks
 npm install
 ```
