@@ -40,9 +40,9 @@ module.exports = (env) => {
     {
       test: /\.jsx$/,
       use: [{
-        loader: 'eslint-loader'
-      }, {
         loader: 'babel-loader?cacheDirectory'
+      }, {
+        loader: 'eslint-loader'
       }],
       exclude: /node_modules/
     },

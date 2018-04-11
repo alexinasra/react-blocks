@@ -26,7 +26,7 @@ export default class Radio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false,
+      isActive: false
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }

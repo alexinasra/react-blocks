@@ -137,11 +137,20 @@ class Dropdown extends Component {
     const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
     return (
       <div ref={(elm) => { this.domRef = elm; }}
-        className={classnames('dropdown', className, `open-${direction}`, { 'is-open': this.state.isOpen })}
+        className={
+          classnames(
+            'dropdown',
+             className,
+             `open-${direction}`,
+             { 'is-open': this.state.isOpen })}
         {...props}>
         {props.children}
         <div ref={(elm) => { this.containerDomRef = elm; }}
-          style={{ top: this.state.top, bottom: this.state.bottom, right: this.state.right, left: this.state.left }}
+          style={{
+            top: this.state.top,
+            bottom: this.state.bottom,
+            right: this.state.right,
+            left: this.state.left }}
           className="menu-container">
           {menu}
         </div>

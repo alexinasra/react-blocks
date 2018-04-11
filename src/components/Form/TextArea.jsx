@@ -48,7 +48,7 @@ class TextArea extends Component {
             value={this.state.value}
             placeholder={this.props.hintText} />
         </Scrollbar>
-        <BottomLine active={true} />
+        <BottomLine active />
       </div>
     );
   }

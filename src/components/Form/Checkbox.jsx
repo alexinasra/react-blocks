@@ -11,7 +11,7 @@ export default class Checkbox extends Component {
     checked: PropTypes.oneOf([true, false, 'mixed']),
     label: PropTypes.string.isRequired,
     className: PropTypes.string,
-    disabled: PropTypes.bool,
+    disabled: PropTypes.bool
   };
   static defaultProps = {
     onRef: () => {},

@@ -110,6 +110,7 @@ class Scrollbar extends Component {
     this.setState({ hbarTopMargin: (val / this.state.hratio) });
   }
   handleOnWheel(e) {
+    /* eslint-disable max-len */
     if (((this.scrollAreaElm.scrollTop <= 0) && (e.deltaY < 0)) ||
       ((this.scrollAreaElm.scrollTop + (e.deltaY * this.state.hratio) >= this.state.innerHeigh - this.state.height) && (e.deltaY > 0))) {
       return;

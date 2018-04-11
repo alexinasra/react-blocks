@@ -65,9 +65,9 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: [{
-          loader: 'eslint-loader'
-        }, {
           loader: 'babel-loader?cacheDirectory'
+        }, {
+          loader: 'eslint-loader'
         }],
         exclude: NODE_MODULES
       },
