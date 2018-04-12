@@ -12,9 +12,11 @@ const CardTitle = ({
   ...props
 }) => (
   <div className={classNames('card-title', { 'has-avatar': !!avatar, 'has-subtitle': !!subtitle }, className)} {...props}>
-    {avatar && (<div className="avatar-container">
-      {avatar}
-    </div>)}
+    {avatar && (
+      <div className="avatar-container">
+        {avatar}
+      </div>
+    )}
     <div className="text-container">
       <Title>{title}</Title>
       {subtitle && <Subheader>{subtitle}</Subheader>}

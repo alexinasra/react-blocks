@@ -13,10 +13,8 @@ GridColumn.propTypes = {
   span: PropTypes.oneOfType([PropTypes.number, function TestGrow(props, propName, componentName) {
     if (!/grow/i.test(props[propName])) {
       /* eslint-disable prefer-template */
-      return new Error(
-        'Invalid prop `' + propName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
-      );
+      return new Error('Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.');
     }
   }]),
   children: PropTypes.node.isRequired

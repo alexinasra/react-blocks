@@ -6,7 +6,8 @@ const BottomLine = ({ active, disabled, className, ...props }) => (
   <div className={classnames(
     'bottom-line',
     { active, disabled },
-    className)}
+    className
+  )}
     {...props}>
     <div className="unactive-line" />
     <div className="active-line" />

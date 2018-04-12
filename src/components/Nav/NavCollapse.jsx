@@ -5,10 +5,10 @@ import Icon from '../Icon';
 
 const NavCollapse = ({ label, iconName, className, ...props }) => (
   <div className={classnames('nav-link nav-action', className)}>
-    <a>
+    <span>
       {iconName && <Icon name={iconName} />}
       <span className="label">{label}</span>
-    </a>
+    </span>
   </div>
 );
 

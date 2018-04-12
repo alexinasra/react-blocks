@@ -34,7 +34,6 @@ export default class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMenuOpen: false,
       active: false
     };
 
@@ -102,14 +101,17 @@ export default class Select extends Component {
         onBlur={this.handleBlur}
         onKeyDown={this.handleKeyPress}
         onRef={(dropdown) => { this.dropdown = dropdown; }}
-        menu={(<Menu tabIndex={0} role="menu" style={{ height: '140px' }}>
-          <Scrollbar watchSize vertical="hidden" horizontal="visible">
-            {menuItems}
-          </Scrollbar>
-        </Menu>)}>
+        menu={(
+          <Menu tabIndex={0} role="menu" style={{ height: '140px' }}>
+            <Scrollbar watchSize vertical="hidden" horizontal="visible">
+              {menuItems}
+            </Scrollbar>
+          </Menu>
+        )}>
         <span className="value"
           role="button"
           tabIndex={0}
+          onKeyUp={this.handleKeyPress}
           onClick={this.handleMenuOpen}>
           <span className="text">{displayText}</span>
           <Icon name="arrow_drop_down" />

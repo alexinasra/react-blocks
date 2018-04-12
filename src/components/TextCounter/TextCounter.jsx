@@ -6,11 +6,13 @@ const TextCounter = ({ text, count, max, min, className, ...props }) => {
   const c = count === 'word' ? text.trim().split(' ').length : text.length;
   const postfix = count === 'word' ? ' (words)' : '';
   return (
-    <div className={classnames('text-counter',
+    <div className={classnames(
+      'text-counter',
       {
         'to-long': (c > max && max > 0),
         'to-short': (c < min && min > 0)
-      }, className)}
+      }, className
+    )}
       {...props}>
       <span className="count">
         {c}

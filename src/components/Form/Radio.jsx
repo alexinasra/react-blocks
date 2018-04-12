@@ -25,15 +25,12 @@ export default class Radio extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {
-      isActive: false
-    };
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
   handleKeyDown(e) {
     if (e.key.startsWith('Arrow')) {
-      let i = this.props.options.findIndex(
-        o => (this.props.value && (this.props.value.key === o.key)));
+      const findIdx = o => (this.props.value && (this.props.value.key === o.key));
+      let i = this.props.options.findIndex(findIdx);
 
       switch (e.key) {
       case 'ArrowUp':
@@ -76,7 +73,10 @@ export default class Radio extends Component {
             aria-checked={value && (option.key === value.key)}
             onClick={() => onChange(option)}
             onKeyDown={this.handleKeyDown}>
-            <Icon name={value && (option.key === value.key) ? 'radio_button_checked' : 'radio_button_unchecked'} />
+            <Icon name={
+              value && (option.key === value.key) ?
+                'radio_button_checked' : 'radio_button_unchecked'
+            } />
             <span className="label">{option.label}</span>
           </div>
         );

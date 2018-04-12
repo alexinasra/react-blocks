@@ -140,9 +140,10 @@ class Dropdown extends Component {
         className={
           classnames(
             'dropdown',
-             className,
-             `open-${direction}`,
-             { 'is-open': this.state.isOpen })}
+            className,
+            `open-${direction}`,
+            { 'is-open': this.state.isOpen }
+          )}
         {...props}>
         {props.children}
         <div ref={(elm) => { this.containerDomRef = elm; }}

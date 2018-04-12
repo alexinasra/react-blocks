@@ -38,7 +38,6 @@ class TextField extends Component {
     this.state = {
       isDirty: false,
       isTouched: false,
-      isValid: true,
       hasFocus: false,
       value: props.value
     };

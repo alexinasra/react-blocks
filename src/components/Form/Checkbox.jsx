@@ -39,6 +39,11 @@ export default class Checkbox extends Component {
   handleClick(e) {
     this.toggle();
   }
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.toggle();
+    }
+  }
   toggle() {
     if (!this.props.disabled) {
       this.props.onChange(!this.props.checked);
@@ -49,11 +54,6 @@ export default class Checkbox extends Component {
   }
   handleBlur(e) {
     this.setState({ active: false });
-  }
-  handleKeyPress(e) {
-    if (e.key === ' ' || e.key === 'Enter') {
-      this.toggle();
-    }
   }
   render() {
     const {
@@ -77,6 +77,7 @@ export default class Checkbox extends Component {
         role="checkbox"
         aria-checked={checked}
         onClick={this.handleClick}
+        onKeyUp={this.handleKeyPress}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         {...props}>

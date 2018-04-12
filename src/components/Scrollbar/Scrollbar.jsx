@@ -8,7 +8,8 @@ class Scrollbar extends Component {
     className: PropTypes.string,
     vertical: PropTypes.oneOf(['auto', 'visible', 'hidden']),
     horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden']),
-    watchSize: PropTypes.bool
+    watchSize: PropTypes.bool,
+    width: PropTypes.integer
   }
   static defaultProps = {
     width: 0,
@@ -40,7 +41,7 @@ class Scrollbar extends Component {
     vbarWidth: 0,
     hbarTopMargin: 0,
     vbarStartMargin: 0,
-    vbarStartSide: 'marginLeft',
+    // vbarStartSide: 'marginLeft',
     hBarVisible: false,
     vBarVisible: false
   }
@@ -90,7 +91,7 @@ class Scrollbar extends Component {
       innerWidth,
       vbarWidth,
       vBarVisible,
-      vbarStartSide,
+      // vbarStartSide,
       vbarStartMargin: document.dir === 'rtl' ? (width - vbarWidth) : 0
     });
   }
@@ -125,11 +126,10 @@ class Scrollbar extends Component {
     if (e.preventDefault) { e.preventDefault(); }
     if (e.stopPropagation) { e.stopPropagation(); }
     if (e.clientY === 0) return false;
-    this.scrollTop(
-      (
-        e.clientY - this.scrollAreaElm.getBoundingClientRect().top -
+    this.scrollTop((
+      e.clientY - this.scrollAreaElm.getBoundingClientRect().top -
         (this.state.hbarHeight / 2)
-      ) * this.state.hratio);
+    ) * this.state.hratio);
     return false;
   }
   handleHMouseDown(e) {
@@ -159,11 +159,10 @@ class Scrollbar extends Component {
   handleVMouseMove(e) {
     if (e.preventDefault) { e.preventDefault(); }
     if (e.stopPropagation) { e.stopPropagation(); }
-    this.scrollStart(
-      (
-        (e.clientX - this.scrollAreaElm.getBoundingClientRect().left) -
+    this.scrollStart((
+      (e.clientX - this.scrollAreaElm.getBoundingClientRect().left) -
         (this.state.vbarWidth / 2)
-      ) * this.state.vratio);
+    ) * this.state.vratio);
 
     return false;
   }

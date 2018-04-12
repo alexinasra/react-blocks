@@ -19,7 +19,6 @@ MenuItem.propTypes = {
 };
 MenuItem.defaultProps = {
   iconName: undefined,
-  label: undefined,
   shortcut: undefined,
   className: undefined
 };
