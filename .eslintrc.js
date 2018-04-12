@@ -25,6 +25,7 @@ module.exports = {
     "object-property-newline": 0,
     "no-console": "warn",
     "jsx-a11y/href-no-hash": 0,
+    'object-curly-newline': 0,
     "comma-dangle": [
       "warn",
       "never"
