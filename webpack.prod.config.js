@@ -49,7 +49,7 @@ module.exports = (env) => {
     {
       test: /\.scss$/,
       include: path.join(__dirname, 'src'),
-      loader: ExtractTextPlugin.extract({
+      use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: 'css-loader?sourceMap!sass-loader? sourceMap'
       })
@@ -57,11 +57,7 @@ module.exports = (env) => {
   ];
 
   const plugins = [
-    new ExtractTextPlugin({
-      filename: '[name].css',
-      allChunks: true,
-      disable: false
-    })
+    new ExtractTextPlugin('[name].css')
   ];
   return {
     devtool: 'source-map',
@@ -70,7 +66,7 @@ module.exports = (env) => {
     },
     entry,
     output,
-    module: { loaders },
+    module: { rules: loaders },
     plugins
   };
 };
