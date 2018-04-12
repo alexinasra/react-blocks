@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 import BottomLine from './BottomLine';
 
 describe('<BottomLine />', () => {
-  const bottomLine = shallow(<BottomLine className="test-avatar"/>);
+  const bottomLine = shallow(<BottomLine className="test"/>);
 
   it('exists`', () => {
     expect(bottomLine.exists()).to.equal(true);
@@ -36,5 +36,8 @@ describe('<BottomLine />', () => {
     bottomLine.setProps({ disabled: true })
     expect(bottomLine.is('.disabled')).to.equal(true);
   })
+  it('className', () => {
+    expect(wrapper.hasClass('test')).to.equal(true);
+  });
 
 })

@@ -31,6 +31,6 @@ describe('<Avatar />', () => {
     expect(wrapper.is('.large')).to.equal(true);
   });
   it('className', () => {
-    expect(wrapper.is('.test-avatar')).to.equal(true);
+    expect(wrapper.hasClass('test-avatar')).to.equal(true);
   });
 })
