@@ -16,10 +16,10 @@ const Avatar = ({
 Avatar.propTypes = {
   className: PropTypes.string,
   src: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small', 'default', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 Avatar.defaultProps = {
   className: '',
-  size: 'default'
+  size: 'medium'
 };
 export default Avatar;
