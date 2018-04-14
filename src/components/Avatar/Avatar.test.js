@@ -11,26 +11,26 @@ describe('<Avatar />', () => {
   const wrapper = shallow(<Avatar src="test" className="test-avatar"/>);
 
   it('exists`', () => {
-    expect(wrapper.exists()).to.equal(true);
+    expect(wrapper.exists()).to.be.true;
   });
   it('has .avatar class`', () => {
-    expect(wrapper.is('.avatar')).to.equal(true);
+    expect(wrapper.is('.avatar')).to.be.true;
   });
   it('has src attribute`', () => {
-    expect(wrapper.is('[src="test"]')).to.equal(true);
+    expect(wrapper.is('[src="test"]')).to.be.true;
   });
   it('medium (default) size`', () => {
-    expect(wrapper.is('.medium')).to.equal(true);
+    expect(wrapper.is('.medium')).to.be.true;
   });
   it('small size`', () => {
     wrapper.setProps({ size: 'small'})
-    expect(wrapper.is('.small')).to.equal(true);
+    expect(wrapper.is('.small')).to.be.true;
   });
   it('large size`', () => {
     wrapper.setProps({ size: 'large'})
-    expect(wrapper.is('.large')).to.equal(true);
+    expect(wrapper.is('.large')).to.be.true;
   });
   it('className', () => {
-    expect(wrapper.hasClass('test-avatar')).to.equal(true);
+    expect(wrapper.hasClass('test-avatar')).to.be.true;
   });
 })
