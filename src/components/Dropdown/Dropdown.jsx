@@ -30,10 +30,10 @@ class Dropdown extends Component {
     this.close = this.close.bind(this);
   }
   componentDidMount() {
-    const height = this.domRef.clientHeight;
-    const width = this.domRef.clientWidth;
-    const containerHeight = this.containerDomRef.clientHeight;
-    const containerWidth = this.containerDomRef.clientWidth;
+    const height = this.domRef ? this.domRef.clientHeight : 0;
+    const width = this.domRef ? this.domRef.clientWidth : 0;
+    const containerHeight = this.containerDomRef ? this.containerDomRef.clientHeight : 0;
+    const containerWidth = this.containerDomRef ? this.containerDomRef.clientWidth : 0;
     const heightDiff = Math.abs(containerHeight - height);
     const widthDiff = Math.abs(containerWidth - width);
 
