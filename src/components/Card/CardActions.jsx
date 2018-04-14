@@ -6,7 +6,7 @@ const CardActions = ({
   className,
   ...props
 }) => (
-  <div className={classNames('card-actions')} {...props}>
+  <div className={classNames('card-actions', className)} {...props}>
     {props.children}
   </div>
 );
