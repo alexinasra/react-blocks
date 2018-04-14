@@ -7,11 +7,11 @@ import Subheader from '../Subheader/Subheader';
 const CardTitle = ({
   className,
   title,
-  subtitle,
+  subheader,
   avatar,
   ...props
 }) => (
-  <div className={classNames('card-title', { 'has-avatar': !!avatar, 'has-subtitle': !!subtitle }, className)} {...props}>
+  <div className={classNames('card-title', { 'has-avatar': !!avatar, 'has-subheader': !!subheader }, className)} {...props}>
     {avatar && (
       <div className="avatar-container">
         {avatar}
@@ -19,7 +19,7 @@ const CardTitle = ({
     )}
     <div className="text-container">
       <Title>{title}</Title>
-      {subtitle && <Subheader>{subtitle}</Subheader>}
+      {subheader && <Subheader>{subheader}</Subheader>}
     </div>
   </div>
 );
@@ -27,11 +27,11 @@ CardTitle.propTypes = {
   className: PropTypes.string,
   avatar: PropTypes.node,
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string
+  subheader: PropTypes.string
 };
 CardTitle.defaultProps = {
   className: '',
-  avatar: false,
-  subtitle: ''
+  avatar: undefined,
+  subheader: undefined
 };
 export default CardTitle;
