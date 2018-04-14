@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
@@ -8,36 +8,36 @@ Enzyme.configure({ adapter: new Adapter() });
 import BottomLine from './BottomLine';
 
 describe('<BottomLine />', () => {
-  const bottomLine = shallow(<BottomLine className="test"/>);
+  const wrapper = mount(<BottomLine className="test" active={false} disabled={false}/>);
 
   it('exists`', () => {
-    expect(bottomLine.exists()).to.equal(true);
+    expect(wrapper.exists()).to.be.true;
   });
   it('has unactive status line', () => {
-    expect(bottomLine.find('.unactive-line')).to.have.length(1);
+    expect(wrapper.find('.unactive-line')).to.have.length(1);
   })
   it('has active status line', () => {
-    expect(bottomLine.find('.active-line')).to.have.length(1);
+    expect(wrapper.find('.active-line')).to.have.length(1);
   })
   it('has disabled status line', () => {
-    expect(bottomLine.find('.disabled-line')).to.have.length(1);
+    expect(wrapper.find('.disabled-line')).to.have.length(1);
   })
   it('active prop false', () => {
-    expect(bottomLine.is('.active')).to.equal(false);
-  })
+    expect(wrapper.find('.is-active')).to.have.length(0);
+  });
   it('active prop true', () => {
-    bottomLine.setProps({ active: true })
-    expect(bottomLine.is('.active')).to.equal(true);
-  })
+    wrapper.setProps({ active: true })
+    expect(wrapper.find('.is-active')).to.have.length(1);
+  });
   it('disabled prop', () => {
-    expect(bottomLine.is('.disabled')).to.equal(false);
-  })
+    expect(wrapper.find('.is-disabled')).to.have.length(0);
+  });
   it('disabled prop true', () => {
-    bottomLine.setProps({ disabled: true })
-    expect(bottomLine.is('.disabled')).to.equal(true);
-  })
+    wrapper.setProps({ disabled: true })
+    expect(wrapper.find('.is-disabled')).to.have.length(1);
+  });
   it('className', () => {
-    expect(wrapper.hasClass('test')).to.equal(true);
+    expect(wrapper.hasClass('test')).to.be.true;
   });
 
 })
