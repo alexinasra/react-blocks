@@ -26,13 +26,13 @@
     width: 100%;
     border-bottom: 1px dotted $color-text-disabled;
   }
-  &.active {
+  &.is-active {
     .active-line  {
       width: 100%;
       left:0;
     }
   }
-  &.disabled {
+  &.is-disabled {
     .active-line, .unactive-line {
       display: none;
     }

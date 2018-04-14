@@ -5,7 +5,8 @@ import classnames from 'classnames';
 const BottomLine = ({ active, disabled, className, ...props }) => (
   <div className={classnames(
     'bottom-line',
-    { active, disabled },
+    { 'is-active': active },
+    { 'is-disabled': disabled },
     className
   )}
     {...props}>
