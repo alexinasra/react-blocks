@@ -128,7 +128,7 @@ class Dropdown extends Component {
   }
   handleOutsideClick(e) {
     // ignore clicks on the component itself
-    if (this.domRef.contains(e.target)) {
+    if (this.domRef && this.domRef.contains(e.target)) {
       return;
     }
     this.close();
