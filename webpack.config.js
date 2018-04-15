@@ -95,6 +95,36 @@ module.exports = {
     // The path should be an absolute path to your build destination.
     contentBase: BUILD
   },
+  optimization: {
+    splitChunks: {
+      chunks: "async",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: "all"
+        },
+        commons: {
+          name: "commons",
+          chunks: "initial",
+          minChunks: 2
+        },
+        default: {
+          name: "main",
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   // Webpack plugins
   plugins: [
     // Required to inject NODE_ENV within React app.
