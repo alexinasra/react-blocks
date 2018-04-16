@@ -21,7 +21,7 @@ GridColumn.propTypes = {
 };
 GridColumn.defaultProps = {
   className: '',
-  span: 1
+  span: 'grow'
 };
 
 export default GridColumn;
