@@ -25,12 +25,18 @@ class ActionIcon extends Component {
     this.setState({ iconName: nextProps.name });
   }
 
-  handleMouseEnter() {
+  handleMouseEnter(e) {
     this.setState({ iconName: this.props.hoverName || this.props.name });
+    if(this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
   }
 
   handleMouseLeave() {
     this.setState({ iconName: this.props.name });
+    if(this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
   }
 
   render() {
