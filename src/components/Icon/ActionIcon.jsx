@@ -6,10 +6,14 @@ import Icon from './Icon';
 class ActionIcon extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    hoverName: PropTypes.string
+    hoverName: PropTypes.string,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func
   };
   static defaultProps = {
-    hoverName: ''
+    hoverName: '',
+    onMouseEnter: undefined,
+    onMouseLeave: undefined
   };
   constructor(props) {
     super(props);
@@ -27,14 +31,14 @@ class ActionIcon extends Component {
 
   handleMouseEnter(e) {
     this.setState({ iconName: this.props.hoverName || this.props.name });
-    if(this.props.onMouseEnter) {
+    if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
   }
 
-  handleMouseLeave() {
+  handleMouseLeave(e) {
     this.setState({ iconName: this.props.name });
-    if(this.props.onMouseLeave) {
+    if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   }
