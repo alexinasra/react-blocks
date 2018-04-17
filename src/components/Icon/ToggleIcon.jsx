@@ -5,23 +5,19 @@ import ActionIcon from './ActionIcon';
 
 class ToggleIcon extends Component {
   static propTypes = {
-    onName: PropTypes.string.isRequired,
-    offName: PropTypes.string.isRequired,
-    onHoverName: PropTypes.string,
-    offHoverName: PropTypes.string,
-    on: PropTypes.bool,
+    activeIconName: PropTypes.string.isRequired,
+    inactiveIconName: PropTypes.string.isRequired,
+    active: PropTypes.bool,
     onToggle: PropTypes.func.isRequired
   };
   static defaultProps = {
-    onHoverName: '',
-    offHoverName: '',
-    on: false
+    active: false
   };
   constructor(props) {
     super(props);
 
     this.state = {
-      isOn: props.on
+      isActive: props.active
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -29,18 +25,18 @@ class ToggleIcon extends Component {
 
   switchOn() {
     this.setState({
-      isOn: true
+      isActive: true
     });
   }
   switchOff() {
     this.setState({
-      isOn: false
+      isActive: false
     });
   }
 
   handleClick(e) {
     this.props.onToggle(e);
-    if (this.state.isOn) {
+    if (this.state.isActive) {
       this.switchOff();
     } else {
       this.switchOn();
@@ -48,12 +44,10 @@ class ToggleIcon extends Component {
   }
 
   render() {
-    const name = this.state.isOn ? this.props.onName : this.props.offName;
-    const hoverName = this.state.isOn ? this.props.onHoverName : this.props.offHoverName;
+    const name = this.state.isActive ? this.props.activeIconName : this.props.inactiveIconName;
 
     return (
       <ActionIcon name={name}
-        hoverName={hoverName}
         onClick={this.handleClick} />
     );
   }
