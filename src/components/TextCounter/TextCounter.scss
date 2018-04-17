@@ -4,13 +4,13 @@
   }
   .max, .count {
   }
-  &.to-long {
+  &.is-long {
     .max, .count {
       color: $color-danger;
       font-weight: bold;
     }
   }
-  &.to-short {
+  &.is-short {
     .count {
       color: $color-danger;
       font-weight: bold;

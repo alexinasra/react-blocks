@@ -9,8 +9,8 @@ const TextCounter = ({ text, count, max, min, className, ...props }) => {
     <div className={classnames(
       'text-counter',
       {
-        'to-long': (c > max && max > 0),
-        'to-short': (c < min && min > 0)
+        'is-long': (c > max && max > 0),
+        'is-short': (c < min && min > 0)
       }, className
     )}
       {...props}>
