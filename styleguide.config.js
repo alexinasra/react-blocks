@@ -1,7 +1,8 @@
 const path = require('path');
+const process = require('process');
+process.traceDeprecation = true;
 
 module.exports = {
-  components: 'src/components/**/*.jsx',
   template: {
     head: {
       links: [
