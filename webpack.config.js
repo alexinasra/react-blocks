@@ -44,7 +44,12 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss', '.css']
+    extensions: ['.js', '.jsx', '.scss', '.css'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@context': path.resolve(__dirname, 'src/context'),
+      '@scss-mixins': path.resolve(__dirname, 'src/mixins')
+    }
   },
   module: {
     rules: [
@@ -73,8 +78,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        use: ['json-loader'],
-        include: [SRC, NODE_MODULES]
+        use: ['json-loader']
       }
     ]
   },
