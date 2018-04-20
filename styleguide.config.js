@@ -3,6 +3,8 @@ const process = require('process');
 process.traceDeprecation = true;
 
 module.exports = {
+  components: 'src/components/[A-Z]*/[A-Z]*.jsx',
+  ignore: ['**/index.jsx'],
   template: {
     head: {
       links: [
@@ -16,6 +18,5 @@ module.exports = {
   },
   require: [
       path.join(__dirname, './src/react-blocks.scss')
-  ],
-  ignore: ['**/index.jsx']
+  ]
 };
