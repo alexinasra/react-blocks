@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   "extends": "airbnb",
   "plugins": [
@@ -16,6 +18,12 @@ module.exports = {
   },
   "rules": {
     "strict": 0,
+    'import/no-unresolved': [2, {commonjs: true, amd: true}],
+    'import/named': 2,
+    'import/namespace': 2,
+    "import/default": 2,
+    'import/export': 2,
+    'import/extensions': 2,
     "react/jsx-indent": 0,
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-closing-bracket-location": 0,
@@ -52,5 +60,12 @@ module.exports = {
     "block-scoped-var": "error",
     "consistent-return": "error",
     "no-unused-vars": "warn"
+  },
+  settings: {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
   }
 };
