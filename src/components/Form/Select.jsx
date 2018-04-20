@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Dropdown from '../Dropdown';
-import Menu, { MenuItem } from '../Menu';
-import Scrollbar from '../Scrollbar';
-import Icon from '../Icon';
-import BottomLine from '../BottomLine';
+import Dropdown from '@components/Dropdown';
+import Menu, { MenuItem } from '@components/Menu';
+import Scrollbar from '@components/Scrollbar';
+import Icon from '@components/Icon';
+import BottomLine from '@components/BottomLine';
 
 export default class Select extends Component {
   static propTypes = {

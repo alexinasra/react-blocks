@@ -54,57 +54,60 @@ class App extends Component {
   }
   render() {
     return (
-      <div id="DEMO_APP">
-        <Form>
-          <Select
 
-          value={this.state.value}
-          label="select"
-          onSelect={(value) => this.setState({ value })}
-          items={[
-            {key:'empty', label:'', value: ''},
-            {key:'a', label:'a', value: 'a'},
-            {key:'b', label:'b', value: 'b'},
-            {key:'d', label:'d', value: 'd'},
-            {key:'e', label:'e', value: 'e'},
-            {key:'f', label:'f', value: 'f'},
-            {key:'g', label:'g', value: 'g'},
-            {key:'h', label:'h', value: 'h'},
-            {key:'i', label:'i', value: 'i'},
-            {key:'j', label:'j', value: 'j'},
-            {key:'k', label:'k', value: 'k'},
-            {key:'l', label:'l', value: 'l'},
-            {key:'m', label:'m', value: 'm'},
-          ]} />
-          <span id="myLabel">Select Checkboxes</span>
-          <CheckboxGroup labelledBy="myLabel">
-            <Checkbox checked={this.state.boolVal}
-              onChange={(boolVal) => { this.setState({ boolVal }); }}
-              label="Unckecked Checkbox" />
-            <Checkbox checked='mixed'
-              onChange={(boolVal) => { this.setState({ boolVal }); }}
-              label="Unckecked Checkbox" />
-            <Checkbox checked={this.state.boolVal2}
-              disabled
-              onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
-              label="Ckecked Checkbox" />
-          </CheckboxGroup>
-          <Radio options={[
-            {key:'a', label:'a', value: 'a'},
-            {key:'b', label:'b', value: 'b'},
-            {key:'d', label:'d', value: 'd'},
-            {key:'e', label:'e', value: 'e'},
-            {key:'f', label:'f', value: 'f'},
-            {key:'g', label:'g', value: 'g'},
-            {key:'h', label:'h', value: 'h'},
-            {key:'i', label:'i', value: 'i'},
-            {key:'j', label:'j', value: 'j'},
-            {key:'k', label:'k', value: 'k'},
-            {key:'l', label:'l', value: 'l'},
-            {key:'m', label:'m', value: 'm'},
-          ]} value={this.state.value} onChange={(value) => this.setState({ value })} />
-        </Form>
-      </div>
+      <ThemeContextProvider value={{ themeName: 'default', mode: 'ligth' }}>
+        <div id="DEMO_APP">
+          <Form>
+            <Select
+
+            value={this.state.value}
+            label="select"
+            onSelect={(value) => this.setState({ value })}
+            items={[
+              {key:'empty', label:'', value: ''},
+              {key:'a', label:'a', value: 'a'},
+              {key:'b', label:'b', value: 'b'},
+              {key:'d', label:'d', value: 'd'},
+              {key:'e', label:'e', value: 'e'},
+              {key:'f', label:'f', value: 'f'},
+              {key:'g', label:'g', value: 'g'},
+              {key:'h', label:'h', value: 'h'},
+              {key:'i', label:'i', value: 'i'},
+              {key:'j', label:'j', value: 'j'},
+              {key:'k', label:'k', value: 'k'},
+              {key:'l', label:'l', value: 'l'},
+              {key:'m', label:'m', value: 'm'},
+            ]} />
+            <span id="myLabel">Select Checkboxes</span>
+            <CheckboxGroup labelledBy="myLabel">
+              <Checkbox checked={this.state.boolVal}
+                onChange={(boolVal) => { this.setState({ boolVal }); }}
+                label="Unckecked Checkbox" />
+              <Checkbox checked='mixed'
+                onChange={(boolVal) => { this.setState({ boolVal }); }}
+                label="Unckecked Checkbox" />
+              <Checkbox checked={this.state.boolVal2}
+                disabled
+                onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
+                label="Ckecked Checkbox" />
+            </CheckboxGroup>
+            <Radio options={[
+              {key:'a', label:'a', value: 'a'},
+              {key:'b', label:'b', value: 'b'},
+              {key:'d', label:'d', value: 'd'},
+              {key:'e', label:'e', value: 'e'},
+              {key:'f', label:'f', value: 'f'},
+              {key:'g', label:'g', value: 'g'},
+              {key:'h', label:'h', value: 'h'},
+              {key:'i', label:'i', value: 'i'},
+              {key:'j', label:'j', value: 'j'},
+              {key:'k', label:'k', value: 'k'},
+              {key:'l', label:'l', value: 'l'},
+              {key:'m', label:'m', value: 'm'},
+            ]} value={this.state.value} onChange={(value) => this.setState({ value })} />
+          </Form>
+        </div>
+      </ThemeContextProvider>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
-import Icon from '../Icon';
+import Icon from '@components/Icon';
 
 const NavRouterLink = ({ label, iconName, className, activeClassName, ...props }) => (
   <NavLink activeClassName={classnames('active', activeClassName)}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import BottomLine from '../BottomLine';
+import BottomLine from '@components/BottomLine';
 
 class FieldContainer extends Component {
   constructor(props) {

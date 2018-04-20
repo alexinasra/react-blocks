@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Title from '../Title';
-import Subheader from '../Subheader';
+import Title from '@components/Title';
+import Subheader from '@components/Subheader';
 
 const Toolbar = ({ menuButton, title, subheader, logo, className, children, ...props }) => (
   <div className={classnames('toolbar', className)} {...props}>

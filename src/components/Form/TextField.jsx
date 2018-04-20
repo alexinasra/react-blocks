@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import BottomLine from '../BottomLine';
-import TextCounter from '../TextCounter';
+import BottomLine from '@components/BottomLine';
+import TextCounter from '@components/TextCounter';
 import FieldContainer from './FieldContainer';
 
 class TextField extends Component {

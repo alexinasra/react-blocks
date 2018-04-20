@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Scrollbar from '../Scrollbar';
+import Scrollbar from '@components/Scrollbar';
 
 const CardParagraph = ({
   className,

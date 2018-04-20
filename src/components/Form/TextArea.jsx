@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Scrollbar from '../Scrollbar';
-import BottomLine from '../BottomLine';
+import Scrollbar from '@components/Scrollbar';
+import BottomLine from '@components/BottomLine';
 
 class TextArea extends Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Icon from '../Icon';
+import Icon from '@components/Icon';
 
 const NavOuterLink = ({ to, label, iconName, className, ...props }) => (
   <a href={to} target="_blank" className={classnames('nav-link nav-outer_link', className)} {...props}>
