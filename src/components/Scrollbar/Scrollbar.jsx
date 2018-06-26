@@ -1,3 +1,21 @@
+/*
+  maxScrollbarLength: undefined,
+  minScrollbarLength: undefined,
+  scrollingThreshold: 1000,
+  scrollXMarginOffset: 0,
+  scrollYMarginOffset: 0,
+  suppressScrollX: false,
+  suppressScrollY: false,
+  swipeEasing: true,
+  useBothWheelAxes: false,
+  wheelPropagation: true,
+  wheelSpeed: 1,
+
+onFocus : add focus class to root element
+onBlur : remove focus class from root element
+
+*/
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -5,218 +23,229 @@ import classnames from 'classnames';
 class Scrollbar extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    vertical: PropTypes.oneOf(['auto', 'visible', 'hidden']),
-    horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden']),
-    watchSize: PropTypes.bool,
-    width: PropTypes.integer
+    className: PropTypes.string
   }
   static defaultProps = {
-    width: 0,
-    className: '',
-    vertical: 'auto',
-    horizontal: 'auto',
-    watchSize: false
+    className: ''
   }
   constructor(props) {
     super(props);
-    this.handleOnWheel = this.handleOnWheel.bind(this);
-    this.handleHMouseDown = this.handleHMouseDown.bind(this);
-    this.handleHMouseUp = this.handleHMouseUp.bind(this);
-    this.handleHMouseMove = this.handleHMouseMove.bind(this);
-    this.handleVMouseDown = this.handleVMouseDown.bind(this);
-    this.handleVMouseUp = this.handleVMouseUp.bind(this);
-    this.handleVMouseMove = this.handleVMouseMove.bind(this);
-    this.adjustSizes = this.adjustSizes.bind(this);
-  }
-
-  state = {
-    hratio: 0,
-    vratio: 0,
-    height: 0,
-    innerHeigh: 0,
-    hbarHeight: 0,
-    width: 0,
-    innerWidth: 0,
-    vbarWidth: 0,
-    hbarTopMargin: 0,
-    vbarStartMargin: 0,
-    // vbarStartSide: 'marginLeft',
-    hBarVisible: false,
-    vBarVisible: false
+    this.state = {
+      hasVerticalRail: false,
+      hasHorizontalRail: false,
+      hasFocus: false,
+      verticalRailHasFocus: false,
+      horizontalRailHasFocus: false,
+      verticalThumbHasFocus: false,
+      horizontalThumbHasFocus: false
+    };
+    this.initVerticalRail = this.initVerticalRail.bind(this);
+    this.initHorizontalRail = this.initHorizontalRail.bind(this);
+    this.handleMouseOutScrollbar = this.handleMouseOutScrollbar.bind(this);
+    this.handleMouseOverScrollbar = this.handleMouseOverScrollbar.bind(this);
+    this.handleMouseOverHorizontalRail = this.handleMouseOverHorizontalRail.bind(this);
+    this.handleMouseOutHorizontalRail = this.handleMouseOutHorizontalRail.bind(this);
+    this.handleMouseOverVerticalRail = this.handleMouseOverVerticalRail.bind(this);
+    this.handleMouseOutVerticalRail = this.handleMouseOutVerticalRail.bind(this);
+    this.handleMouseOverHorizontalThumb = this.handleMouseOverHorizontalThumb.bind(this);
+    this.handleMouseOutHorizontalThumb = this.handleMouseOutHorizontalThumb.bind(this);
+    this.handleMouseOverVerticalThumb = this.handleMouseOverVerticalThumb.bind(this);
+    this.handleMouseOutVerticalThumb = this.handleMouseOutVerticalThumb.bind(this);
   }
   componentDidMount() {
-    this.scrollAreaElm.style.overflow = 'scroll';
-    this.adjustSizes();
-    this.scrollAreaElm.style.overflow = 'hidden';
-    this.scrollContentElm.addEventListener('resize', this.adjustSizes);
-    if (this.props.watchSize) {
-      this.interval = setInterval(this.adjustSizes, 200);
+    this.initHorizontalRail(this.hasHorizontalRail());
+    this.initVerticalRail(this.hasVerticalRail());
+  }
+  getClientWidth() {
+    return this.rootElement ? this.rootElement.clientWidth : 0;
+  }
+  getClientHeigth() {
+    return this.rootElement ? this.rootElement.clientHeight : 0;
+  }
+  getScrollWidth() {
+    return this.rootElement ? this.rootElement.scrollWidth : 0;
+  }
+  getScrollHeight() {
+    return this.rootElement ? this.rootElement.scrollHeight : 0;
+  }
+  getScrollLeft() {
+    return this.rootElement ? this.rootElement.scrollLeft : 0;
+  }
+  getScrollTop() {
+    return this.rootElement ? this.rootElement.scrollTop : 0;
+  }
+  getHorizontalThumbHeight() {
+    const ratio = (this.getScrollHeight() / this.getClientHeigth());
+    const height = this.getClientHeigth() / ratio;
+    return height > 9 ? height : 9;
+  }
+  getVerticalThumbWidth() {
+    const ratio = (this.getScrollWidth() / this.getClientWidth());
+    const width = (this.getClientWidth() / ratio);
+    return width > 9 ? width : 9;
+  }
+  handleMouseOverScrollbar() {
+    if (!this.state.hasFocus) {
+      this.setState({ hasFocus: true });
     }
   }
-  componentWillUnmount() {
-    if (this.props.watchSize) {
-      clearInterval(this.interval);
+  handleMouseOutScrollbar() {
+    if (this.state.hasFocus) {
+      this.setState({ hasFocus: false });
     }
   }
-  innerHeigh = 0
-  height = 0
-  adjustHeight() {
-    const innerHeigh = this.scrollAreaElm.scrollHeight;
-    const height = this.scrollAreaElm.clientHeight;
-    const hratio = (innerHeigh / height);
-    const hbarHeight = (height / hratio) - hratio - 6;
-    const hBarVisible = (this.props.horizontal === 'visible') ||
-      ((this.props.horizontal === 'auto') && (height < innerHeigh));
-
+  handleMouseOverHorizontalRail() {
+    if (!this.state.horizontalRailHasFocus) {
+      this.setState({
+        horizontalRailHasFocus: true
+      });
+    }
+  }
+  handleMouseOutHorizontalRail() {
+    if (this.state.horizontalRailHasFocus) {
+      this.setState({
+        horizontalRailHasFocus: false
+      });
+    }
+  }
+  handleMouseOverVerticalRail() {
+    if (!this.state.verticalRailHasFocus) {
+      this.setState({
+        verticalRailHasFocus: true
+      });
+    }
+  }
+  handleMouseOutVerticalRail() {
+    if (this.state.verticalRailHasFocus) {
+      this.setState({
+        verticalRailHasFocus: false
+      });
+    }
+  }
+  handleMouseOverHorizontalThumb() {
+    if (!this.state.horizontalThumbHasFocus) {
+      this.setState({
+        horizontalThumbHasFocus: true
+      });
+    }
+  }
+  handleMouseOutHorizontalThumb() {
+    if (this.state.horizontalThumbHasFocus) {
+      this.setState({
+        horizontalThumbHasFocus: false
+      });
+    }
+  }
+  handleMouseOverVerticalThumb() {
+    if (!this.state.verticalThumbHasFocus) {
+      this.setState({
+        verticalThumbHasFocus: true
+      });
+    }
+  }
+  handleMouseOutVerticalThumb() {
+    if (this.state.verticalThumbHasFocus) {
+      this.setState({
+        verticalThumbHasFocus: false
+      });
+    }
+  }
+  initHorizontalRail(show = false) {
     this.setState({
-      hratio, height, innerHeigh, hbarHeight, hBarVisible
+      hasHorizontalRail: show
     });
-    this.scrollTop(this.scrollAreaElm.scrollTop);
   }
-  adjustWidth() {
-    const innerWidth = this.scrollAreaElm.scrollWidth;
-    const width = this.scrollAreaElm.clientWidth;
-    const vratio = (innerWidth / width);
-    const vbarWidth = (width / vratio) - 15;
-    const vBarVisible = (this.props.vertical === 'visible') ||
-      ((this.props.vertical === 'auto') && (width < innerWidth));
-    let vbarStartSide = 'marginLeft';
-    if (document.dir === 'rtl') {
-      vbarStartSide = 'marginRight';
-    }
+  initVerticalRail(show = false) {
     this.setState({
-      vratio,
-      width,
-      innerWidth,
-      vbarWidth,
-      vBarVisible,
-      // vbarStartSide,
-      vbarStartMargin: document.dir === 'rtl' ? (width - vbarWidth) : 0
+      hasVerticalRail: show
     });
   }
-  adjustSizes() {
-    this.adjustHeight();
-    this.adjustWidth();
-    this.forceUpdate();
+  hasHorizontalRail() {
+    return this.getClientHeigth() - this.getScrollHeight() < 0;
   }
-  scrollTop(v) {
-    if (!this.state.hBarVisible) return;
-    let val = v;
-    if (val < 0) val = 0;
-    else if (val > (this.state.innerHeigh - this.state.height - 1)) {
-      val = (this.state.innerHeigh - this.state.height);
-    }
-    this.scrollAreaElm.scrollTop = val;
-    this.setState({ hbarTopMargin: (val / this.state.hratio) });
-  }
-  handleOnWheel(e) {
-    /* eslint-disable max-len */
-    if (((this.scrollAreaElm.scrollTop <= 0) && (e.deltaY < 0)) ||
-      ((this.scrollAreaElm.scrollTop + (e.deltaY * this.state.hratio) >= this.state.innerHeigh - this.state.height) && (e.deltaY > 0))) {
-      return;
-    }
-
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    this.scrollTop(this.scrollAreaElm.scrollTop + (e.deltaY * this.state.hratio));
-    this.scrollStart(this.scrollAreaElm.scrollLeft + (-1 * e.deltaX * this.state.vratio));
-  }
-  handleHMouseMove(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    if (e.clientY === 0) return false;
-    this.scrollTop((
-      e.clientY - this.scrollAreaElm.getBoundingClientRect().top -
-        (this.state.hbarHeight / 2)
-    ) * this.state.hratio);
-    return false;
-  }
-  handleHMouseDown(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    document.addEventListener('mouseup', this.handleHMouseUp);
-    document.addEventListener('mousemove', this.handleHMouseMove);
-  }
-  handleHMouseUp(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    document.removeEventListener('mouseup', this.handleHMouseUp);
-    document.removeEventListener('mousemove', this.handleHMouseMove);
-    e.target.blur();
-  }
-  scrollStart(v) {
-    if (!this.state.vBarVisible) return;
-
-    let val = v;
-    if (val < 0) val = 0;
-    else if (val > (this.state.innerWidth - this.state.width - 1)) {
-      val = (this.state.innerWidth - this.state.width);
-    }
-    this.scrollAreaElm.scrollLeft = val;
-    this.setState({ vbarStartMargin: (val / this.state.vratio) });
-  }
-  handleVMouseMove(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    this.scrollStart((
-      (e.clientX - this.scrollAreaElm.getBoundingClientRect().left) -
-        (this.state.vbarWidth / 2)
-    ) * this.state.vratio);
-
-    return false;
-  }
-  handleVMouseDown(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    document.addEventListener('mouseup', this.handleVMouseUp);
-    document.addEventListener('mousemove', this.handleVMouseMove);
-  }
-  handleVMouseUp(e) {
-    if (e.preventDefault) { e.preventDefault(); }
-    if (e.stopPropagation) { e.stopPropagation(); }
-    document.removeEventListener('mouseup', this.handleVMouseUp);
-    document.removeEventListener('mousemove', this.handleVMouseMove);
-    e.target.blur();
+  hasVerticalRail() {
+    return this.getClientWidth() - this.getScrollWidth() < 0;
   }
   render() {
-    const { vertical, horizontal, className, watchSize, ...props } = this.props;
+    const { className, ...props } = this.props;
+    const classes = classnames(
+      'scrollbar',
+      {
+        'has-horizontal': this.state.hasHorizontalRail,
+        'has-vertical': this.state.hasVerticalRail,
+        'has-focus': this.state.hasFocus
+      },
+      className
+    );
+    const horRailClasses = classnames(
+      'rail',
+      'horizontal-rail',
+      { 'has-focus': this.state.horizontalRailHasFocus }
+
+    );
+    const verRailClasses = classnames(
+      'rail',
+      'vertical-rail',
+      { 'has-focus': this.state.verticalRailHasFocus }
+
+    );
+    const horThumbClasses = classnames(
+      'thumb',
+      'horizontal-thumb',
+      { 'has-focus': this.state.horizontalThumbHasFocus }
+
+    );
+    const verThumbClasses = classnames(
+      'thumb',
+      'vertical-thumb',
+      { 'has-focus': this.state.verticalThumbHasFocus }
+
+    );
     return (
-      <div onWheel={this.handleOnWheel}
-        className={classnames('scrollbar', className)}
+      <div className={classes}
+        onMouseOver={this.handleMouseOverScrollbar}
+        onMouseOut={this.handleMouseOutScrollbar}
+        onFocus={this.handleMouseOverScrollbar}
+        onBlur={this.handleMouseOutScrollbar}
+        ref={(elm) => { this.rootElement = elm; }}
         {...props}>
-        {(this.state.vBarVisible) && (
-          <div className="scrollbar-vbar">
-            <div onMouseDown={this.handleVMouseDown}
-              tabIndex={0}
-              role="button"
-              style={{
-                width: `${this.state.vbarWidth}px`,
-                marginLeft: `${this.state.vbarStartMargin}px`
-              }}
-              className="scrollbar-vbar-scroll" />
-          </div>
-        )}
-        {(this.state.hBarVisible) && (
-          <div className="scrollbar-hbar">
-            <div onMouseDown={this.handleHMouseDown}
-              tabIndex={0}
-              role="button"
-              style={{
-                height: `${this.state.hbarHeight}px`,
-                marginTop: `${this.state.hbarTopMargin}px`,
-                marginBottom: '6px'
-              }}
-              className="scrollbar-hbar-scroll" />
-          </div>
-        )}
-        <div ref={(elm) => { this.scrollAreaElm = elm; }} className="scrollbar-scrollarea">
-          <div className="scrollbar-content">
-            <div ref={(elm) => { this.scrollContentElm = elm; }}>
-              {this.props.children}
+        { this.props.children }
+        { this.state.hasHorizontalRail &&
+          (
+            <div className={horRailClasses}
+              onMouseOver={this.handleMouseOverHorizontalRail}
+              onMouseOut={this.handleMouseOutHorizontalRail}
+              onFocus={this.handleMouseOverHorizontalRail}
+              onBlur={this.handleMouseOutHorizontalRail}
+              style={{ height: this.getClientHeigth() }}>
+              <div className={horThumbClasses}
+                style={{ height: this.getHorizontalThumbHeight() }}>
+                <div onMouseOver={this.handleMouseOverHorizontalThumb}
+                  onMouseOut={this.handleMouseOutHorizontalThumb}
+                  onFocus={this.handleMouseOverHorizontalThumb}
+                  onBlur={this.handleMouseOutHorizontalThumb} />
+              </div>
             </div>
-          </div>
-        </div>
+          )
+        }
+        { this.state.hasVerticalRail &&
+          (
+            <div className={verRailClasses}
+              onMouseOver={this.handleMouseOverVerticalRail}
+              onMouseOut={this.handleMouseOutVerticalRail}
+              onFocus={this.handleMouseOverVerticalRail}
+              onBlur={this.handleMouseOutVerticalRail}
+              style={{ width: this.getClientWidth() }}>
+              <div className={verThumbClasses}
+                style={{ width: this.getVerticalThumbWidth() }}>
+                <div onMouseOver={this.handleMouseOverVerticalThumb}
+                  onMouseOut={this.handleMouseOutVerticalThumb}
+                  onFocus={this.handleMouseOverVerticalThumb}
+                  onBlur={this.handleMouseOutVerticalThumb} />
+              </div>
+            </div>
+          )
+        }
       </div>
     );
   }

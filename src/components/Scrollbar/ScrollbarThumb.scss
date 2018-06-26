@@ -1,0 +1,39 @@
+
+.thumb {
+  position: relative;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.thumb.vertical-thumb {
+  min-width: 9px;
+  height: 6px;
+  & > div {
+    position: absolute;
+    display: block;
+    right: 2px;
+    left: 2px;
+    height: 2px;
+    top:2px;
+    border-radius: 1px;
+    background: $color-text-disabled;
+  }
+}
+.thumb.horizontal-thumb {
+  width: 6px;
+  min-height: 9px;
+  & > div {
+    position: absolute;
+    display: block;
+    top:2px;
+    bottom: 2px;
+    width: 2px;
+    left:2px;
+    border-radius: 1px;
+    background: $color-text-disabled;
+  }
+}
+
+.thumb.mouse-over {
+  background: rgba(lighten($color-primary, 0.15), 0.2);
+}

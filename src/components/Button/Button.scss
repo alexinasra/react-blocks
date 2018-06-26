@@ -97,6 +97,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
   }
 }
 .raised.button.primary {
+  background: $color-primary;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-primary, 0.7);
   }
@@ -106,6 +107,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
 }
 
 .raised.button.secondary {
+  background: $color-secondary;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-secondary, 0.7);
   }
@@ -115,6 +117,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
 }
 
 .raised.button.success {
+  background: $color-success;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-success, 0.7);
   }
@@ -124,6 +127,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
 }
 
 .raised.button.info {
+  background: $color-info;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-info, 0.7);
   }
@@ -133,6 +137,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
 }
 
 .raised.button.warning {
+  background: $color-warning;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-warning, 0.7);
   }
@@ -142,6 +147,7 @@ $flat_button-pressed-background: darken($color-background, 30%);
 }
 
 .raised.button.danger {
+  background: $color-danger;
   &:active {
     box-shadow: 0 1px 4px 2px rgba($color-danger, 0.7);
   }

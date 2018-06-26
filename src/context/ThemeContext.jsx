@@ -1,8 +1,11 @@
 import React from 'react';
 
-const { ThemeContextProvider, ThemeContextConsumer } = React.createContext({
+const { Provider, Consumer } = React.createContext({
   themeName: 'default',
   mode: 'ligth'
 });
 
-export default { ThemeContextProvider, ThemeContextConsumer };
+export {
+  Provider as ThemeContextProvider,
+  Consumer as ThemeContextConsumer
+};

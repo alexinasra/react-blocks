@@ -102,10 +102,8 @@ export default class Select extends Component {
         onKeyDown={this.handleKeyPress}
         onRef={(dropdown) => { this.dropdown = dropdown; }}
         menu={(
-          <Menu tabIndex={0} role="menu" style={{ height: '140px' }}>
-            <Scrollbar watchSize vertical="hidden" horizontal="visible">
-              {menuItems}
-            </Scrollbar>
+          <Menu tabIndex={0} role="menu">
+            {menuItems}
           </Menu>
         )}>
         <span className="value"
