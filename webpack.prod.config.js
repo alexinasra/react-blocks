@@ -31,7 +31,8 @@ module.exports = (env) => {
   const output = {
     path: path.join(__dirname, './dist/'),
     filename: '[name].js',
-    libraryTarget: 'umd',
+    library: 'ReactBlocks',
+    libraryTarget: 'commonjs2',
     publicPath: '/dist/'
   };
 
@@ -57,10 +58,17 @@ module.exports = (env) => {
   ];
 
   const plugins = [
+    new webpack.LoaderOptionsPlugin({
+         // test: /\.xxx$/, // may apply this only for some modules
+         options: {
+           external: ['react', 'react-dom' ,'prop-types', 'classnames'],
+         }
+       }),
     new ExtractTextPlugin('[name].css')
   ];
   return {
-    devtool: 'source-map',
+    mode: 'production',
+    target: 'node',
     resolve: {
       extensions: ['.js', '.jsx', '.scss', '.css'],
       alias: {
