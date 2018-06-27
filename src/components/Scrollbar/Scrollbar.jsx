@@ -20,6 +20,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { VerticalScrollbarRail, HorizontalScrollbarRail } from './ScrollbarRail';
+import { VerticalScrollbarThumb, HorizontalScrollbarThumb } from './ScrollbarThumb';
+
 class Scrollbar extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -177,30 +180,7 @@ class Scrollbar extends Component {
       },
       className
     );
-    const horRailClasses = classnames(
-      'rail',
-      'horizontal-rail',
-      { 'has-focus': this.state.horizontalRailHasFocus }
 
-    );
-    const verRailClasses = classnames(
-      'rail',
-      'vertical-rail',
-      { 'has-focus': this.state.verticalRailHasFocus }
-
-    );
-    const horThumbClasses = classnames(
-      'thumb',
-      'horizontal-thumb',
-      { 'has-focus': this.state.horizontalThumbHasFocus }
-
-    );
-    const verThumbClasses = classnames(
-      'thumb',
-      'vertical-thumb',
-      { 'has-focus': this.state.verticalThumbHasFocus }
-
-    );
     return (
       <div className={classes}
         onMouseOver={this.handleMouseOverScrollbar}
@@ -212,38 +192,16 @@ class Scrollbar extends Component {
         { this.props.children }
         { this.state.hasHorizontalRail &&
           (
-            <div className={horRailClasses}
-              onMouseOver={this.handleMouseOverHorizontalRail}
-              onMouseOut={this.handleMouseOutHorizontalRail}
-              onFocus={this.handleMouseOverHorizontalRail}
-              onBlur={this.handleMouseOutHorizontalRail}
-              style={{ height: this.getClientHeigth() }}>
-              <div className={horThumbClasses}
-                style={{ height: this.getHorizontalThumbHeight() }}>
-                <div onMouseOver={this.handleMouseOverHorizontalThumb}
-                  onMouseOut={this.handleMouseOutHorizontalThumb}
-                  onFocus={this.handleMouseOverHorizontalThumb}
-                  onBlur={this.handleMouseOutHorizontalThumb} />
-              </div>
-            </div>
+            <HorizontalScrollbarRail height={this.getClientHeigth()}>
+              <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()} />
+            </HorizontalScrollbarRail>
           )
         }
         { this.state.hasVerticalRail &&
           (
-            <div className={verRailClasses}
-              onMouseOver={this.handleMouseOverVerticalRail}
-              onMouseOut={this.handleMouseOutVerticalRail}
-              onFocus={this.handleMouseOverVerticalRail}
-              onBlur={this.handleMouseOutVerticalRail}
-              style={{ width: this.getClientWidth() }}>
-              <div className={verThumbClasses}
-                style={{ width: this.getVerticalThumbWidth() }}>
-                <div onMouseOver={this.handleMouseOverVerticalThumb}
-                  onMouseOut={this.handleMouseOutVerticalThumb}
-                  onFocus={this.handleMouseOverVerticalThumb}
-                  onBlur={this.handleMouseOutVerticalThumb} />
-              </div>
-            </div>
+            <HorizontalScrollbarRail width={this.getClientWidth()}>
+              <VerticalScrollbarThumb width={this.getVerticalThumbWidth()} />
+            </HorizontalScrollbarRail>
           )
         }
       </div>
