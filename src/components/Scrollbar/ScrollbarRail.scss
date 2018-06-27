@@ -1,0 +1,17 @@
+.rail {
+  position: absolute;
+  opacity: 0;
+  z-index: 9999;
+}
+.has-focus > .rail {
+  opacity: 1;
+}
+.rail.vertical-rail {
+  left:0;
+  bottom: 0;
+}
+.rail.horizontal-rail {
+  top:0;
+  @include right(0);
+
+}
