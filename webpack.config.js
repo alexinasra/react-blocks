@@ -25,6 +25,8 @@ const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 6161;
 
 module.exports = {
+  mode: 'development',
+  target: 'web',
   entry: {
     // Components
     // Button: path.join(COMPONENTS, 'Button'),
@@ -101,6 +103,7 @@ module.exports = {
     contentBase: BUILD
   },
   optimization: {
+    minimize: true,
     splitChunks: {
       chunks: "async",
       minSize: 30000,
