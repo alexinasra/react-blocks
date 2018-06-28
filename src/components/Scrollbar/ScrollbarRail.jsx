@@ -23,34 +23,26 @@ ScrollbarRailInternal.propTypes = {
 ScrollbarRailInternal.defaultProps = {
   className: undefined
 };
-const VerticalScrollbarRailInternal = ({ className, width, style, ...props }) => (
+const VerticalScrollbarRailInternal = ({ className, ...props }) => (
   <ScrollbarRailInternal className={classnames('vertical-rail', className)}
-    style={Object.assign({}, style, { width })}
     {...props} />
 );
 
 VerticalScrollbarRailInternal.propTypes = {
-  className: PropTypes.string,
-  style: stylePropType,
-  width: PropTypes.number.isRequired
+  className: PropTypes.string
 };
 VerticalScrollbarRailInternal.defaultProps = {
-  className: undefined,
-  style: undefined
+  className: undefined
 };
-const HorizontalScrollbarRailInternal = ({ className, height, style, ...props }) => (
+const HorizontalScrollbarRailInternal = ({ className, ...props }) => (
   <ScrollbarRailInternal className={classnames('horizontal-rail', className)}
-    style={Object.assign({}, style, { height })}
     {...props} />
 );
 HorizontalScrollbarRailInternal.propTypes = {
   className: PropTypes.string,
-  style: stylePropType,
-  height: PropTypes.number.isRequired
 };
 HorizontalScrollbarRailInternal.defaultProps = {
   className: undefined,
-  style: undefined
 };
 
 const onClickHoc = CssClassToggle('onMouseDown', 'onMouseUp', 'mouse-over');

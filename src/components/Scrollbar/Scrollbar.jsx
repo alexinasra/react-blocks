@@ -28,147 +28,132 @@ class Scrollbar extends Component {
     children: PropTypes.node.isRequired,
     className: PropTypes.string
   }
+
   static defaultProps = {
     className: ''
   }
+
   constructor(props) {
     super(props);
     this.state = {
       hasVerticalRail: false,
       hasHorizontalRail: false,
       hasFocus: false,
-      verticalRailHasFocus: false,
-      horizontalRailHasFocus: false,
-      verticalThumbHasFocus: false,
-      horizontalThumbHasFocus: false
+      boundingOffset: { top: 0, left: 0 }
     };
     this.initVerticalRail = this.initVerticalRail.bind(this);
     this.initHorizontalRail = this.initHorizontalRail.bind(this);
     this.handleMouseOutScrollbar = this.handleMouseOutScrollbar.bind(this);
     this.handleMouseOverScrollbar = this.handleMouseOverScrollbar.bind(this);
-    this.handleMouseOverHorizontalRail = this.handleMouseOverHorizontalRail.bind(this);
-    this.handleMouseOutHorizontalRail = this.handleMouseOutHorizontalRail.bind(this);
-    this.handleMouseOverVerticalRail = this.handleMouseOverVerticalRail.bind(this);
-    this.handleMouseOutVerticalRail = this.handleMouseOutVerticalRail.bind(this);
-    this.handleMouseOverHorizontalThumb = this.handleMouseOverHorizontalThumb.bind(this);
-    this.handleMouseOutHorizontalThumb = this.handleMouseOutHorizontalThumb.bind(this);
-    this.handleMouseOverVerticalThumb = this.handleMouseOverVerticalThumb.bind(this);
-    this.handleMouseOutVerticalThumb = this.handleMouseOutVerticalThumb.bind(this);
+    this.handleHorizontalThumbDrap = this.handleHorizontalThumbDrap.bind(this);
+    this.handleVerticalThumbDrap = this.handleVerticalThumbDrap.bind(this);
   }
+
   componentDidMount() {
+    this.initBoundingOffset();
     this.initHorizontalRail(this.hasHorizontalRail());
     this.initVerticalRail(this.hasVerticalRail());
   }
+
   getClientWidth() {
     return this.rootElement ? this.rootElement.clientWidth : 0;
   }
+
   getClientHeigth() {
     return this.rootElement ? this.rootElement.clientHeight : 0;
   }
+
   getScrollWidth() {
-    return this.rootElement ? this.rootElement.scrollWidth : 0;
+    return this.contetnElement ? this.contetnElement.scrollWidth : 0;
   }
+
   getScrollHeight() {
-    return this.rootElement ? this.rootElement.scrollHeight : 0;
+    return this.contetnElement ? this.contetnElement.scrollHeight : 0;
   }
+
   getScrollLeft() {
-    return this.rootElement ? this.rootElement.scrollLeft : 0;
+    return this.contetnElement ? this.contetnElement.scrollLeft : 0;
   }
+
   getScrollTop() {
-    return this.rootElement ? this.rootElement.scrollTop : 0;
+    return this.contetnElement ? this.contetnElement.scrollTop : 0;
   }
+
   getHorizontalThumbHeight() {
     const ratio = (this.getScrollHeight() / this.getClientHeigth());
     const height = this.getClientHeigth() / ratio;
     return height > 9 ? height : 9;
   }
+
   getVerticalThumbWidth() {
     const ratio = (this.getScrollWidth() / this.getClientWidth());
     const width = (this.getClientWidth() / ratio);
     return width > 9 ? width : 9;
+  }
+
+  initBoundingOffset() {
+    const rect = this.rootElement.getBoundingClientRect();
+    this.setState({ boundingOffset: rect });
   }
   handleMouseOverScrollbar() {
     if (!this.state.hasFocus) {
       this.setState({ hasFocus: true });
     }
   }
+
   handleMouseOutScrollbar() {
     if (this.state.hasFocus) {
       this.setState({ hasFocus: false });
     }
   }
-  handleMouseOverHorizontalRail() {
-    if (!this.state.horizontalRailHasFocus) {
-      this.setState({
-        horizontalRailHasFocus: true
-      });
+
+  handleHorizontalThumbDrap(e) {
+    e.preventDefault();
+    // only left mouse button
+    if (e.button !== 0) return;
+    const horizontalPosition = e.pageY - this.state.boundingOffset.top;
+    const maxTop = this.getClientHeigth() - this.getHorizontalThumbHeight() - 6;
+    if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
+      const percentage = (horizontalPosition / maxTop) * 100;
+      this.contetnElement.scrollTop = (percentage * this.getScrollHeight()) / 100;
+      this.setState({ horizontalPosition });
     }
   }
-  handleMouseOutHorizontalRail() {
-    if (this.state.horizontalRailHasFocus) {
-      this.setState({
-        horizontalRailHasFocus: false
-      });
+  handleVerticalThumbDrap(e) {
+    e.preventDefault();
+    // only left mouse button
+    if (e.button !== 0) return;
+    const verticalPosition = e.pageX - this.state.boundingOffset.left;
+    const maxLeft = this.getClientWidth() - this.getVerticalThumbWidth() - 6;
+    if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
+      const percentage = (verticalPosition / maxLeft) * 100;
+      this.contetnElement.scrollLeft = (percentage * this.getScrollWidth()) / 100;
+      this.setState({ verticalPosition });
     }
   }
-  handleMouseOverVerticalRail() {
-    if (!this.state.verticalRailHasFocus) {
-      this.setState({
-        verticalRailHasFocus: true
-      });
-    }
-  }
-  handleMouseOutVerticalRail() {
-    if (this.state.verticalRailHasFocus) {
-      this.setState({
-        verticalRailHasFocus: false
-      });
-    }
-  }
-  handleMouseOverHorizontalThumb() {
-    if (!this.state.horizontalThumbHasFocus) {
-      this.setState({
-        horizontalThumbHasFocus: true
-      });
-    }
-  }
-  handleMouseOutHorizontalThumb() {
-    if (this.state.horizontalThumbHasFocus) {
-      this.setState({
-        horizontalThumbHasFocus: false
-      });
-    }
-  }
-  handleMouseOverVerticalThumb() {
-    if (!this.state.verticalThumbHasFocus) {
-      this.setState({
-        verticalThumbHasFocus: true
-      });
-    }
-  }
-  handleMouseOutVerticalThumb() {
-    if (this.state.verticalThumbHasFocus) {
-      this.setState({
-        verticalThumbHasFocus: false
-      });
-    }
-  }
+
   initHorizontalRail(show = false) {
     this.setState({
-      hasHorizontalRail: show
+      hasHorizontalRail: show,
+      horizontalPosition: 0
     });
   }
+
   initVerticalRail(show = false) {
     this.setState({
-      hasVerticalRail: show
+      hasVerticalRail: show,
+      verticalPosition: 0
     });
   }
+
   hasHorizontalRail() {
     return this.getClientHeigth() - this.getScrollHeight() < 0;
   }
+
   hasVerticalRail() {
     return this.getClientWidth() - this.getScrollWidth() < 0;
   }
+
   render() {
     const { className, ...props } = this.props;
     const classes = classnames(
@@ -183,25 +168,35 @@ class Scrollbar extends Component {
 
     return (
       <div className={classes}
+        ref={(elm) => { this.rootElement = elm; }}
         onMouseOver={this.handleMouseOverScrollbar}
         onMouseOut={this.handleMouseOutScrollbar}
         onFocus={this.handleMouseOverScrollbar}
         onBlur={this.handleMouseOutScrollbar}
-        ref={(elm) => { this.rootElement = elm; }}
         {...props}>
-        { this.props.children }
+        <div className="scrollbar-contet" ref={(elm) => { this.contetnElement = elm; }}>
+          { this.props.children }
+        </div>
         { this.state.hasHorizontalRail &&
           (
-            <HorizontalScrollbarRail height={this.getClientHeigth()}>
-              <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()} />
+            <HorizontalScrollbarRail>
+              <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
+                top={this.state.horizontalPosition}
+                draggable
+                onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
+                onDrag={this.handleHorizontalThumbDrap} />
             </HorizontalScrollbarRail>
           )
         }
         { this.state.hasVerticalRail &&
           (
-            <HorizontalScrollbarRail width={this.getClientWidth()}>
-              <VerticalScrollbarThumb width={this.getVerticalThumbWidth()} />
-            </HorizontalScrollbarRail>
+            <VerticalScrollbarRail>
+              <VerticalScrollbarThumb left={this.state.verticalPosition}
+                width={this.getVerticalThumbWidth()}
+                draggable
+                onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
+                onDrag={this.handleVerticalThumbDrap} />
+            </VerticalScrollbarRail>
           )
         }
       </div>

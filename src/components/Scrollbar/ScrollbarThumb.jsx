@@ -22,30 +22,32 @@ ScrollbarThumbInternal.propTypes = {
 ScrollbarThumbInternal.defaultProps = {
   className: undefined
 };
-const VerticalScrollbarThumbInternal = ({ className, width, style, ...props }) => (
+const VerticalScrollbarThumbInternal = ({ className, width, left, style, ...props }) => (
   <ScrollbarThumbInternal className={classnames('vertical-thumb', className)}
-    style={Object.assign({}, style, { width })}
+    style={Object.assign({}, style, { width, left })}
     {...props} />
 );
 
 VerticalScrollbarThumbInternal.propTypes = {
   className: PropTypes.string,
   style: stylePropType,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  left: PropTypes.number.isRequired
 };
 VerticalScrollbarThumbInternal.defaultProps = {
   className: undefined,
   style: undefined
 };
-const HorizontalScrollbarThumbInternal = ({ className, height, style, ...props }) => (
+const HorizontalScrollbarThumbInternal = ({ className, height, top, style, ...props }) => (
   <ScrollbarThumbInternal className={classnames('horizontal-thumb', className)}
-    style={Object.assign({}, style, { height })}
+    style={Object.assign({}, style, { height, top })}
     {...props} />
 );
 HorizontalScrollbarThumbInternal.propTypes = {
   className: PropTypes.string,
   style: stylePropType,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
+  top: PropTypes.number.isRequired
 };
 HorizontalScrollbarThumbInternal.defaultProps = {
   className: undefined,
