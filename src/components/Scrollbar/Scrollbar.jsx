@@ -43,6 +43,7 @@ class Scrollbar extends Component {
     };
     this.initVerticalRail = this.initVerticalRail.bind(this);
     this.initHorizontalRail = this.initHorizontalRail.bind(this);
+    this.handleOnWheel = this.handleOnWheel.bind(this);
     this.handleMouseOutScrollbar = this.handleMouseOutScrollbar.bind(this);
     this.handleMouseOverScrollbar = this.handleMouseOverScrollbar.bind(this);
     this.handleHorizontalThumbDrag = this.handleHorizontalThumbDrag.bind(this);
@@ -90,10 +91,30 @@ class Scrollbar extends Component {
     return width > 9 ? width : 9;
   }
 
+  getMaxTop() {
+    return this.getClientHeight() - this.getHorizontalThumbHeight() - 18;
+  }
+
+  getMaxLeft() {
+    return this.getClientWidth() - this.getVerticalThumbWidth() - 18;
+  }
+
   initBoundingOffset() {
     const rect = this.rootElement.getBoundingClientRect();
     this.setState({ boundingOffset: rect });
   }
+
+  handleOnWheel(e) {
+    const { deltaY } = e.nativeEvent;
+    const horizontalPosition = this.state.horizontalPosition + deltaY;
+
+    const maxTop = this.getMaxTop();
+    if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
+      e.preventDefault();
+      this.scrollTop(horizontalPosition);
+    }
+  }
+
   handleMouseOverScrollbar() {
     if (!this.state.hasFocus) {
       this.setState({ hasFocus: true });
@@ -115,7 +136,11 @@ class Scrollbar extends Component {
       this.state.boundingOffset.top -
       this.state.horizontalOffsetY
     );
-    const maxTop = this.getClientHeight() - this.getHorizontalThumbHeight() - 18;
+    this.scrollTop(horizontalPosition);
+  }
+
+  scrollTop(horizontalPosition) {
+    const maxTop = this.getMaxTop();
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
       const percentage = Math.ceil((horizontalPosition / (maxTop)) * 100);
       this.contetnElement.scrollTop =
@@ -123,7 +148,6 @@ class Scrollbar extends Component {
       this.setState({ horizontalPosition });
     }
   }
-
   handleVerticalThumbDrag(e) {
     e.preventDefault();
     // only left mouse button
@@ -133,7 +157,10 @@ class Scrollbar extends Component {
       this.state.boundingOffset.left -
       this.state.verticalOffsetX
     );
-    const maxLeft = this.getClientWidth() - this.getVerticalThumbWidth() - 18;
+    this.scrollLeft(verticalPosition);
+  }
+  scrollLeft(verticalPosition) {
+    const maxLeft = this.getMaxLeft();
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
       this.contetnElement.scrollLeft =
@@ -141,7 +168,6 @@ class Scrollbar extends Component {
       this.setState({ verticalPosition });
     }
   }
-
   initHorizontalRail(show = false) {
     this.setState({
       hasHorizontalRail: show,
@@ -185,6 +211,7 @@ class Scrollbar extends Component {
         onBlur={this.handleMouseOutScrollbar}
         {...props}>
         <div className="scrollbar-contet"
+          onWheel={this.handleOnWheel}
           ref={(elm) => { this.contetnElement = elm; }}>
           { this.props.children }
         </div>
