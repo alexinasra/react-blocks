@@ -110,9 +110,12 @@ class Scrollbar extends Component {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
-    const horizontalPosition = e.pageY - this.state.boundingOffset.top;
+    const horizontalPosition = (
+      e.pageY -
+      this.state.boundingOffset.top -
+      this.state.horizontalOffsetY
+    );
     const maxTop = this.getClientHeight() - this.getHorizontalThumbHeight() - 18;
-
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
       const percentage = Math.ceil((horizontalPosition / (maxTop)) * 100);
       this.contetnElement.scrollTop =
@@ -125,7 +128,11 @@ class Scrollbar extends Component {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
-    const verticalPosition = e.pageX - this.state.boundingOffset.left;
+    const verticalPosition = (
+      e.pageX -
+      this.state.boundingOffset.left -
+      this.state.verticalOffsetX
+    );
     const maxLeft = this.getClientWidth() - this.getVerticalThumbWidth() - 18;
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
@@ -187,6 +194,9 @@ class Scrollbar extends Component {
               <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
                 top={this.state.horizontalPosition}
                 draggable
+                onMouseDown={(e) => {
+                  this.setState({ horizontalOffsetY: e.nativeEvent.offsetY });
+                }}
                 onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
                 onDrag={this.handleHorizontalThumbDrag} />
             </HorizontalScrollbarRail>
@@ -198,6 +208,9 @@ class Scrollbar extends Component {
               <VerticalScrollbarThumb left={this.state.verticalPosition}
                 width={this.getVerticalThumbWidth()}
                 draggable
+                onMouseDown={(e) => {
+                  this.setState({ verticalOffsetX: e.nativeEvent.offsetX });
+                }}
                 onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
                 onDrag={this.handleVerticalThumbDrag} />
             </VerticalScrollbarRail>
