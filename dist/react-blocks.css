@@ -594,25 +594,20 @@
 
 .rail {
   position: absolute;
-  opacity: 0;
-  z-index: 9999; }
+  opacity: 0; }
 
 .has-focus > .rail {
-  opacity: 1; }
+  opacity: 1;
+  margin: 0;
+  padding: 0; }
 
 .rail.vertical-rail {
-  bottom: 0; }
-  html:not([dir="rtl"]) .rail.vertical-rail {
-    right: 9px !important; }
-  html[dir="rtl"] .rail.vertical-rail {
-    left: 9px !important; }
-  html:not([dir="rtl"]) .rail.vertical-rail {
-    left: 0 !important; }
-  html[dir="rtl"] .rail.vertical-rail {
-    right: 0 !important; }
+  bottom: 0;
+  left: 9px;
+  right: 9px; }
 
 .rail.horizontal-rail {
-  top: 0;
+  top: 9px;
   bottom: 9px; }
   html:not([dir="rtl"]) .rail.horizontal-rail {
     right: 0 !important; }
@@ -622,6 +617,7 @@
 .scrollbar {
   position: relative;
   margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%; }
   .scrollbar .scrollbar-contet {
