@@ -45,8 +45,8 @@ class Scrollbar extends Component {
     this.initHorizontalRail = this.initHorizontalRail.bind(this);
     this.handleMouseOutScrollbar = this.handleMouseOutScrollbar.bind(this);
     this.handleMouseOverScrollbar = this.handleMouseOverScrollbar.bind(this);
-    this.handleHorizontalThumbDrap = this.handleHorizontalThumbDrap.bind(this);
-    this.handleVerticalThumbDrap = this.handleVerticalThumbDrap.bind(this);
+    this.handleHorizontalThumbDrag = this.handleHorizontalThumbDrag.bind(this);
+    this.handleVerticalThumbDrag = this.handleVerticalThumbDrag.bind(this);
   }
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class Scrollbar extends Component {
     return this.rootElement ? this.rootElement.clientWidth : 0;
   }
 
-  getClientHeigth() {
+  getClientHeight() {
     return this.rootElement ? this.rootElement.clientHeight : 0;
   }
 
@@ -80,9 +80,8 @@ class Scrollbar extends Component {
   }
 
   getHorizontalThumbHeight() {
-    const ratio = (this.getScrollHeight() / this.getClientHeigth());
-    const height = this.getClientHeigth() / ratio;
-    return height > 9 ? height : 9;
+    const height = this.getClientHeight() * (this.getClientHeight() / this.getScrollHeight());
+    return Math.ceil(height);
   }
 
   getVerticalThumbWidth() {
@@ -107,27 +106,31 @@ class Scrollbar extends Component {
     }
   }
 
-  handleHorizontalThumbDrap(e) {
+  handleHorizontalThumbDrag(e) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
     const horizontalPosition = e.pageY - this.state.boundingOffset.top;
-    const maxTop = this.getClientHeigth() - this.getHorizontalThumbHeight() - 6;
+    const maxTop = this.getClientHeight() - this.getHorizontalThumbHeight() - 18;
+
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
-      const percentage = (horizontalPosition / maxTop) * 100;
-      this.contetnElement.scrollTop = (percentage * this.getScrollHeight()) / 100;
+      const percentage = Math.ceil((horizontalPosition / (maxTop)) * 100);
+      this.contetnElement.scrollTop =
+        (percentage * (this.getScrollHeight() - this.getClientHeight())) / 100;
       this.setState({ horizontalPosition });
     }
   }
-  handleVerticalThumbDrap(e) {
+
+  handleVerticalThumbDrag(e) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
     const verticalPosition = e.pageX - this.state.boundingOffset.left;
-    const maxLeft = this.getClientWidth() - this.getVerticalThumbWidth() - 6;
+    const maxLeft = this.getClientWidth() - this.getVerticalThumbWidth() - 18;
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
-      this.contetnElement.scrollLeft = (percentage * this.getScrollWidth()) / 100;
+      this.contetnElement.scrollLeft =
+        (percentage * (this.getScrollWidth() - this.getClientWidth())) / 100;
       this.setState({ verticalPosition });
     }
   }
@@ -147,7 +150,7 @@ class Scrollbar extends Component {
   }
 
   hasHorizontalRail() {
-    return this.getClientHeigth() - this.getScrollHeight() < 0;
+    return this.getClientHeight() - this.getScrollHeight() < 0;
   }
 
   hasVerticalRail() {
@@ -174,7 +177,8 @@ class Scrollbar extends Component {
         onFocus={this.handleMouseOverScrollbar}
         onBlur={this.handleMouseOutScrollbar}
         {...props}>
-        <div className="scrollbar-contet" ref={(elm) => { this.contetnElement = elm; }}>
+        <div className="scrollbar-contet"
+          ref={(elm) => { this.contetnElement = elm; }}>
           { this.props.children }
         </div>
         { this.state.hasHorizontalRail &&
@@ -184,7 +188,7 @@ class Scrollbar extends Component {
                 top={this.state.horizontalPosition}
                 draggable
                 onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
-                onDrag={this.handleHorizontalThumbDrap} />
+                onDrag={this.handleHorizontalThumbDrag} />
             </HorizontalScrollbarRail>
           )
         }
@@ -195,7 +199,7 @@ class Scrollbar extends Component {
                 width={this.getVerticalThumbWidth()}
                 draggable
                 onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
-                onDrag={this.handleVerticalThumbDrap} />
+                onDrag={this.handleVerticalThumbDrag} />
             </VerticalScrollbarRail>
           )
         }

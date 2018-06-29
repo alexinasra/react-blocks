@@ -62,67 +62,45 @@ class App extends Component {
       <ThemeContextProvider value={{ themeName: 'default', mode: 'ligth' }}>
 
         <div id="DEMO_APP">
-          <GridLayout>
-            <GridRow>
-              <GridColumn span={6}>
-                <Scrollbar style={{ width: '300px', height: "100px" }} >
-                  <div>
-                    <p>Delightful remarkably mr on announcing themselves entreaties favourable. About to in so terms voice at. Equal an would is found seems of. The particular friendship one sufficient terminated frequently themselves. It more shed went up is roof if loud case. Delay music in lived noise an. Beyond genius really enough passed is up.</p>
-                    <p>Style never met and those among great. At no or september sportsmen he perfectly happiness attending. Depending listening delivered off new she procuring satisfied sex existence. Person plenty answer to exeter it if. Law use assistance especially resolution cultivated did out sentiments unsatiable. Way necessary had intention happiness but september delighted his curiosity. Furniture furnished or on strangers neglected remainder engrossed.</p>
-                    <p>If wandered relation no surprise of screened doubtful. Overcame no insisted ye of trifling husbands. Might am order hours on found. Or dissimilar companions friendship impossible at diminution. Did yourself carriage learning she man its replying. Sister piqued living her you enable mrs off spirit really. Parish oppose repair is me misery. Quick may saw style after money mrs.</p>
-                  </div>
-                </Scrollbar>
-              </GridColumn>
-            </GridRow>
-          </GridLayout>
-          <Form>
-            <Select
-            value={this.state.value}
-            label="select"
-            onSelect={(value) => this.setState({ value })}
-            items={[
-              {key:'empty', label:'', value: ''},
-              {key:'a', label:'a', value: 'a'},
-              {key:'b', label:'b', value: 'b'},
-              {key:'d', label:'d', value: 'd'},
-              {key:'e', label:'e', value: 'e'},
-              {key:'f', label:'f', value: 'f'},
-              {key:'g', label:'g', value: 'g'},
-              {key:'h', label:'h', value: 'h'},
-              {key:'i', label:'i', value: 'i'},
-              {key:'j', label:'j', value: 'j'},
-              {key:'k', label:'k', value: 'k'},
-              {key:'l', label:'l', value: 'l'},
-              {key:'m', label:'m', value: 'm'},
-            ]} />
-            <span id="myLabel">Select Checkboxes</span>
-            <CheckboxGroup labelledBy="myLabel">
-              <Checkbox checked={this.state.boolVal}
-                onChange={(boolVal) => { this.setState({ boolVal }); }}
-                label="Unckecked Checkbox" />
-              <Checkbox checked='mixed'
-                onChange={(boolVal) => { this.setState({ boolVal }); }}
-                label="Unckecked Checkbox" />
-              <Checkbox checked={this.state.boolVal2}
-                disabled
-                onChange={(boolVal2) => { this.setState({ boolVal2 }); }}
-                label="Ckecked Checkbox" />
-            </CheckboxGroup>
-            <Radio options={[
-              {key:'a', label:'a', value: 'a'},
-              {key:'b', label:'b', value: 'b'},
-              {key:'d', label:'d', value: 'd'},
-              {key:'e', label:'e', value: 'e'},
-              {key:'f', label:'f', value: 'f'},
-              {key:'g', label:'g', value: 'g'},
-              {key:'h', label:'h', value: 'h'},
-              {key:'i', label:'i', value: 'i'},
-              {key:'j', label:'j', value: 'j'},
-              {key:'k', label:'k', value: 'k'},
-              {key:'l', label:'l', value: 'l'},
-              {key:'m', label:'m', value: 'm'},
-            ]} value={this.state.value} onChange={(value) => this.setState({ value })} />
-          </Form>
+        <GridLayout>
+          <GridRow>
+            <GridColumn span={6}>
+              <Scrollbar style={{ width: '300px', height: "100px" }} >
+                <div>
+                  <p>Delightful remarkably mr on announcing themselves entreaties favourable. About to in so terms voice at. Equal an would is found seems of. The particular friendship one sufficient terminated frequently themselves. It more shed went up is roof if loud case. Delay music in lived noise an. Beyond genius really enough passed is up.</p>
+                  <p>Style never met and those among great. At no or september sportsmen he perfectly happiness attending. Depending listening delivered off new she procuring satisfied sex existence. Person plenty answer to exeter it if. Law use assistance especially resolution cultivated did out sentiments unsatiable. Way necessary had intention happiness but september delighted his curiosity. Furniture furnished or on strangers neglected remainder engrossed.</p>
+                  <p>If wandered relation no surprise of screened doubtful. Overcame no insisted ye of trifling husbands. Might am order hours on found. Or dissimilar companions friendship impossible at diminution. Did yourself carriage learning she man its replying. Sister piqued living her you enable mrs off spirit really. Parish oppose repair is me misery. Quick may saw style after money mrs.</p>
+                </div>
+              </Scrollbar>
+            </GridColumn>
+          </GridRow>
+        </GridLayout>
+        <GridLayout>
+          <GridRow>
+            <GridColumn span={6}>
+              <Scrollbar style={{ width: '300px', height: "200px" }} >
+                <div>
+                  <p>Delightful remarkably mr on announcing themselves entreaties favourable. About to in so terms voice at. Equal an would is found seems of. The particular friendship one sufficient terminated frequently themselves. It more shed went up is roof if loud case. Delay music in lived noise an. Beyond genius really enough passed is up.</p>
+                  <p>Style never met and those among great. At no or september sportsmen he perfectly happiness attending. Depending listening delivered off new she procuring satisfied sex existence. Person plenty answer to exeter it if. Law use assistance especially resolution cultivated did out sentiments unsatiable. Way necessary had intention happiness but september delighted his curiosity. Furniture furnished or on strangers neglected remainder engrossed.</p>
+                  <p>If wandered relation no surprise of screened doubtful. Overcame no insisted ye of trifling husbands. Might am order hours on found. Or dissimilar companions friendship impossible at diminution. Did yourself carriage learning she man its replying. Sister piqued living her you enable mrs off spirit really. Parish oppose repair is me misery. Quick may saw style after money mrs.</p>
+                </div>
+              </Scrollbar>
+            </GridColumn>
+          </GridRow>
+        </GridLayout>
+        <GridLayout>
+          <GridRow>
+            <GridColumn span={6}>
+              <Scrollbar style={{ width: '300px', height: "300px" }} >
+                <div style={{ width: "550px" }}>
+                  <p>Delightful remarkably mr on announcing themselves entreaties favourable. About to in so terms voice at. Equal an would is found seems of. The particular friendship one sufficient terminated frequently themselves. It more shed went up is roof if loud case. Delay music in lived noise an. Beyond genius really enough passed is up.</p>
+                  <p>Style never met and those among great. At no or september sportsmen he perfectly happiness attending. Depending listening delivered off new she procuring satisfied sex existence. Person plenty answer to exeter it if. Law use assistance especially resolution cultivated did out sentiments unsatiable. Way necessary had intention happiness but september delighted his curiosity. Furniture furnished or on strangers neglected remainder engrossed.</p>
+                  <p>If wandered relation no surprise of screened doubtful. Overcame no insisted ye of trifling husbands. Might am order hours on found. Or dissimilar companions friendship impossible at diminution. Did yourself carriage learning she man its replying. Sister piqued living her you enable mrs off spirit really. Parish oppose repair is me misery. Quick may saw style after money mrs.</p>
+                </div>
+              </Scrollbar>
+            </GridColumn>
+          </GridRow>
+        </GridLayout>
         </div>
       </ThemeContextProvider>
     );
