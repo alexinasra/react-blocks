@@ -1,21 +1,3 @@
-/*
-  maxScrollbarLength: undefined,
-  minScrollbarLength: undefined,
-  scrollingThreshold: 1000,
-  scrollXMarginOffset: 0,
-  scrollYMarginOffset: 0,
-  suppressScrollX: false,
-  suppressScrollY: false,
-  swipeEasing: true,
-  useBothWheelAxes: false,
-  wheelPropagation: true,
-  wheelSpeed: 1,
-
-onFocus : add focus class to root element
-onBlur : remove focus class from root element
-
-*/
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
