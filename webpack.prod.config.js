@@ -23,6 +23,9 @@ module.exports = (env) => {
     TextCounter: './src/components/TextCounter/index.jsx',
     Title: './src/components/Title/index.jsx',
     Toolbar: './src/components/Toolbar/index.jsx',
+    LocaleContext: './src/context/LocaleContext',
+    ThemeContext: './src/context/ThemeContext',
+    CssClassToggle: './src/hocs/CssClassToggle',
     'react-blocks': [
       './src/react-blocks.scss'
     ]
