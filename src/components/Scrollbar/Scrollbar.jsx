@@ -25,7 +25,7 @@ class Scrollbar extends Component {
     this.state = {
       hasVerticalRail: false,
       hasHorizontalRail: false,
-      hasFocus: false,
+      hasFocus: false
     };
     this.initVerticalRail = this.initVerticalRail.bind(this);
     this.initHorizontalRail = this.initHorizontalRail.bind(this);
@@ -67,13 +67,13 @@ class Scrollbar extends Component {
 
   getHorizontalThumbHeight() {
     const height = this.getClientHeight() * (this.getClientHeight() / this.getScrollHeight());
-    return Math.ceil(height);
+    return height > 9 ? Math.round(height) : 9;
   }
 
   getVerticalThumbWidth() {
     const ratio = (this.getScrollWidth() / this.getClientWidth());
     const width = (this.getClientWidth() / ratio);
-    return width > 9 ? width : 9;
+    return width > 9 ? Math.round(width) : 9;
   }
 
   getMaxTop() {
@@ -123,9 +123,10 @@ class Scrollbar extends Component {
   scrollTop(horizontalPosition) {
     const maxTop = this.getMaxTop();
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
-      const percentage = Math.ceil((horizontalPosition / (maxTop)) * 100);
+      const percentage = Math.round((horizontalPosition / (maxTop)) * 100);
+
       this.contentElement.scrollTop =
-        (percentage * (this.getScrollHeight() - this.getClientHeight())) / 100;
+        Math.round((percentage * (this.getScrollHeight() - this.getClientHeight())) / 100);
       this.setState({ horizontalPosition });
     }
   }
@@ -151,8 +152,15 @@ class Scrollbar extends Component {
     const maxLeft = this.getMaxLeft();
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
-      this.contentElement.scrollLeft = (
-        ((percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
+      if (this.props.direction === 'rtl') {
+        this.contentElement.scrollLeft = this.getScrollWidth() -
+           this.getClientWidth() -
+           Math.round((
+          (percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
+      } else {
+        this.contentElement.scrollLeft = Math.round((
+          (percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
+      }
       this.setState({ verticalPosition });
     }
   }
@@ -168,6 +176,7 @@ class Scrollbar extends Component {
       hasVerticalRail: show,
       verticalPosition: 0
     });
+    this.scrollLeft(0);
   }
 
   hasHorizontalRail() {
@@ -212,7 +221,10 @@ class Scrollbar extends Component {
                 onMouseDown={(e) => {
                   this.setState({ horizontalOffsetY: e.nativeEvent.offsetY });
                 }}
-                onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
+                onDragStart={(e) => {
+                  e.dataTransfer.setDragImage(new Image(), 0, 0);
+                  e.dataTransfer.setData('text', 'anything');
+                }}
                 onDrag={this.handleHorizontalThumbDrag} />
             </HorizontalScrollbarRail>
           )
@@ -228,7 +240,10 @@ class Scrollbar extends Component {
                 onMouseDown={(e) => {
                   this.setState({ verticalOffsetX: e.nativeEvent.offsetX });
                 }}
-                onDragStart={(e) => { e.dataTransfer.setDragImage(new Image(), 0, 0); }}
+                onDragStart={(e) => {
+                  e.dataTransfer.setDragImage(new Image(), 0, 0);
+                  e.dataTransfer.setData('text', 'anything');
+                }}
                 onDrag={this.handleVerticalThumbDrag} />
             </VerticalScrollbarRail>
           )
