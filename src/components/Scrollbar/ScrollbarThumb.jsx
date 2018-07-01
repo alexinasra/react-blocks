@@ -64,12 +64,12 @@ HorizontalScrollbarThumbInternal.defaultProps = {
   style: undefined
 };
 
-const onClickHoc = CssClassToggle('onMouseDown', 'onMouseUp', 'mouse-over');
-const onHoverHoc = CssClassToggle('onMouseOver', 'onMouseOut', 'mouse-over');
+const onDragHoc = CssClassToggle('onDragStart', 'onDragEnd', 'drag-start', 'drag-end');
+const onHoverHoc = CssClassToggle('onMouseOver', 'onMouseOut', 'mouse-over', 'mouse-out');
 
-const ScrollbarThumb = onHoverHoc(onClickHoc(ScrollbarThumbInternal));
-const VerticalScrollbarThumb = onHoverHoc(onClickHoc(VerticalScrollbarThumbInternal));
-const HorizontalScrollbarThumb = onHoverHoc(onClickHoc(HorizontalScrollbarThumbInternal));
+const ScrollbarThumb = onHoverHoc(onDragHoc(ScrollbarThumbInternal));
+const VerticalScrollbarThumb = onHoverHoc(onDragHoc(VerticalScrollbarThumbInternal));
+const HorizontalScrollbarThumb = onHoverHoc(onDragHoc(HorizontalScrollbarThumbInternal));
 
 export default ScrollbarThumb;
 export {

@@ -36,7 +36,8 @@
   }
 }
 
-.mouse-over .thumb {
+.mouse-over.thumb ,
+.drag-start.thumb {
   background: rgba(lighten($color-primary, 0.15), 0.2);
 
     div {
