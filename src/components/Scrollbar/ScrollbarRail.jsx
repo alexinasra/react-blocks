@@ -45,12 +45,11 @@ HorizontalScrollbarRailInternal.defaultProps = {
   className: undefined,
 };
 
-const onClickHoc = CssClassToggle('onMouseDown', 'onMouseUp', 'mouse-over');
-const onHoverHoc = CssClassToggle('onMouseOver', 'onMouseOut', 'mouse-over');
+const onHoverHoc = CssClassToggle('onMouseOver', 'onMouseOut', 'mouse-over', 'mouse-out');
 
-const ScrollbarRail = onHoverHoc(onClickHoc(ScrollbarRailInternal));
-const VerticalScrollbarRail = onHoverHoc(onClickHoc(VerticalScrollbarRailInternal));
-const HorizontalScrollbarRail = onHoverHoc(onClickHoc(HorizontalScrollbarRailInternal));
+const ScrollbarRail = onHoverHoc(ScrollbarRailInternal);
+const VerticalScrollbarRail = onHoverHoc(VerticalScrollbarRailInternal);
+const HorizontalScrollbarRail = onHoverHoc(HorizontalScrollbarRailInternal);
 
 export default ScrollbarRail;
 export {
