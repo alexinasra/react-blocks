@@ -1,6 +1,6 @@
 import React from 'react';
 
-const { LocaleContextProvider, LocaleContextConsumer } = React.createContext({
+const { Provider, Consumer } = React.createContext({
   lang: 'en',
   direction: 'ltr',
   currency: 'USD',
@@ -8,4 +8,7 @@ const { LocaleContextProvider, LocaleContextConsumer } = React.createContext({
   dateFormat: 'dd/mm/yyy'
 });
 
-export { LocaleContextProvider, LocaleContextConsumer };
+export {
+  Provider as LocaleContextProvider,
+  Consumer as LocaleContextConsumer
+};
