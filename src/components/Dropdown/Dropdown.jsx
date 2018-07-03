@@ -12,14 +12,14 @@ class Dropdown extends Component {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     menu: PropTypes.objectOf(Menu).isRequired,
-    direction: PropTypes.oneOf(['down', 'top', 'left', 'right', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'])
+    direction: PropTypes.oneOf(['down', 'up', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'])
   }
   static defaultProps = {
     onOpen: () => {},
     onClose: () => {},
     onRef: () => {},
     className: undefined,
-    direction: 'bottomRight'
+    direction: 'downRight'
   }
   constructor(props) {
     super(props);
@@ -38,69 +38,69 @@ class Dropdown extends Component {
     const widthDiff = Math.abs(containerWidth - width);
 
     switch (this.props.direction) {
-    case 'top':
+    case 'up':
       this.setPosition({
         right: -widthDiff / 2,
         left: -widthDiff / 2,
-        top: 'auto',
-        bottom: 0
+        up: 'auto',
+        down: 0
       });
       break;
-    case 'bottom':
+    case 'down':
       this.setPosition({
         right: -widthDiff / 2,
         left: -widthDiff / 2,
-        top: 0,
-        bottom: 'auto'
+        up: 0,
+        down: 'auto'
       });
       break;
     case 'left':
       this.setPosition({
         right: 'auto',
         left: 0,
-        top: -heightDiff / 2,
-        bottom: -heightDiff / 2
+        up: -heightDiff / 2,
+        down: -heightDiff / 2
       });
       break;
     case 'right':
       this.setPosition({
         left: 'auto',
         right: 0,
-        top: -heightDiff / 2,
-        bottom: -heightDiff / 2
+        up: -heightDiff / 2,
+        down: -heightDiff / 2
       });
       break;
-    case 'topLeft':
+    case 'upLeft':
       this.setPosition({
         left: 'auto',
         right: 0,
-        top: 'auto',
-        bottom: 0
+        up: 'auto',
+        down: 0
       });
       break;
-    case 'topRight':
+    case 'upRight':
       this.setPosition({
         right: 'auto',
         left: 0,
-        top: 'auto',
-        bottom: 0
+        up: 'auto',
+        down: 0
       });
       break;
-    case 'bottomLeft':
+    case 'downLeft':
       this.setPosition({
         left: 'auto',
         right: 0,
-        top: 0,
-        bottom: 'auto'
+        up: 0,
+        down: 'auto'
       });
       break;
-    case 'bottomRight':
+    case 'downRight':
     default:
       this.setPosition({
         left: 0,
         right: 'auto',
-        top: 0,
-        bottom: 'auto'
+        up: 0,
+        down: 'auto'
       });
     }
     this.props.onRef(this);
@@ -148,8 +148,8 @@ class Dropdown extends Component {
         {props.children}
         <div ref={(elm) => { this.containerDomRef = elm; }}
           style={{
-            top: this.state.top,
-            bottom: this.state.bottom,
+            up: this.state.up,
+            down: this.state.down,
             right: this.state.right,
             left: this.state.left }}
           className="menu-container">
