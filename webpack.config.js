@@ -94,7 +94,7 @@ module.exports = {
     hot: true,
     progress: true,
     inline: true,
-    stats: 'errors-only',
+    stats: 'normal',
 
     host: HOST,
     port: PORT,
