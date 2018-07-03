@@ -25,5 +25,11 @@ const NavRouterLink = ({
     <span className="label">{label}</span>
   </NavLink>
 );
+NavRouterLink.defaultProps = {
+  className: undefined,
+  iconName: undefined,
+  activeClassName: undefined
+};
+
 
 export default NavRouterLink;
