@@ -3,11 +3,59 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-
-  a {
+  color: $color-primary;
+  a { outline:  none }
+  & > a, .nav-link {
+    text-align: center;
+    margin: 6px 9px;
+    padding: 3px 9px;
     vertical-align: middle;
     line-height: 36px;
     text-decoration: none;
+    cursor: pointer;
+    .menu {
+      text-align: justify;
+    }
+  }
+}
+
+.column.nav {
+  .nav-dropdown {
+    .menu-container {
+      display: block;
+      position: static;
+      height: 0;
+      opacity: 0;
+      transition: opacity 300ms, height 300ms;
+      .menu {
+        text-align: justify;
+        box-shadow: 0 -1px 2px 0 rgba($color-black, 0.7) inset;
+      }
+    }
+    &.is-open {
+      .menu-container {
+        height: auto;
+        opacity: 1;
+        display: block;
+      }
+    }
+  }
+}
+.row.nav {
+  flex-direction: row;
+
+  & > a, .nav-link {
+    box-sizing: border-box;
+    user-select: none;
+    margin: 6px 9px;
+    padding: 3px 9px;
+    vertical-align: middle;
+    line-height: 36px;
+    text-decoration: none;
+  }
+
+  .nav-dropdown {
 
   }
+
 }
