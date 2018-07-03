@@ -265,11 +265,11 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 }
 
-export default (props: { [string]: mixed}): React.Node => (
+export default ((props: { [string]: mixed}): React.Node => (
   <LocaleContextConsumer>
     {
       (localeContext: { direction: string }): React.Node => (
           <Scrollbar direction={localeContext.direction} {...props} />)
     }
   </LocaleContextConsumer>
-);
+));
