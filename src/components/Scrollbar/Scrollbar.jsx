@@ -36,11 +36,11 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 
   getClientWidth(): number {
-    return this.rootElement ? this.rootElement.clientWidth : 0;
+    return (this.rootElement ? this.rootElement.clientWidth : 0);
   }
 
   getClientHeight(): number {
-    return this.rootElement ? this.rootElement.clientHeight : 0;
+    return (this.rootElement ? this.rootElement.clientHeight : 0);
   }
 
   getScrollWidth(): number {
@@ -77,6 +77,9 @@ class Scrollbar extends Component<ScrollbarProps> {
   getMaxLeft(): number {
     return this.getClientWidth() - this.getVerticalThumbWidth() - 18;
   }
+
+  rootElement: ?HTMLElement;
+  contentElement: ?HTMLElement;
 
   handleOnWheel(e: React.SyntheticEvent) {
     const { deltaY } = e.nativeEvent;
@@ -132,6 +135,11 @@ class Scrollbar extends Component<ScrollbarProps> {
       this.contentElement.scrollTop =
         Math.round((percentage * (this.getScrollHeight() - this.getClientHeight())) / 100);
       this.setState({ horizontalPosition });
+      console.log({
+        height: this.getClientHeight(),
+        scrollHeight: this.getScrollHeight(),
+        hasRail: this.hasHorizontalRail()
+      });
     }
   }
   handleVerticalThumbDrag(e: React.SyntheticEvent) {
@@ -216,7 +224,7 @@ class Scrollbar extends Component<ScrollbarProps> {
           ref={(elm: React.Node) => { this.contentElement = elm; }}>
           { this.props.children }
         </div>
-        { this.state.hasHorizontalRail &&
+        { this.hasHorizontalRail() &&
           (
             <HorizontalScrollbarRail>
               <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
@@ -233,7 +241,7 @@ class Scrollbar extends Component<ScrollbarProps> {
             </HorizontalScrollbarRail>
           )
         }
-        { this.state.hasVerticalRail &&
+        { this.hasVerticalRail() &&
           (
             <VerticalScrollbarRail>
               <VerticalScrollbarThumb
