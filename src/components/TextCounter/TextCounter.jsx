@@ -22,14 +22,16 @@ const TextCounter = ({
   const c = count === 'word' ? text.trim().split(' ').length : text.length;
   const postfix = count === 'word' ? ' (words)' : '';
   return (
-    <div className={classnames(
-      'text-counter',
-      {
-        'is-long': (c > max && max > 0),
-        'is-short': (c < min && min > 0)
-      }, className
-    )}
-      {...props}>
+    <div
+      className={classnames(
+        'text-counter',
+        {
+          'is-long': (c > max && max > 0),
+          'is-short': (c < min && min > 0)
+        }, className
+      )}
+      {...props}
+    >
       <span className="count">
         {c}
       </span>

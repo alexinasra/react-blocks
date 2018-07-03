@@ -14,13 +14,15 @@ const BottomLine = ({
   className,
   ...props
 }: BottomLineProps): React.Node => (
-  <div className={classnames(
-    'bottom-line',
-    { 'is-active': active },
-    { 'is-disabled': disabled },
-    className
-  )}
-    {...props}>
+  <div
+    className={classnames(
+      'bottom-line',
+      { 'is-active': active },
+      { 'is-disabled': disabled },
+      className
+    )}
+    {...props}
+  >
     <div className="unactive-line" />
     <div className="active-line" />
     <div className="disabled-line" />

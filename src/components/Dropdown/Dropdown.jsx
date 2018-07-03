@@ -17,7 +17,7 @@ class Dropdown extends Component<DropdownProps> {
   static defaultProps: DropdownProps = {
     direction: 'down',
     className: undefined,
-    onRef: (e: React.Node) => {}
+    onRef: () => {}
   };
 
   constructor(props: DropdownProps) {

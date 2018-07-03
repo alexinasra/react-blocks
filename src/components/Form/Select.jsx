@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Dropdown from '@components/Dropdown';
 import Menu, { MenuItem } from '@components/Menu';
-import Scrollbar from '@components/Scrollbar';
 import Icon from '@components/Icon';
 import BottomLine from '@components/BottomLine';
 
@@ -98,7 +97,8 @@ export default class Select extends Component<SelectProps> {
           <Menu tabIndex={0} role="menu">
             {menuItems}
           </Menu>
-        )}>
+        )}
+        {...props}>
         <span className="value"
           role="button"
           tabIndex={0}

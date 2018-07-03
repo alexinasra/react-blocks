@@ -115,15 +115,6 @@ class Scrollbar extends Component<ScrollbarProps> {
       8 -
       this.state.horizontalOffsetY
     );
-    console.log({ ...this.rootElement });
-    console.log({
-      pageY: e.pageY,
-      clientY: e.clientY,
-      bodyTop: document.documentElement.scrollTop,
-      offsetTop: this.rootElement.getBoundingClientRect().top,
-      horizontalOffsetY: this.state.horizontalOffsetY,
-      horizontalPosition
-    });
     this.scrollTop(horizontalPosition);
   }
 
@@ -135,19 +126,13 @@ class Scrollbar extends Component<ScrollbarProps> {
       this.contentElement.scrollTop =
         Math.round((percentage * (this.getScrollHeight() - this.getClientHeight())) / 100);
       this.setState({ horizontalPosition });
-      console.log({
-        height: this.getClientHeight(),
-        scrollHeight: this.getScrollHeight(),
-        hasRail: this.hasHorizontalRail()
-      });
     }
   }
   handleVerticalThumbDrag(e: React.SyntheticEvent) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
-    let verticalPosition =
-      (
+    let verticalPosition = (
       e.pageX -
       this.rootElement.getBoundingClientRect().left -
       8 -
@@ -167,8 +152,7 @@ class Scrollbar extends Component<ScrollbarProps> {
       if (this.props.direction === 'rtl') {
         this.contentElement.scrollLeft = this.getScrollWidth() -
            this.getClientWidth() -
-           Math.round((
-          (percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
+           Math.round(((percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
       } else {
         this.contentElement.scrollLeft = Math.round((
           (percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
@@ -212,16 +196,20 @@ class Scrollbar extends Component<ScrollbarProps> {
     );
 
     return (
-      <div className={classes}
+      <div
+        className={classes}
         ref={(elm: React.Node) => { this.rootElement = elm; }}
         onMouseOver={this.handleMouseOverScrollbar}
         onMouseOut={this.handleMouseOutScrollbar}
         onFocus={this.handleMouseOverScrollbar}
         onBlur={this.handleMouseOutScrollbar}
-        {...props}>
-        <div className="scrollbar-content"
+        {...props}
+      >
+        <div
+          className="scrollbar-content"
           onWheel={this.handleOnWheel}
-          ref={(elm: React.Node) => { this.contentElement = elm; }}>
+          ref={(elm: React.Node) => { this.contentElement = elm; }}
+        >
           { this.props.children }
         </div>
         { this.hasHorizontalRail() &&
@@ -269,7 +257,7 @@ export default ((props: { [string]: mixed}): React.Node => (
   <LocaleContextConsumer>
     {
       (localeContext: { direction: string }): React.Node => (
-          <Scrollbar direction={localeContext.direction} {...props} />)
+        <Scrollbar direction={localeContext.direction} {...props} />)
     }
   </LocaleContextConsumer>
 ));

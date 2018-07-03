@@ -33,26 +33,26 @@ export default class Checkbox extends Component<CheckboxProps> {
   componentDidMount() {
     this.props.onRef(this);
   }
-  handleClick(e: React.SyntheticEvent): React.Node {
+  handleClick() {
     this.toggle();
   }
-  handleKeyPress(e: React.SyntheticEvent): React.Node {
+  handleKeyPress(e: React.SyntheticEvent) {
     if (e.key === 'Enter' || e.key === ' ') {
       this.toggle();
     }
   }
-  toggle(): React.Node {
+  toggle() {
     if (!this.props.disabled) {
       this.props.onChange(!this.props.checked);
     }
   }
-  handleFocus(e: React.SyntheticEvent): React.Node {
+  handleFocus() {
     this.setState({ active: true });
   }
-  handleBlur(e: React.SyntheticEvent): React.Node {
+  handleBlur() {
     this.setState({ active: false });
   }
-  render(): React.Dom {
+  render(): React.Node {
     const {
       onRef,
       label,

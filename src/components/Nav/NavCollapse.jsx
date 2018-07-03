@@ -16,7 +16,7 @@ const NavCollapse = ({
   className,
   ...props
 }: NavCollapseProps): React.Node => (
-  <div className={classnames('nav-link nav-action', className)}>
+  <div className={classnames('nav-link nav-action', className)} {...props}>
     <span>
       {iconName && <Icon name={iconName} />}
       <span className="label">{label}</span>

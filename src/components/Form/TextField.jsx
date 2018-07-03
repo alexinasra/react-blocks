@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
-import BottomLine from '@components/BottomLine';
 import TextCounter from '@components/TextCounter';
 import FieldContainer from './FieldContainer';
 
@@ -35,10 +34,10 @@ class TextField extends Component<TextFieldProps> {
     this.handleLabelClick = this.handleLabelClick.bind(this);
   }
 
-  handleOnInputFocus(e: React.SyntheticEvent) {
+  handleOnInputFocus() {
     this.setState({ hasFocus: true, isTouched: true });
   }
-  handleOnInputBlur(e: React.SyntheticEvent) {
+  handleOnInputBlur() {
     this.setState({ hasFocus: false });
   }
   handleOnInputChange(e: React.SyntheticEvent) {
@@ -47,7 +46,7 @@ class TextField extends Component<TextFieldProps> {
     }
     this.setState({ isDirty: true, value: e.target.value });
   }
-  handleLabelClick(e: React.SyntheticEvent) {
+  handleLabelClick() {
     this.input.focus();
   }
   render(): React.Node {

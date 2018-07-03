@@ -8,10 +8,13 @@ type ButtonGroupProps = {
   [string]: mixed
 };
 
-const ButtonGroup = ({ className, ...props }: ButtonProps): React.Node => (
+const ButtonGroup = ({ className, ...props }: ButtonGroupProps): React.Node => (
   <div className={classnames('button_group', className)}>
     {props.children}
   </div>
 );
+ButtonGroup.defaultProps = {
+  className: undefined
+};
 
 export default ButtonGroup;
