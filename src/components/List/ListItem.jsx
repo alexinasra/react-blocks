@@ -18,5 +18,9 @@ const ListItem = ({
     {children}
   </div>
 );
+ListItem.defaultProps = {
+  className: undefined
+};
+
 
 export default ListItem;

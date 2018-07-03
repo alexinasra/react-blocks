@@ -16,6 +16,9 @@ const List = ({ className, children, ...props }: ListProps): React.Node => (
   </div>
 );
 
+List.defaultProps = {
+  className: undefined
+};
 
 export default List;
 export {
