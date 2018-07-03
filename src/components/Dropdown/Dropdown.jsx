@@ -10,12 +10,14 @@ type DropdownProps = {
   children: React.Node,
   className?: string,
   menu: React.Element<Menu>,
-  direction: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
+  direction?: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
 };
 
 class Dropdown extends Component<DropdownProps> {
   static defaultProps: DropdownProps = {
-    direction: 'down'
+    direction: 'down',
+    className: undefined,
+    onRef: (e: React.Node) => {}
   };
 
   constructor(props: DropdownProps) {
