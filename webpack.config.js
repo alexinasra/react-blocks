@@ -106,7 +106,7 @@ module.exports = {
   optimization: {
     minimize: true,
     splitChunks: {
-      chunks: "async",
+      chunks: 'async',
       minSize: 30000,
       minChunks: 1,
       maxAsyncRequests: 5,
@@ -115,18 +115,18 @@ module.exports = {
       name: true,
       cacheGroups: {
         vendors: {
-          name: "vendor",
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          chunks: "all"
+          chunks: 'all'
         },
         commons: {
-          name: "commons",
-          chunks: "initial",
+          name: 'commons',
+          chunks: 'initial',
           minChunks: 2
         },
         default: {
-          name: "main",
+          name: 'main',
           minChunks: 2,
           priority: -20,
           reuseExistingChunk: true
@@ -144,15 +144,16 @@ module.exports = {
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new CopyWebpackPlugin([
-      { from: path.join(DEMO, 'public'), to: BUILD }
-    ],
-    {
-      ignore: [
+    new CopyWebpackPlugin(
+      [
+        { from: path.join(DEMO, 'public'), to: BUILD }
+      ],
+      {
+        ignore: [
         // Doesn't copy Mac storage system files
-        '.DS_Store'
-      ]
-    }
+          '.DS_Store'
+        ]
+      }
     ),
     new HtmlWebpackPlugin({
       template: path.join(DEMO, 'index.html'),

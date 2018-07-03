@@ -1,5 +1,6 @@
 const path = require('path');
 const process = require('process');
+
 process.traceDeprecation = true;
 
 module.exports = {
@@ -17,6 +18,6 @@ module.exports = {
     }
   },
   require: [
-      path.join(__dirname, './src/react-blocks.scss')
+    path.join(__dirname, './src/react-blocks.scss')
   ]
 };

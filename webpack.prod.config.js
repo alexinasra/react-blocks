@@ -62,11 +62,11 @@ module.exports = (env) => {
 
   const plugins = [
     new webpack.LoaderOptionsPlugin({
-         // test: /\.xxx$/, // may apply this only for some modules
-         options: {
-           external: ['react', 'react-dom' ,'prop-types', 'classnames'],
-         }
-       }),
+      // test: /\.xxx$/, // may apply this only for some modules
+      options: {
+        external: ['react', 'react-dom', 'prop-types', 'classnames']
+      }
+    }),
     new ExtractTextPlugin('[name].css')
   ];
   return {
