@@ -1,27 +1,24 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import classnames from 'classnames';
 import Menu from '@components/Menu';
 
-class Dropdown extends Component {
-  static propTypes = {
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    onRef: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    menu: PropTypes.objectOf(Menu).isRequired,
-    direction: PropTypes.oneOf(['down', 'up', 'left', 'right', 'upLeft', 'upRight', 'downLeft', 'downRight'])
-  }
-  static defaultProps = {
-    onOpen: () => {},
-    onClose: () => {},
-    onRef: () => {},
-    className: undefined,
-    direction: 'downRight'
-  }
-  constructor(props) {
+type DropdownProps = {
+  onOpen?: (e: React.SyntheticEvent) => void | boolean,
+  onClose?: (e: React.SyntheticEvent) => void | boolean,
+  onRef?: (e: React.Node) => void | boolean,
+  children: React.Node,
+  className?: string,
+  menu: React.Element<Menu>,
+  direction: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
+};
+
+class Dropdown extends Component<DropdownProps> {
+  static defaultProps: DropdownProps = {
+    direction: 'down'
+  };
+
+  constructor(props: DropdownProps) {
     super(props);
     this.state = { isOpen: false };
 
@@ -103,12 +100,22 @@ class Dropdown extends Component {
         down: 'auto'
       });
     }
-    this.props.onRef(this);
+
+    if (this.props.onRef) {
+      this.props.onRef(this);
+    }
   }
   componentWillUnmount() {
-    this.props.onRef(undefined);
+    if (this.props.onRef) {
+      this.props.onRef(undefined);
+    }
   }
-  setPosition(pos) {
+  setPosition(pos: {
+    right: number | string,
+    left: number | string,
+    up: number | string,
+    down: number | string
+  }) {
     const tmpPos = { ...pos };
     if (document.dir === 'rtl') {
       tmpPos.right = pos.left;
@@ -126,17 +133,17 @@ class Dropdown extends Component {
     document.removeEventListener('click', this.handleOutsideClick, false);
     this.props.onClose();
   }
-  handleOutsideClick(e) {
+  handleOutsideClick(e: React.SyntheticEvent) {
     // ignore clicks on the component itself
     if (this.domRef && this.domRef.contains(e.target)) {
       return;
     }
     this.close();
   }
-  render() {
+  render(): React.Node {
     const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
     return (
-      <div ref={(elm) => { this.domRef = elm; }}
+      <div ref={(elm: React.Node) => { this.domRef = elm; }}
         className={
           classnames(
             'dropdown',
@@ -146,7 +153,7 @@ class Dropdown extends Component {
           )}
         {...props}>
         {props.children}
-        <div ref={(elm) => { this.containerDomRef = elm; }}
+        <div ref={(elm: React.Node) => { this.containerDomRef = elm; }}
           style={{
             up: this.state.up,
             down: this.state.down,

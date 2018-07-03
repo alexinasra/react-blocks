@@ -1,20 +1,19 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import MenuItem from './MenuItem';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<MenuItem />', () => {
-  const wrapper = mount(
-    <MenuItem className="test"
-      iconName="menu"
-      label="test"
-      shortcut="test" />
-  )
+  const wrapper = mount(<MenuItem className="test"
+    iconName="menu"
+    label="test"
+    shortcut="test" />);
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
   });

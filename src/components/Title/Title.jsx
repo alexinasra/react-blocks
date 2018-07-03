@@ -1,17 +1,19 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Title = ({ className, ...props }) => (
+type TitleProps = {
+  className?: string,
+  children: React.Node,
+  [string]: mixed
+};
+
+const Title = ({ className, ...props }: TitleProps): React.Node => (
   <span className={classNames('title', className)} {...props}>{props.children}</span>
 );
 
-Title.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
 Title.defaultProps = {
-  className: ''
+  className: undefined
 };
 
 export default Title;

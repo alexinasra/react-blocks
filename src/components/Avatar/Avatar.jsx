@@ -1,25 +1,28 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+type AvatarProps = {
+  className?: string,
+  src: string,
+  size?: 'small' | 'medium' | 'large',
+  [string]: mixed
+};
 
 const Avatar = ({
   className,
   src,
   size,
   ...props
-}) => (
+}: AvatarProps): React.Node => (
   <img className={classNames('avatar', size, className)}
     src={src}
     alt="avatar"
     {...props} />
 );
-Avatar.propTypes = {
-  className: PropTypes.string,
-  src: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
-};
+
 Avatar.defaultProps = {
-  className: '',
-  size: 'medium'
+  size: 'medium',
+  className: undefined
 };
 export default Avatar;

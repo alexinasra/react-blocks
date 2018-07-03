@@ -1,3 +1,4 @@
+/* @flow */
 import Nav from './Nav';
 import TabsNav from './TabsNav';
 import NavAction from './NavAction';

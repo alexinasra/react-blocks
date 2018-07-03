@@ -1,15 +1,16 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import Button from './Button';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<Button />', () => {
-  const wrapper = shallow(<Button className="test" />)
+  const wrapper = shallow(<Button className="test" />);
 
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
@@ -28,7 +29,7 @@ describe('<Button />', () => {
     wrapper.setProps({ label: 'test' });
     expect(wrapper.find('.label')).to.have.length(1);
   });
-  it('can be flat',() => {
+  it('can be flat', () => {
     expect(wrapper.is('.flat')).to.be.true;
   });
   it('can be raised', () => {
@@ -38,7 +39,7 @@ describe('<Button />', () => {
   it('can\'t be both flat and raised', () => {
     const rIsRaised = wrapper.is('.raised');
     const rIsFlat = wrapper.is('.flat');
-    wrapper.setProps({ raised: false })
+    wrapper.setProps({ raised: false });
     const fIsRaised = wrapper.is('.raised');
     const fIsFlat = wrapper.is('.flat');
     expect((rIsRaised && !rIsFlat) && (fIsFlat && !fIsRaised)).to.be.true;
@@ -47,11 +48,11 @@ describe('<Button />', () => {
     expect(wrapper.hasClass('test')).to.be.true;
   });
   it('clicks', () => {
-    let didClick = false
+    let didClick = false;
     wrapper.setProps({
       onClick: () => { didClick = true; }
     });
     wrapper.simulate('click');
     expect(didClick).to.be.true;
   });
-})
+});

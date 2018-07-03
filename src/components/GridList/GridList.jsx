@@ -1,20 +1,22 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const GridList = ({ columns, className, ...props }) => (
+type GridListProps = {
+  children: React.Node,
+  columns?: number,
+  className?: string,
+  [string]: mixed
+};
+
+const GridList = ({ columns, className, ...props }: GridListProps): React.Node => (
   <div className={classnames('gridlist', className)} {...props}>
     {props.children}
   </div>
 );
-GridList.propTypes = {
-  children: PropTypes.node.isRequired,
-  columns: PropTypes.number,
-  className: PropTypes.string
-};
-GridList.defaultProps = {
-  columns: 6,
-  className: ''
-};
 
+GridList.defaultProps = {
+  className: undefined,
+  columns: 1
+};
 export default GridList;

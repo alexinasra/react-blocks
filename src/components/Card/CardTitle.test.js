@@ -1,12 +1,13 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import CardTitle from './CardTitle';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('<CardTitle />', () => {
   const wrapper = mount(<CardTitle className="test" title="test" subheader="test" avatar={<span>test</span>} />);
@@ -25,4 +26,4 @@ describe('<CardTitle />', () => {
   it('className', () => {
     expect(wrapper.hasClass('test')).to.be.true;
   });
-})
+});

@@ -1,17 +1,17 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const Icon = ({ name, className, ...props }) => (
+type IconProps = {
+  className?: string,
+  name: string
+};
+
+const Icon = ({ name, className, ...props }: IconProps): React.Node => (
   <i className={classnames('material-icons', 'icon', className)} {...props}>{name}</i>
 );
 
-Icon.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired
-};
 Icon.defaultProps = {
-  className: ''
+  className: undefined
 };
-
 export default Icon;

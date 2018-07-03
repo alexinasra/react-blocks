@@ -1,19 +1,19 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const Menu = ({ className, ...props }) => (
+type MenuProps = {
+  children: React.Node,
+  className?: string,
+  [string]: mixed
+};
+const Menu = ({ className, ...props }: MenuProps): React.Node => (
   <div className={classnames('menu', className)} {...props}>
     {props.children}
   </div>
 );
 
-Menu.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string
-};
 Menu.defaultProps = {
   className: undefined
 };
-
 export default Menu;

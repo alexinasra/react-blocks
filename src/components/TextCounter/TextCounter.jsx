@@ -1,8 +1,24 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const TextCounter = ({ text, count, max, min, className, ...props }) => {
+type TextCounterProps = {
+  text: string,
+  count: 'char' | 'word',
+  max?: number,
+  min?: number,
+  className?: string,
+  [string]: mixed
+};
+
+const TextCounter = ({
+  text,
+  count,
+  max,
+  min,
+  className,
+  ...props
+}: TextCounterProps): React.Node => {
   const c = count === 'word' ? text.trim().split(' ').length : text.length;
   const postfix = count === 'word' ? ' (words)' : '';
   return (
@@ -23,19 +39,9 @@ const TextCounter = ({ text, count, max, min, className, ...props }) => {
     </div>
   );
 };
-
-TextCounter.propTypes = {
-  text: PropTypes.string.isRequired,
-  count: PropTypes.oneOf(['char', 'word']),
-  max: PropTypes.number,
-  min: PropTypes.number,
-  className: PropTypes.string
-};
 TextCounter.defaultProps = {
-  count: 'char',
   max: 0,
   min: 0,
-  className: ''
+  className: undefined
 };
-
 export default TextCounter;

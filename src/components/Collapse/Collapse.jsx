@@ -1,23 +1,26 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+type CollapseProps = {
+  children: React.Node,
+  collapsed?: boolean,
+  className?: string
+};
 
-const Collapse = ({ className, collapsed, ...props }) => (
+const Collapse = ({
+  className,
+  collapsed,
+  ...props
+}: CollapseProps): React.Node => (
   <div className={classnames('collapse', { 'is-collapsed': collapsed }, className)} {...props}>
     {props.children}
   </div>
 );
 
-Collapse.propTypes = {
-  children: PropTypes.node.isRequired,
-  collapsed: PropTypes.bool,
-  className: PropTypes.string
-};
-
 Collapse.defaultProps = {
   collapsed: false,
-  className: ''
+  className: undefined
 };
 
 export default Collapse;

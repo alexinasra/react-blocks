@@ -1,5 +1,5 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Dropdown from '@components/Dropdown';
 import Menu, { MenuItem } from '@components/Menu';
@@ -7,31 +7,24 @@ import Scrollbar from '@components/Scrollbar';
 import Icon from '@components/Icon';
 import BottomLine from '@components/BottomLine';
 
-export default class Select extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    label: PropTypes.string,
-    onSelect: PropTypes.func,
-    value: PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    }),
-    items: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })).isRequired,
-    disabled: PropTypes.bool
-  }
-  static defaultProps = {
-    className: undefined,
-    label: undefined,
-    value: undefined,
-    onSelect: () => {},
-    disabled: false
-  }
-  constructor(props) {
+type SelectItem = {
+  key: string,
+  value: string,
+  label: string
+};
+
+type SelectProps = {
+  className?: string,
+  label?: string,
+  onSelect?: (e: React.SyntheticEvent) => void | boolean,
+  value: SelectItem,
+  items: Array<SelectItem>,
+  disabled?: boolean,
+  [string]: mixed
+};
+
+export default class Select extends Component<SelectProps> {
+  constructor(props: SelectProps) {
     super(props);
     this.state = {
       active: false
@@ -51,7 +44,7 @@ export default class Select extends Component {
   handleMenuClose() {
     this.dropdown.close();
   }
-  handleKeyPress(e) {
+  handleKeyPress(e: React.SyntheticEvent) {
     if (e.key === ' ' || e.key === 'Enter') {
       this.handleMenuOpen();
     }
@@ -59,7 +52,7 @@ export default class Select extends Component {
       this.handleMenuClose();
     }
   }
-  select(item) {
+  select(item: SelectItem) {
     this.props.onSelect(item);
     this.dropdown.close();
   }
@@ -69,7 +62,7 @@ export default class Select extends Component {
   handleBlur() {
     this.setState({ active: false });
   }
-  render() {
+  render(): React.Node {
     const {
       className,
       items,
@@ -78,7 +71,7 @@ export default class Select extends Component {
       disabled,
       ...props
     } = this.props;
-    const menuItems = items.map(item => (
+    const menuItems = items.map((item: SelectItem): React.Node => (
       <MenuItem key={item.key}
         className={classnames('select-item', {
           'is-selected': this.props.value && (this.props.value.key === item.key),
@@ -100,7 +93,7 @@ export default class Select extends Component {
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onKeyDown={this.handleKeyPress}
-        onRef={(dropdown) => { this.dropdown = dropdown; }}
+        onRef={(dropdown: Dropdown) => { this.dropdown = dropdown; }}
         menu={(
           <Menu tabIndex={0} role="menu">
             {menuItems}

@@ -1,12 +1,13 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import CardSection from './CardSection';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('<CardSection />', () => {
   const wrapper = shallow((
@@ -32,4 +33,4 @@ describe('<CardSection />', () => {
   it('className', () => {
     expect(wrapper.hasClass('test')).to.be.true;
   });
-})
+});

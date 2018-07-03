@@ -1,17 +1,18 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import Checkbox from './Checkbox';
 
-describe('<Checkbox />',() => {
-  let checkboxRef = undefined;
+Enzyme.configure({ adapter: new Adapter() });
+
+describe('<Checkbox />', () => {
+  let checkboxRef;
   const onRef = (ref) => { checkboxRef = ref; };
-  const wrapper = shallow(<Checkbox onRef={onRef} label="test" className="test" />)
+  const wrapper = shallow(<Checkbox onRef={onRef} label="test" className="test" />);
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
   });
@@ -25,7 +26,7 @@ describe('<Checkbox />',() => {
     wrapper.setProps({
       checked: false,
       onChange: (val) => {
-        expect(val).to.be.true
+        expect(val).to.be.true;
       }
     });
     checkboxRef.toggle();
@@ -34,7 +35,7 @@ describe('<Checkbox />',() => {
     wrapper.setProps({
       checked: false,
       onChange: (val) => {
-        expect(val).to.be.true
+        expect(val).to.be.true;
       }
     });
     wrapper.simulate('click');
@@ -43,10 +44,10 @@ describe('<Checkbox />',() => {
     wrapper.setProps({
       checked: false,
       onChange: (val) => {
-        expect(val).to.be.true
+        expect(val).to.be.true;
       }
     });
-    wrapper.simulate('keyup', { key: 'Enter'});
+    wrapper.simulate('keyup', { key: 'Enter' });
   });
   it('simulate keyup event (Space)', () => {
     wrapper.setProps({
@@ -55,10 +56,9 @@ describe('<Checkbox />',() => {
         expect(val).to.be.true;
       }
     });
-    wrapper.simulate('keyup', { key: ' '});
+    wrapper.simulate('keyup', { key: ' ' });
   });
   it('className', () => {
     expect(wrapper.find('.test')).to.have.length(1);
   });
-
 });

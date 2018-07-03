@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Folder ops
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const path = require('path');
 
 /* eslint-enable import/no-extraneous-dependencies */

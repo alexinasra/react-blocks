@@ -1,21 +1,18 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Icon from './Icon';
 
-class ActionIcon extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    hoverName: PropTypes.string,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func
-  };
-  static defaultProps = {
-    hoverName: '',
-    onMouseEnter: undefined,
-    onMouseLeave: undefined
-  };
-  constructor(props) {
+type ActionIconProps = {
+  name: string,
+  hoverName?: string,
+  onMouseEnter?: (e: React.SyntheticEvent) => void | boolean,
+  onMouseLeave?: (e: React.SyntheticEvent) => void | boolean,
+  [string]: mixed
+};
+
+class ActionIcon extends Component<ActionIconProps> {
+  constructor(props: ActionIconProps) {
     super(props);
 
     this.state = {
@@ -25,25 +22,25 @@ class ActionIcon extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: ActionIconProps) {
     this.setState({ iconName: nextProps.name });
   }
 
-  handleMouseEnter(e) {
+  handleMouseEnter(e: React.SyntheticEvent) {
     this.setState({ iconName: this.props.hoverName || this.props.name });
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
   }
 
-  handleMouseLeave(e) {
+  handleMouseLeave(e: React.SyntheticEvent) {
     this.setState({ iconName: this.props.name });
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
   }
 
-  render() {
+  render(): React.Node {
     const { name, hoverName, ...props } = this.props;
 
     return (

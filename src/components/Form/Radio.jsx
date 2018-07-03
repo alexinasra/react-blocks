@@ -1,35 +1,38 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
-export default class Radio extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any
-    })).isRequired,
-    value: PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      value: PropTypes.any
-    }),
-    onChange: PropTypes.func
+type RadioOption = {
+  key: string,
+  label: string,
+  value: mixed
+};
+
+type RadioProps = {
+  className?: string,
+  options: Array<RadioOption>,
+  value: RadioOption,
+  onChange: (e: React.SyntheticEvent) => void | boolean,
+  [string]: mixed
+};
+
+export default class Radio extends Component<RadioProps> {
+  static defaultProps: RadioProps ={
+    className: undefined
   };
-  static defaultProps = {
-    className: undefined,
-    value: undefined,
-    onChange: () => {}
-  };
-  constructor(props) {
+  constructor(props: RadioProps) {
     super(props);
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
-  handleKeyDown(e) {
+
+  props: RadioProps;
+
+  handleKeyDown(e: React.SyntheticEvent) {
     if (e.key.startsWith('Arrow')) {
-      const findIdx = o => (this.props.value && (this.props.value.key === o.key));
+      const findIdx = (o: RadioOption): boolean => (
+        this.props.value && (this.props.value.key === o.key)
+      );
       let i = this.props.options.findIndex(findIdx);
 
       switch (e.key) {
@@ -56,14 +59,14 @@ export default class Radio extends Component {
       this.props.onChange(this.props.options[i]);
     }
   }
-  render() {
+  render(): React.Node {
     const {
       value,
       options,
       className,
       onChange,
       ...props } = this.props;
-    const items = options.map((option) => {
+    const items = options.map((option: RadioOption) => {
       if (option.label) {
         return (
           <div key={option.key}
@@ -71,7 +74,7 @@ export default class Radio extends Component {
             role="radio"
             tabIndex={value && (option.key === value.key) ? 0 : -1}
             aria-checked={value && (option.key === value.key)}
-            onClick={() => onChange(option)}
+            onClick={() => { onChange(option); }}
             onKeyDown={this.handleKeyDown}>
             <Icon name={
               value && (option.key === value.key) ?

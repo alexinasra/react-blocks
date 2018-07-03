@@ -1,8 +1,19 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const BottomLine = ({ active, disabled, className, ...props }) => (
+type BottomLineProps = {
+  active?: boolean,
+  disabled?: boolean,
+  className?: string,
+  [string]: mixed
+};
+const BottomLine = ({
+  active,
+  disabled,
+  className,
+  ...props
+}: BottomLineProps): React.Node => (
   <div className={classnames(
     'bottom-line',
     { 'is-active': active },
@@ -16,15 +27,10 @@ const BottomLine = ({ active, disabled, className, ...props }) => (
   </div>
 );
 
-BottomLine.propTypes = {
-  active: PropTypes.bool,
-  disabled: PropTypes.bool,
-  className: PropTypes.string
-};
 BottomLine.defaultProps = {
   active: false,
   disabled: false,
-  className: ''
+  className: undefined
 };
 
 export default BottomLine;

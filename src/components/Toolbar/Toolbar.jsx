@@ -1,11 +1,28 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Title from '@components/Title';
 import Subheader from '@components/Subheader';
 
-const Toolbar = ({ menuButton, title, subheader, logo, className, children, ...props }) => (
+type ToolbarProps = {
+  className?: string,
+  children: React.Node,
+  menuButton: React.Node,
+  logo: React.Node,
+  title?: string,
+  subheader?: string,
+  [string]: mixed
+};
+const Toolbar = ({
+  menuButton,
+  title,
+  subheader,
+  logo,
+  className,
+  children,
+  ...props
+}: ToolbarProps): React.Node => (
   <div className={classnames('toolbar', className)} {...props}>
     {menuButton && (
       <div className="menubutton-container">
@@ -33,21 +50,10 @@ const Toolbar = ({ menuButton, title, subheader, logo, className, children, ...p
   </div>
 );
 
-Toolbar.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  menuButton: PropTypes.node,
-  logo: PropTypes.node,
-  title: PropTypes.string,
-  subheader: PropTypes.string
-};
 Toolbar.defaultProps = {
-  className: '',
-  menuButton: false,
-  logo: false,
-  title: '',
-  subheader: '',
-  children: ''
+  className: undefined,
+  title: undefined,
+  subheader: undefined
 };
 
 export default Toolbar;

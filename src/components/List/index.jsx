@@ -1,3 +1,4 @@
+/* @flow */
 import List from './List';
 import ListItem from './ListItem';
 

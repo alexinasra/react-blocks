@@ -1,21 +1,21 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+type CardProps = {
+  className?: string,
+  children: React.Node,
+  direction?: 'column' | 'row',
+  [string]: mixed
+};
 
-const Card = ({ className, direction, ...props }) => (
+const Card = ({ className, direction, ...props }: CardProps): React.Node => (
   <div className={classNames('card', direction !== 'row' ? 'column' : 'row', className)} {...props}>
     {props.children}
   </div>
 );
-Card.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  direction: PropTypes.oneOf(['column', 'row'])
-};
 Card.defaultProps = {
-  className: '',
-  direction: 'column'
+  direction: 'column',
+  className: undefined
 };
-
 export default Card;

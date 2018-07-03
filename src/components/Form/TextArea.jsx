@@ -1,23 +1,19 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Scrollbar from '@components/Scrollbar';
 import BottomLine from '@components/BottomLine';
 
-class TextArea extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    value: PropTypes.string,
-    label: PropTypes.string,
-    hintText: PropTypes.string
-  };
-  static defaultProps = {
-    className: '',
-    value: '',
-    label: '',
-    hintText: ''
-  };
-  constructor(props) {
+type TextAreaProps = {
+  className?: string,
+  value?: string,
+  label?: string,
+  hintText?: string,
+  [string]: mixed
+};
+
+class TextArea extends Component<TextAreaProps> {
+  constructor(props: TextAreaProps) {
     super(props);
     this.state = {
       value: props.value,
@@ -27,13 +23,13 @@ class TextArea extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange(e: React.SyntheticEvent) {
     const height = e.target.scrollHeight;
 
     this.setState({ value: e.target.value, lines: (height / 16) });
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div className={classnames('textarea', this.props.className)}>
         {this.props.label && (

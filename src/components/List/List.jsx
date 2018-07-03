@@ -1,22 +1,21 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import ListItem from './ListItem';
 
-const List = ({ className, children, ...props }) => (
+type ListProps = {
+  className?: string,
+  children: React.Node,
+  [string]: mixed
+};
+
+const List = ({ className, children, ...props }: ListProps): React.Node => (
   <div className={classNames('list', className)} {...props}>
     {children}
   </div>
 );
 
-List.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
-List.defaultProps = {
-  className: ''
-};
 
 export default List;
 export {

@@ -1,17 +1,17 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Subheader = ({ className, ...props }) => (
+type SubheaderProps = {
+  className?: string,
+  children: React.Node
+};
+const Subheader = ({ className, ...props }: SubheaderProps): React.Node => (
   <span className={classNames('subheader', className)} {...props}>{props.children}</span>
 );
 
-Subheader.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
 Subheader.defaultProps = {
-  className: ''
+  className: undefined
 };
 
 export default Subheader;

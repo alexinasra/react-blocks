@@ -1,3 +1,4 @@
+/* @flow */
 import Card from './Card';
 import CardActions from './CardActions';
 import CardImage from './CardImage';

@@ -1,19 +1,18 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import GridColumn from './GridColumn';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<GridColumn />', () => {
-  const wrapper = shallow(
-    <GridColumn className="test">
-      <span>test</span>
-    </GridColumn>
-  )
+  const wrapper = shallow(<GridColumn className="test">
+    <span>test</span>
+  </GridColumn>);
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
   });

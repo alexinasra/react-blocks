@@ -1,3 +1,4 @@
+/* @flow */
 import GridList from './GridList';
 import GridListTile from './GridListTile';
 

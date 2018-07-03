@@ -1,5 +1,5 @@
 {
-  "presets": ["flow", "react", "es2015", "env", "airbnb"],
+  "presets": ["react", "es2015", "env", "airbnb"],
   "env": {
     "development": {
       "presets": ["react-hmre"]
@@ -7,7 +7,12 @@
   },
   "plugins": [
     "transform-class-properties",
+    "transform-es2015-classes",
     "transform-object-rest-spread",
-    "transform-runtime"
+    "transform-runtime",
+    ["flow-runtime", {
+      "assert": true,
+      "annotate": true
+    }]
   ]
 }

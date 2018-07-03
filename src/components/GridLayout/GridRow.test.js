@@ -1,19 +1,18 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import GridRow from './GridRow';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<GridRow />', () => {
-  const wrapper = shallow(
-    <GridRow className="test">
-      <span>test</span>
-    </GridRow>
-  )
+  const wrapper = shallow(<GridRow className="test">
+    <span>test</span>
+  </GridRow>);
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
   });

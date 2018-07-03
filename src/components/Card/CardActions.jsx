@@ -1,20 +1,22 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+type CardActionsProps = {
+  className?: string,
+  children: React.Node,
+  [string]: mixed
+};
 const CardActions = ({
   className,
   ...props
-}) => (
+}: CardActionsProps): React.Node => (
   <div className={classNames('card-actions', className)} {...props}>
     {props.children}
   </div>
 );
-CardActions.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
+
 CardActions.defaultProps = {
-  className: ''
+  className: undefined
 };
 export default CardActions;

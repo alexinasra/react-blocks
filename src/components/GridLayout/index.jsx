@@ -1,3 +1,4 @@
+/* @flow */
 import GridLayout from './GridLayout';
 import GridRow from './GridRow';
 import GridColumn from './GridColumn';

@@ -1,9 +1,21 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
-const NavCollapse = ({ label, iconName, className, ...props }) => (
+type NavCollapseProps = {
+  label: string,
+  iconName?: string,
+  className?: string,
+  [string]: mixed
+};
+
+const NavCollapse = ({
+  label,
+  iconName,
+  className,
+  ...props
+}: NavCollapseProps): React.Node => (
   <div className={classnames('nav-link nav-action', className)}>
     <span>
       {iconName && <Icon name={iconName} />}
@@ -11,14 +23,9 @@ const NavCollapse = ({ label, iconName, className, ...props }) => (
     </span>
   </div>
 );
-
-NavCollapse.propTypes = {
-  label: PropTypes.string.isRequired,
-  iconName: PropTypes.string,
-  className: PropTypes.string
-};
 NavCollapse.defaultProps = {
-  iconName: undefined,
-  className: undefined
+  className: undefined,
+  iconName: undefined
 };
+
 export default NavCollapse;

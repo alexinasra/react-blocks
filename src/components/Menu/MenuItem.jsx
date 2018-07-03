@@ -1,9 +1,23 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
-const MenuItem = ({ label, iconName, shortcut, className, ...props }) => (
+type MenuItemProps = {
+  label: string,
+  iconName?: string,
+  shortcut?: string,
+  className?: string,
+  [string]: mixed
+};
+
+const MenuItem = ({
+  label,
+  iconName,
+  shortcut,
+  className,
+  ...props
+}: MenuItemProps): React.Node => (
   <div tabIndex={0} role="menuitem" className={classnames('menu-item', className)} {...props}>
     {iconName && <Icon name={iconName} />}
     {label && <span className="label">{label}</span>}
@@ -11,16 +25,9 @@ const MenuItem = ({ label, iconName, shortcut, className, ...props }) => (
   </div>
 );
 
-MenuItem.propTypes = {
-  label: PropTypes.string.isRequired,
-  iconName: PropTypes.string,
-  shortcut: PropTypes.string,
-  className: PropTypes.string
-};
 MenuItem.defaultProps = {
+  className: undefined,
   iconName: undefined,
-  shortcut: undefined,
-  className: undefined
+  shortcut: undefined
 };
-
 export default MenuItem;

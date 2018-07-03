@@ -6,7 +6,7 @@ import GridLayout, { GridRow, GridColumn } from '@components/GridLayout';
 import AppNav from './AppNav';
 import SideNav from './SideNav';
 
-export default props => (
+export default (props: { [string]: mixed }): React.Node => (
   <GridLayout>
     <GridRow>
       <GridColumn span="grow">

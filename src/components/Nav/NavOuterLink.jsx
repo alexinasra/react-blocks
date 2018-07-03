@@ -1,23 +1,31 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
-const NavOuterLink = ({ to, label, iconName, className, ...props }) => (
+type NavOuterLinkProps = {
+  to: string,
+  label: string,
+  iconName?: string,
+  className?: string,
+  [string]: mixed
+};
+
+const NavOuterLink = ({
+  to,
+  label,
+  iconName,
+  className,
+  ...props
+}: NavOuterLinkProps): React.Node => (
   <a href={to} target="_blank" className={classnames('nav-link nav-outer_link', className)} {...props}>
     {iconName && <Icon name={iconName} />}
     <span className="label">{label}</span>
   </a>
 );
-
-NavOuterLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  iconName: PropTypes.string,
-  className: PropTypes.string
-};
 NavOuterLink.defaultProps = {
-  iconName: undefined,
-  className: undefined
+  className: undefined,
+  iconName: undefined
 };
+
 export default NavOuterLink;

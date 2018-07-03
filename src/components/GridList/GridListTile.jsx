@@ -1,8 +1,15 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const GridListTile = ({ className, imgSrc, ...props }) => (
+type GridListTileProps = {
+  children: React.Node,
+  imgSrc: string,
+  className?: string,
+  [string]: mixed
+};
+
+const GridListTile = ({ className, imgSrc, ...props }: GridListProps): React.Node => (
   <div className={classnames('gridlist-tile', className)} {...props}>
     {imgSrc && (
       <img src={imgSrc} alt="" />
@@ -10,15 +17,5 @@ const GridListTile = ({ className, imgSrc, ...props }) => (
     {props.children}
   </div>
 );
-
-GridListTile.propTypes = {
-  children: PropTypes.node,
-  imgSrc: PropTypes.string.isRequired,
-  className: PropTypes.string
-};
-GridListTile.defaultProps = {
-  className: '',
-  children: ''
-};
 
 export default GridListTile;

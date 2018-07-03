@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import PropTypes from 'prop-types';
 import stylePropType from 'react-style-proptype';
@@ -6,7 +7,16 @@ import classnames from 'classnames';
 import { LocaleContextConsumer } from '@context/LocaleContext';
 import CssClassToggle from '@hocs/CssClassToggle';
 
-const ScrollbarThumbInternal = ({ className, ...props }) => {
+
+type ScrollbarThumbInternalProps = {
+  className?: string,
+  [string]: mixed
+};
+
+const ScrollbarThumbInternal = ({
+  className,
+  ...props
+}: ScrollbarThumbInternalProps): React.Node => {
   const classes = [
     'thumb',
     className
@@ -17,13 +27,26 @@ const ScrollbarThumbInternal = ({ className, ...props }) => {
     </div>
   );
 };
-ScrollbarThumbInternal.propTypes = {
-  className: PropTypes.string
-};
 ScrollbarThumbInternal.defaultProps = {
   className: undefined
 };
-const VerticalScrollbarThumbInternal = ({ className, width, left, style, direction, ...props }) => (
+
+type VerticalScrollbarThumbInternalProps = {
+  className?: string,
+  style?: undefined | { [string]: mixed },
+  width: number,
+  left: number,
+  direction?: string
+};
+
+const VerticalScrollbarThumbInternal = ({
+  className,
+  width,
+  left,
+  style,
+  direction,
+  ...props
+}: VerticalScrollbarThumbInternalProps): React.Node => (
   <ScrollbarThumbInternal className={classnames('vertical-thumb', className)}
     style={Object.assign(
       {},
@@ -35,30 +58,30 @@ const VerticalScrollbarThumbInternal = ({ className, width, left, style, directi
     )}
     {...props} />
 );
-
-VerticalScrollbarThumbInternal.propTypes = {
-  className: PropTypes.string,
-  style: stylePropType,
-  width: PropTypes.number.isRequired,
-  left: PropTypes.number.isRequired,
-  direction: PropTypes.string
-};
 VerticalScrollbarThumbInternal.defaultProps = {
   className: undefined,
-  style: undefined,
-  direction: 'ltr'
+  direction: 'ltr',
+  style: undefined
 };
-const HorizontalScrollbarThumbInternal = ({ className, height, top, style, ...props }) => (
+
+
+type HorizontalScrollbarThumbInternalProps = {
+  className?: string,
+  style?: undefined | { [string]: mixed },
+  height: number,
+  top: number
+};
+const HorizontalScrollbarThumbInternal = ({
+  className,
+  height,
+  top,
+  style,
+  ...props
+}: HorizontalScrollbarThumbInternalProps): React.Node => (
   <ScrollbarThumbInternal className={classnames('horizontal-thumb', className)}
     style={Object.assign({}, style, { height, top })}
     {...props} />
 );
-HorizontalScrollbarThumbInternal.propTypes = {
-  className: PropTypes.string,
-  style: stylePropType,
-  height: PropTypes.number.isRequired,
-  top: PropTypes.number.isRequired
-};
 HorizontalScrollbarThumbInternal.defaultProps = {
   className: undefined,
   style: undefined

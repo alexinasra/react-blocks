@@ -1,26 +1,23 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 import BottomLine from '@components/BottomLine';
 
-export default class Checkbox extends Component {
-  static propTypes = {
-    onRef: PropTypes.func,
-    onChange: PropTypes.func,
-    checked: PropTypes.oneOf([true, false, 'mixed']),
-    label: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    disabled: PropTypes.bool
-  };
-  static defaultProps = {
-    onRef: () => {},
-    onChange: () => {},
-    checked: false,
-    className: undefined,
-    disabled: false
-  };
-  constructor(props) {
+type CheckboxProps = {
+  onRef?: (e: React.SyntheticEvent) => void | boolean,
+  onChange?: (e: React.SyntheticEvent) => void | boolean,
+  checked: boolean | 'mixed',
+  label: string,
+  className?: string,
+  disabled?: boolean
+};
+
+export default class Checkbox extends Component<CheckboxProps> {
+  static defaultProps: CheckboxProps = {
+    className: undefined
+  }
+  constructor(props: CheckboxProps) {
     super(props);
 
     this.state = {
@@ -36,26 +33,26 @@ export default class Checkbox extends Component {
   componentDidMount() {
     this.props.onRef(this);
   }
-  handleClick(e) {
+  handleClick(e: React.SyntheticEvent): React.Node {
     this.toggle();
   }
-  handleKeyPress(e) {
+  handleKeyPress(e: React.SyntheticEvent): React.Node {
     if (e.key === 'Enter' || e.key === ' ') {
       this.toggle();
     }
   }
-  toggle() {
+  toggle(): React.Node {
     if (!this.props.disabled) {
       this.props.onChange(!this.props.checked);
     }
   }
-  handleFocus(e) {
+  handleFocus(e: React.SyntheticEvent): React.Node {
     this.setState({ active: true });
   }
-  handleBlur(e) {
+  handleBlur(e: React.SyntheticEvent): React.Node {
     this.setState({ active: false });
   }
-  render() {
+  render(): React.Dom {
     const {
       onRef,
       label,

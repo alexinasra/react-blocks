@@ -1,20 +1,24 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const Form = ({ className, ...props }) => (
+type FormProps = {
+  className?: string,
+  children: React.Node,
+  onSubmit?: (e: React.SyntheticEvent) => void | boolean,
+  [string]: mixed
+};
+
+const Form = ({ className, ...props }: FormProps): React.Node => (
   <div className={classnames('form', className)} {...props}>
     {props.children}
   </div>
 );
 
-Form.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  onSubmit: PropTypes.func
-};
 Form.defaultProps = {
-  className: '',
-  onSubmit: undefined
+  onSubmit: undefined,
+  className: undefined
 };
+
+
 export default Form;

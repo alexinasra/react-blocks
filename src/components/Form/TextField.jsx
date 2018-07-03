@@ -1,39 +1,27 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BottomLine from '@components/BottomLine';
 import TextCounter from '@components/TextCounter';
 import FieldContainer from './FieldContainer';
 
-class TextField extends Component {
-  static propTypes = {
-    label: PropTypes.string,
-    type: PropTypes.oneOf(['number', 'text', 'password']),
-    value: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    fixedLabel: PropTypes.bool,
-    hint: PropTypes.string,
-    helperText: PropTypes.string,
-    max: PropTypes.number,
-    min: PropTypes.number,
-    lines: PropTypes.number
-  }
-  static defaultProps = {
-    disabled: false,
-    fixedLabel: false,
-    label: '',
-    type: 'text',
-    value: '',
-    className: '',
-    hint: '',
-    helperText: '',
-    max: 0,
-    min: 0,
-    lines: 1
-  }
-  constructor(props) {
+type TextFieldProps = {
+  label?: string,
+  type: 'number' | 'text' | 'password',
+  value?: string,
+  className?: string,
+  disabled?: boolean,
+  fixedLabel?: boolean,
+  hint?: string,
+  helperText?: string,
+  max?: number,
+  min?: number,
+  lines?: number
+};
+
+class TextField extends Component<TextFieldProps> {
+  constructor(props: TextFieldProps) {
     super(props);
     this.state = {
       isDirty: false,
@@ -47,22 +35,22 @@ class TextField extends Component {
     this.handleLabelClick = this.handleLabelClick.bind(this);
   }
 
-  handleOnInputFocus(e) {
+  handleOnInputFocus(e: React.SyntheticEvent) {
     this.setState({ hasFocus: true, isTouched: true });
   }
-  handleOnInputBlur(e) {
+  handleOnInputBlur(e: React.SyntheticEvent) {
     this.setState({ hasFocus: false });
   }
-  handleOnInputChange(e) {
+  handleOnInputChange(e: React.SyntheticEvent) {
     if ((this.props.max > 0) && (e.target.value.length > this.props.max)) {
       return;
     }
     this.setState({ isDirty: true, value: e.target.value });
   }
-  handleLabelClick(e) {
+  handleLabelClick(e: React.SyntheticEvent) {
     this.input.focus();
   }
-  render() {
+  render(): React.Node {
     return (
       <FieldContainer className={classnames('text-field', this.props.className)}
         disabled={this.props.disabled}
@@ -76,7 +64,7 @@ class TextField extends Component {
         onClick={this.handleLabelClick}>
         {
           this.props.lines <= 1 ? (
-            <input ref={(input) => { this.input = input; }}
+            <input ref={(input: React.Node) => { this.input = input; }}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}
               onChange={this.handleOnInputChange}
@@ -85,7 +73,7 @@ class TextField extends Component {
               disabled={this.props.disabled}
               placeholder={this.props.hint} />
           ) : (
-            <textarea ref={(input) => { this.input = input; }}
+            <textarea ref={(input: React.Node) => { this.input = input; }}
               rows={this.props.lines}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}

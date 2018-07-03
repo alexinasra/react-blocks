@@ -1,19 +1,18 @@
+/* @flow */
 import React from 'react';
 import { expect } from 'chai';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import Menu from './Menu';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('<Menu />', () => {
-  const wrapper = shallow(
-    <Menu className="test">
-      <span>test</span>
-    </Menu>
-  )
+  const wrapper = shallow(<Menu className="test">
+    <span>test</span>
+  </Menu>);
   it('exists', () => {
     expect(wrapper.exists()).to.be.true;
   });

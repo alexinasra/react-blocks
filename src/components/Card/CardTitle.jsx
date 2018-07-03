@@ -1,16 +1,24 @@
+/* @flow */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Title from '@components/Title/Title';
 import Subheader from '@components/Subheader';
 
+type CardTitleProps = {
+  className?: string,
+  avatar: React.Node,
+  title: string,
+  subheader?: string,
+  [string]: mixed
+};
 const CardTitle = ({
   className,
   title,
   subheader,
   avatar,
   ...props
-}) => (
+}: CardTitleProps): React.Node => (
   <div className={classNames('card-title', { 'has-avatar': !!avatar, 'has-subheader': !!subheader }, className)} {...props}>
     {avatar && (
       <div className="avatar-container">
@@ -23,15 +31,10 @@ const CardTitle = ({
     </div>
   </div>
 );
-CardTitle.propTypes = {
-  className: PropTypes.string,
-  avatar: PropTypes.node,
-  title: PropTypes.string.isRequired,
-  subheader: PropTypes.string
-};
+
 CardTitle.defaultProps = {
-  className: '',
-  avatar: undefined,
-  subheader: undefined
+  subheader: undefined,
+  className: undefined
 };
+
 export default CardTitle;

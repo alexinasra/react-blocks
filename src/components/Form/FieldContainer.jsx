@@ -1,22 +1,55 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BottomLine from '@components/BottomLine';
 
-class FieldContainer extends Component {
-  constructor(props) {
+type FieldContainerProps = {
+  label?: string,
+  className?: string,
+  empty?: boolean,
+  disabled?: boolean,
+  required?: boolean,
+  fixedLabel?: boolean,
+  helperText?: string,
+  touched?: boolean,
+  dirty?: boolean,
+  focused?: boolean,
+  onClick: (e: React.SyntheticEvent) => void | boolean,
+  errorList: React.Node,
+  children: React.Node,
+  [string]: mixed
+};
+
+
+class FieldContainer extends Component<FieldContainerProps> {
+  static defaultProps: FieldContainerProps = {
+    label: undefined,
+    className: undefined,
+    empty: false,
+    disabled: false,
+    required: false,
+    fixedLabel: false,
+    helperText: undefined,
+    touched: false,
+    dirty: false,
+    focused: false
+  };
+
+  constructor(props: FieldContainer) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleKeyPress(e) {
+  props: FieldContainerProps;
+
+  handleKeyPress(e: React.SyntheticEvent) {
     if (e.key === 'Enter' || e.key === ' ') {
       this.props.onClick(e);
     }
   }
 
-  render() {
+  render(): React.Node {
     return (
       <div className={classnames(
         'field-container',
@@ -55,35 +88,5 @@ class FieldContainer extends Component {
     );
   }
 }
-
-FieldContainer.propTypes = {
-  label: PropTypes.string,
-  className: PropTypes.string,
-  empty: PropTypes.bool,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  fixedLabel: PropTypes.bool,
-  helperText: PropTypes.string,
-  touched: PropTypes.bool,
-  dirty: PropTypes.bool,
-  focused: PropTypes.bool,
-  onClick: PropTypes.func,
-  errorList: PropTypes.node,
-  children: PropTypes.node.isRequired
-};
-FieldContainer.defaultProps = {
-  disabled: false,
-  required: false,
-  fixedLabel: false,
-  touched: false,
-  dirty: false,
-  focused: false,
-  empty: false,
-  label: '',
-  className: '',
-  helperText: '',
-  errorList: false,
-  onClick: () => {}
-};
 
 export default FieldContainer;

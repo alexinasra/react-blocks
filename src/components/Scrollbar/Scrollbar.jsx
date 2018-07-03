@@ -1,5 +1,5 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { LocaleContextConsumer } from '@context/LocaleContext';
@@ -7,20 +7,14 @@ import { LocaleContextConsumer } from '@context/LocaleContext';
 import { VerticalScrollbarRail, HorizontalScrollbarRail } from './ScrollbarRail';
 import { VerticalScrollbarThumb, HorizontalScrollbarThumb } from './ScrollbarThumb';
 
-/* eslint-disable react/prop-types */
-class Scrollbar extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    direction: PropTypes.string
-  }
+type ScrollbarProps = {
+  children: React.Node,
+  className?: string,
+  direction?: string
+};
 
-  static defaultProps = {
-    className: '',
-    direction: 'ltr'
-  }
-
-  constructor(props) {
+class Scrollbar extends Component<ScrollbarProps> {
+  constructor(props: ScrollbarProps) {
     super(props);
     this.state = {
       hasVerticalRail: false,
@@ -41,50 +35,50 @@ class Scrollbar extends Component {
     this.initVerticalRail(this.hasVerticalRail());
   }
 
-  getClientWidth() {
+  getClientWidth(): number {
     return this.rootElement ? this.rootElement.clientWidth : 0;
   }
 
-  getClientHeight() {
+  getClientHeight(): number {
     return this.rootElement ? this.rootElement.clientHeight : 0;
   }
 
-  getScrollWidth() {
+  getScrollWidth(): number {
     return this.contentElement ? this.contentElement.scrollWidth : 0;
   }
 
-  getScrollHeight() {
+  getScrollHeight(): number {
     return this.contentElement ? this.contentElement.scrollHeight : 0;
   }
 
-  getScrollLeft() {
+  getScrollLeft(): number {
     return this.contentElement ? this.contentElement.scrollLeft : 0;
   }
 
-  getScrollTop() {
+  getScrollTop(): number {
     return this.contentElement ? this.contentElement.scrollTop : 0;
   }
 
-  getHorizontalThumbHeight() {
+  getHorizontalThumbHeight(): number {
     const height = this.getClientHeight() * (this.getClientHeight() / this.getScrollHeight());
     return height > 9 ? Math.round(height) : 9;
   }
 
-  getVerticalThumbWidth() {
+  getVerticalThumbWidth(): number {
     const ratio = (this.getScrollWidth() / this.getClientWidth());
     const width = (this.getClientWidth() / ratio);
     return width > 9 ? Math.round(width) : 9;
   }
 
-  getMaxTop() {
+  getMaxTop(): number {
     return this.getClientHeight() - this.getHorizontalThumbHeight() - 18;
   }
 
-  getMaxLeft() {
+  getMaxLeft(): number {
     return this.getClientWidth() - this.getVerticalThumbWidth() - 18;
   }
 
-  handleOnWheel(e) {
+  handleOnWheel(e: React.SyntheticEvent) {
     const { deltaY } = e.nativeEvent;
     const horizontalPosition = this.state.horizontalPosition + deltaY;
 
@@ -107,7 +101,7 @@ class Scrollbar extends Component {
     }
   }
 
-  handleHorizontalThumbDrag(e) {
+  handleHorizontalThumbDrag(e: React.SyntheticEvent) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
@@ -130,7 +124,7 @@ class Scrollbar extends Component {
     this.scrollTop(horizontalPosition);
   }
 
-  scrollTop(horizontalPosition) {
+  scrollTop(horizontalPosition: number) {
     const maxTop = this.getMaxTop();
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
       const percentage = Math.round((horizontalPosition / (maxTop)) * 100);
@@ -140,7 +134,7 @@ class Scrollbar extends Component {
       this.setState({ horizontalPosition });
     }
   }
-  handleVerticalThumbDrag(e) {
+  handleVerticalThumbDrag(e: React.SyntheticEvent) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
@@ -158,7 +152,7 @@ class Scrollbar extends Component {
     }
     this.scrollLeft(verticalPosition);
   }
-  scrollLeft(verticalPosition) {
+  scrollLeft(verticalPosition: number) {
     const maxLeft = this.getMaxLeft();
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
@@ -174,14 +168,14 @@ class Scrollbar extends Component {
       this.setState({ verticalPosition });
     }
   }
-  initHorizontalRail(show = false) {
+  initHorizontalRail(show: boolean = false) {
     this.setState({
       hasHorizontalRail: show,
       horizontalPosition: 0
     });
   }
 
-  initVerticalRail(show = false) {
+  initVerticalRail(show: boolean = false) {
     this.setState({
       hasVerticalRail: show,
       verticalPosition: 0
@@ -189,15 +183,15 @@ class Scrollbar extends Component {
     this.scrollLeft(0);
   }
 
-  hasHorizontalRail() {
+  hasHorizontalRail(): boolean {
     return this.getClientHeight() - this.getScrollHeight() < 0;
   }
 
-  hasVerticalRail() {
+  hasVerticalRail(): boolean {
     return this.getClientWidth() - this.getScrollWidth() < 0;
   }
 
-  render() {
+  render(): React.Node {
     const { className, direction, ...props } = this.props;
     const classes = classnames(
       'scrollbar',
@@ -211,7 +205,7 @@ class Scrollbar extends Component {
 
     return (
       <div className={classes}
-        ref={(elm) => { this.rootElement = elm; }}
+        ref={(elm: React.Node) => { this.rootElement = elm; }}
         onMouseOver={this.handleMouseOverScrollbar}
         onMouseOut={this.handleMouseOutScrollbar}
         onFocus={this.handleMouseOverScrollbar}
@@ -219,7 +213,7 @@ class Scrollbar extends Component {
         {...props}>
         <div className="scrollbar-content"
           onWheel={this.handleOnWheel}
-          ref={(elm) => { this.contentElement = elm; }}>
+          ref={(elm: React.Node) => { this.contentElement = elm; }}>
           { this.props.children }
         </div>
         { this.state.hasHorizontalRail &&
@@ -228,10 +222,10 @@ class Scrollbar extends Component {
               <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
                 top={this.state.horizontalPosition}
                 draggable
-                onMouseDown={(e) => {
+                onMouseDown={(e: React.SyntheticEvent) => {
                   this.setState({ horizontalOffsetY: e.nativeEvent.offsetY });
                 }}
-                onDragStart={(e) => {
+                onDragStart={(e: React.SyntheticEvent) => {
                   e.dataTransfer.setDragImage(new Image(), 0, 0);
                   e.dataTransfer.setData('text', 'anything');
                 }}
@@ -247,10 +241,10 @@ class Scrollbar extends Component {
                 width={this.getVerticalThumbWidth()}
                 direction={direction}
                 draggable
-                onMouseDown={(e) => {
+                onMouseDown={(e: React.SyntheticEvent) => {
                   this.setState({ verticalOffsetX: e.nativeEvent.offsetX });
                 }}
-                onDragStart={(e) => {
+                onDragStart={(e: React.SyntheticEvent) => {
                   e.dataTransfer.setDragImage(new Image(), 0, 0);
                   e.dataTransfer.setData('text', 'anything');
                 }}
@@ -263,8 +257,11 @@ class Scrollbar extends Component {
   }
 }
 
-export default props => (
+export default (props: { [string]: mixed}): React.Node => (
   <LocaleContextConsumer>
-    {localeContext => <Scrollbar direction={localeContext.direction} {...props} />}
+    {
+      (localeContext: { direction: string }): React.Node => (
+          <Scrollbar direction={localeContext.direction} {...props} />)
+    }
   </LocaleContextConsumer>
 );

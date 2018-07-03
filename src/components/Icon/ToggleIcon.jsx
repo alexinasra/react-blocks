@@ -1,19 +1,22 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import ActionIcon from './ActionIcon';
 
-class ToggleIcon extends Component {
-  static propTypes = {
-    activeIconName: PropTypes.string.isRequired,
-    inactiveIconName: PropTypes.string.isRequired,
-    active: PropTypes.bool,
-    onToggle: PropTypes.func.isRequired
-  };
-  static defaultProps = {
-    active: false
-  };
-  constructor(props) {
+type ToggleIconProps = {
+  activeIconName: string,
+  inactiveIconName: string,
+  active?: boolean,
+  onToggle?: (e: React.SyntheticEvent) => void | boolean,
+  [string]: mixed
+};
+
+type ToggleIconState = {
+  isActive: boolean
+};
+
+class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
+  constructor(props: ToggleIconProps) {
     super(props);
 
     this.state = {
@@ -34,7 +37,7 @@ class ToggleIcon extends Component {
     });
   }
 
-  handleClick(e) {
+  handleClick(e: React.SyntheticEvent) {
     this.props.onToggle(e);
     if (this.state.isActive) {
       this.switchOff();
@@ -43,7 +46,7 @@ class ToggleIcon extends Component {
     }
   }
 
-  render() {
+  render(): React.Node {
     const name = this.state.isActive ? this.props.activeIconName : this.props.inactiveIconName;
 
     return (

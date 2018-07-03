@@ -1,19 +1,21 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const GridRow = ({ className, ...props }) => (
+type GridRowProps = {
+  className?: string,
+  children: React.Node,
+  [string]: mixed
+};
+
+const GridRow = ({ className, ...props }: GridRowProps): React.props => (
   <div className={classnames('grid-row', className)} {...props}>
     {props.children}
   </div>
 );
 
-GridRow.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
 GridRow.defaultProps = {
-  className: ''
+  className: undefined
 };
 
 export default GridRow;
