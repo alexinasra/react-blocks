@@ -8,7 +8,7 @@ const CardParagraph = ({
   ...props
 }) => (
   <div className={classNames('card-paragraph', className)} {...props}>
-    <Scrollbar watchSize vertical="hidden">
+    <Scrollbar style={{ height: '220px', width: '100%' }}>
       {props.children}
     </Scrollbar>
   </div>
