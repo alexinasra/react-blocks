@@ -1,13 +1,16 @@
 # /node_modules and /bower_components ignored by default
-
-# ignore vendor js files
-app/public/js/*.js
+node_modules/
 
 # ignore build files
 build/
-
+dist/
 # coverage reports
 coverage/
+*.test.js
+*.scss
+*.css
 
 
-postcss.config.js
+styleguide.config.js
+webpack.config.js
+webpack.prod.config.js
