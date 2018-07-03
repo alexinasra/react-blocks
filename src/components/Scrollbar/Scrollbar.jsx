@@ -113,10 +113,20 @@ class Scrollbar extends Component {
     if (e.button !== 0) return;
     const horizontalPosition = (
       e.pageY -
-      this.rootElement.offsetTop -
+      this.rootElement.getBoundingClientRect().top -
+      document.documentElement.scrollTop -
       8 -
       this.state.horizontalOffsetY
     );
+    console.log({ ...this.rootElement });
+    console.log({
+      pageY: e.pageY,
+      clientY: e.clientY,
+      bodyTop: document.documentElement.scrollTop,
+      offsetTop: this.rootElement.getBoundingClientRect().top,
+      horizontalOffsetY: this.state.horizontalOffsetY,
+      horizontalPosition
+    });
     this.scrollTop(horizontalPosition);
   }
 
@@ -137,7 +147,7 @@ class Scrollbar extends Component {
     let verticalPosition =
       (
       e.pageX -
-      this.rootElement.offsetLeft -
+      this.rootElement.getBoundingClientRect().left -
       8 -
       this.state.verticalOffsetX
     );
@@ -207,7 +217,7 @@ class Scrollbar extends Component {
         onFocus={this.handleMouseOverScrollbar}
         onBlur={this.handleMouseOutScrollbar}
         {...props}>
-        <div className="scrollbar-contet"
+        <div className="scrollbar-content"
           onWheel={this.handleOnWheel}
           ref={(elm) => { this.contentElement = elm; }}>
           { this.props.children }
