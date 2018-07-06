@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type CardImageProps = {
@@ -12,7 +14,7 @@ const CardImage = ({
   className,
   src,
   ...props
-}: CardImageProps): React.Node => (
+}: CardImageProps): Node => (
   <div className={classNames('card-image', className)} {...props}>
     <img src={src} alt="Card" />
   </div>

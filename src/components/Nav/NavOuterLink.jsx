@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
@@ -17,7 +19,7 @@ const NavOuterLink = ({
   iconName,
   className,
   ...props
-}: NavOuterLinkProps): React.Node => (
+}: NavOuterLinkProps): Node => (
   <a
     href={to}
     target="_blank"

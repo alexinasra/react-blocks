@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 import Icon from '@components/Icon';
 
@@ -20,7 +22,7 @@ const Button = ({
   label,
   type,
   ...props
-}: ButtonProps): React.Node => (
+}: ButtonProps): Node => (
   <button
     className={classNames('button', { flat: !raised, raised }, className)}
     type={type || 'button'}

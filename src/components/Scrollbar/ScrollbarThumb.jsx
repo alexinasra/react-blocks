@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 import CssClassToggle from '@hocs/CssClassToggle';
@@ -13,7 +15,7 @@ type ScrollbarThumbInternalProps = {
 const ScrollbarThumbInternal = ({
   className,
   ...props
-}: ScrollbarThumbInternalProps): React.Node => {
+}: ScrollbarThumbInternalProps): Node => {
   const classes = [
     'thumb',
     className
@@ -43,7 +45,7 @@ const VerticalScrollbarThumbInternal = ({
   style,
   direction,
   ...props
-}: VerticalScrollbarThumbInternalProps): React.Node => (
+}: VerticalScrollbarThumbInternalProps): Node => (
   <ScrollbarThumbInternal className={classnames('vertical-thumb', className)}
     style={Object.assign(
       {},
@@ -74,7 +76,7 @@ const HorizontalScrollbarThumbInternal = ({
   top,
   style,
   ...props
-}: HorizontalScrollbarThumbInternalProps): React.Node => (
+}: HorizontalScrollbarThumbInternalProps): Node => (
   <ScrollbarThumbInternal className={classnames('horizontal-thumb', className)}
     style={Object.assign({}, style, { height, top })}
     {...props} />

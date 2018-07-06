@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 import CssClassToggle from '@hocs/CssClassToggle';
 
 
 type ScrollbarRailInternalProps = {
-  children: React.Node,
+  children: Node,
   className?: string,
   [string]: mixed
 };
@@ -15,7 +17,7 @@ const ScrollbarRailInternal = ({
   className,
   children,
   ...props
-}: ScrollbarRailInternalProps): React.Node => {
+}: ScrollbarRailInternalProps): Node => {
   const classes = [
     'rail',
     className
@@ -37,7 +39,7 @@ type VerticalScrollbarRailInternalProps = {
 const VerticalScrollbarRailInternal = ({
   className,
   ...props
-}: VerticalScrollbarRailInternalProps): React.Node => (
+}: VerticalScrollbarRailInternalProps): Node => (
   <ScrollbarRailInternal className={classnames('vertical-rail', className)}
     {...props} />
 );
@@ -53,7 +55,7 @@ type HorizontalScrollbarRailInternalProps = {
 const HorizontalScrollbarRailInternal = ({
   className,
   ...props
-}: HorizontalScrollbarRailInternalProps): React.Node => (
+}: HorizontalScrollbarRailInternalProps): Node => (
   <ScrollbarRailInternal className={classnames('horizontal-rail', className)}
     {...props} />
 );
@@ -63,9 +65,9 @@ HorizontalScrollbarRailInternal.defaultProps = {
 };
 const onHoverHoc = CssClassToggle('onMouseOver', 'onMouseOut', 'mouse-over', 'mouse-out');
 
-const ScrollbarRail = onHoverHoc(ScrollbarRailInternal);
-const VerticalScrollbarRail = onHoverHoc(VerticalScrollbarRailInternal);
-const HorizontalScrollbarRail = onHoverHoc(HorizontalScrollbarRailInternal);
+const ScrollbarRail:Node = onHoverHoc(ScrollbarRailInternal);
+const VerticalScrollbarRail:Node = onHoverHoc(VerticalScrollbarRailInternal);
+const HorizontalScrollbarRail:Node = onHoverHoc(HorizontalScrollbarRailInternal);
 
 export default ScrollbarRail;
 export {

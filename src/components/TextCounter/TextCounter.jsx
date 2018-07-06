@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type TextCounterProps = {
@@ -18,7 +20,7 @@ const TextCounter = ({
   min,
   className,
   ...props
-}: TextCounterProps): React.Node => {
+}: TextCounterProps): Node => {
   const c = count === 'word' ? text.trim().split(' ').length : text.length;
   const postfix = count === 'word' ? ' (words)' : '';
   return (

@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 import Scrollbar from '@components/Scrollbar';
 import BottomLine from '@components/BottomLine';
@@ -30,13 +32,13 @@ class TextArea extends Component<TextAreaProps> {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e: React.SyntheticEvent) {
+  handleChange(e: SyntheticEvent) {
     const height = e.target.scrollHeight;
 
     this.setState({ value: e.target.value, lines: (height / 16) });
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       label,
       className,

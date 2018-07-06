@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
@@ -13,7 +15,7 @@ type RadioProps = {
   className?: string,
   options: Array<RadioOption>,
   value: RadioOption,
-  onChange: (e: React.SyntheticEvent) => void | boolean,
+  onChange: (e: SyntheticEvent) => void | boolean,
   [string]: mixed
 };
 
@@ -29,7 +31,7 @@ export default class Radio extends Component<RadioProps> {
 
   props: RadioProps;
 
-  handleKeyDown(e: React.SyntheticEvent) {
+  handleKeyDown(e: SyntheticEvent) {
     if (e.key.startsWith('Arrow')) {
       const { value, options, onChange } = this.props;
       const findIdx = (o: RadioOption): boolean => (
@@ -65,7 +67,7 @@ export default class Radio extends Component<RadioProps> {
     }
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       value,
       options,

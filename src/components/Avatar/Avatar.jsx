@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type AvatarProps = {
@@ -14,7 +16,7 @@ const Avatar = ({
   src,
   size,
   ...props
-}: AvatarProps): React.Node => (
+}: AvatarProps): Node => (
   <img className={classNames('avatar', size, className)}
     src={src}
     alt="avatar"

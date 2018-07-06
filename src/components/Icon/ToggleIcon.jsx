@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 
 import ActionIcon from './ActionIcon';
 
@@ -7,7 +9,7 @@ type ToggleIconProps = {
   activeIconName: string,
   inactiveIconName: string,
   active?: boolean,
-  onToggle?: (e: React.SyntheticEvent) => void | boolean,
+  onToggle?: (e: SyntheticEvent) => void | boolean,
   [string]: mixed
 };
 
@@ -43,7 +45,7 @@ class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
     });
   }
 
-  handleClick(e: React.SyntheticEvent) {
+  handleClick(e: SyntheticEvent) {
     const { onToggle } = this.props;
     const { isActive } = this.state;
 
@@ -59,7 +61,7 @@ class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
     }
   }
 
-  render(): React.Node {
+  render(): Node {
     const { isActive } = this.state;
     const { activeIconName, inactiveIconName } = this.props;
 

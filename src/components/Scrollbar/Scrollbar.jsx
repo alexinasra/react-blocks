@@ -1,5 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
 import classnames from 'classnames';
 
 import { LocaleContextConsumer } from '@context/LocaleContext';
@@ -8,7 +9,7 @@ import { VerticalScrollbarRail, HorizontalScrollbarRail } from './ScrollbarRail'
 import { VerticalScrollbarThumb, HorizontalScrollbarThumb } from './ScrollbarThumb';
 
 type ScrollbarProps = {
-  children: React.Node,
+  children: Node,
   className?: string,
   direction?: 'ltr' | 'rtl'
 };
@@ -81,11 +82,11 @@ class Scrollbar extends Component<ScrollbarProps> {
     return this.getClientWidth() - this.getVerticalThumbWidth() - 18;
   }
 
-  rootElement: ?HTMLElement;
+  rootElement: HTMLElement;
 
-  contentElement: ?HTMLElement;
+  contentElement: HTMLElement;
 
-  handleOnWheel(e: React.SyntheticEvent) {
+  handleOnWheel(e: SyntheticEvent) {
     const { deltaY } = e.nativeEvent;
     let { horizontalPosition } = this.state;
     horizontalPosition += deltaY;
@@ -111,7 +112,7 @@ class Scrollbar extends Component<ScrollbarProps> {
     }
   }
 
-  handleHorizontalThumbDrag(e: React.SyntheticEvent) {
+  handleHorizontalThumbDrag(e: SyntheticEvent) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
@@ -139,7 +140,7 @@ class Scrollbar extends Component<ScrollbarProps> {
     }
   }
 
-  handleVerticalThumbDrag(e: React.SyntheticEvent) {
+  handleVerticalThumbDrag(e: SyntheticEvent) {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
@@ -199,7 +200,7 @@ class Scrollbar extends Component<ScrollbarProps> {
     return this.getClientWidth() - this.getScrollWidth() < 0;
   }
 
-  render(): React.Node {
+  render(): Node {
     const { className, direction, children, ...props } = this.props;
     const { hasFocus, horizontalPosition, verticalPosition } = this.state;
 
@@ -216,7 +217,7 @@ class Scrollbar extends Component<ScrollbarProps> {
     return (
       <div
         className={classes}
-        ref={(elm: React.Node) => { this.rootElement = elm; }}
+        ref={(elm?: Node) => { this.rootElement = elm; }}
         onMouseOver={this.handleMouseOverScrollbar}
         onMouseOut={this.handleMouseOutScrollbar}
         onFocus={this.handleMouseOverScrollbar}
@@ -226,7 +227,7 @@ class Scrollbar extends Component<ScrollbarProps> {
         <div
           className="scrollbar-content"
           onWheel={this.handleOnWheel}
-          ref={(elm: React.Node) => { this.contentElement = elm; }}
+          ref={(elm?: Node) => { this.contentElement = elm; }}
         >
           { children }
         </div>
@@ -235,10 +236,10 @@ class Scrollbar extends Component<ScrollbarProps> {
             <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
               top={horizontalPosition}
               draggable
-              onMouseDown={(e: React.SyntheticEvent) => {
+              onMouseDown={(e: SyntheticEvent) => {
                 this.setState({ horizontalOffsetY: e.nativeEvent.offsetY });
               }}
-              onDragStart={(e: React.SyntheticEvent) => {
+              onDragStart={(e: SyntheticEvent) => {
                 e.dataTransfer.setDragImage(new Image(), 0, 0);
                 e.dataTransfer.setData('text', 'anything');
               }}
@@ -252,10 +253,10 @@ class Scrollbar extends Component<ScrollbarProps> {
               width={this.getVerticalThumbWidth()}
               direction={direction}
               draggable
-              onMouseDown={(e: React.SyntheticEvent) => {
+              onMouseDown={(e: SyntheticEvent) => {
                 this.setState({ verticalOffsetX: e.nativeEvent.offsetX });
               }}
-              onDragStart={(e: React.SyntheticEvent) => {
+              onDragStart={(e: SyntheticEvent) => {
                 e.dataTransfer.setDragImage(new Image(), 0, 0);
                 e.dataTransfer.setData('text', 'anything');
               }}
@@ -267,10 +268,10 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 }
 
-export default ((props: { [string]: mixed}): React.Node => (
+export default ((props: { [string]: mixed}): Node => (
   <LocaleContextConsumer>
     {
-      (localeContext: { direction: string }): React.Node => (
+      (localeContext: { direction: string }): Node => (
         <Scrollbar direction={localeContext.direction} {...props} />)
     }
   </LocaleContextConsumer>

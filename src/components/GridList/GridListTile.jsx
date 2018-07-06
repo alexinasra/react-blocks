@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type GridListTileProps = {
-  children: React.Node,
+  children: Node,
   imgSrc: string,
   className?: string,
   [string]: mixed
 };
 
-const GridListTile = ({ className, imgSrc, children, ...props }: GridListTileProps): React.Node => (
+const GridListTile = ({ className, imgSrc, children, ...props }: GridListTileProps): Node => (
   <div className={classnames('gridlist-tile', className)} {...props}>
     {imgSrc && (
       <img src={imgSrc} alt="" />

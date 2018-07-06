@@ -1,15 +1,16 @@
 /* @flow */
-import React, { Component } from 'react';
+import React, { Component, Element } from 'react';
+import type { Node } from 'react';
 import classnames from 'classnames';
 import Menu from '@components/Menu';
 
 type DropdownProps = {
-  onOpen?: (e: React.SyntheticEvent) => void | boolean,
-  onClose?: (e: React.SyntheticEvent) => void | boolean,
-  onRef?: (e: React.Node) => void | boolean,
-  children: React.Node,
+  onOpen?: (e: SyntheticEvent) => void | boolean,
+  onClose?: (e: SyntheticEvent) => void | boolean,
+  onRef?: (e: Node) => void | boolean,
+  children: Node,
   className?: string,
-  menu: React.Element<Menu>,
+  menu: Element<Menu>,
   direction?: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
 };
 
@@ -154,7 +155,7 @@ class Dropdown extends Component<DropdownProps> {
     }
   }
 
-  handleOutsideClick(e: React.SyntheticEvent) {
+  handleOutsideClick(e: SyntheticEvent) {
     // ignore clicks on the component itself
     if (this.domRef && this.domRef.contains(e.target)) {
       return;
@@ -162,12 +163,12 @@ class Dropdown extends Component<DropdownProps> {
     this.close();
   }
 
-  render(): React.Node {
+  render(): Node {
     const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
     const { up, down, right, left, isOpen } = this.state;
 
     return (
-      <div ref={(elm: React.Node) => { this.domRef = elm; }}
+      <div ref={(elm?: Node) => { this.domRef = elm; }}
         className={
           classnames(
             'dropdown',
@@ -177,7 +178,7 @@ class Dropdown extends Component<DropdownProps> {
           )}
         {...props}>
         {props.children}
-        <div ref={(elm: React.Node) => { this.containerDomRef = elm; }}
+        <div ref={(elm?: Node) => { this.containerDomRef = elm; }}
           style={{
             up,
             down,

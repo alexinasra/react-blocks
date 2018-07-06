@@ -1,10 +1,12 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type CardSectionProps = {
   className?: string,
-  children: React.Node,
+  children: Node,
   direction: 'column' | 'row',
   [string]: mixed
 };
@@ -14,7 +16,7 @@ const CardSection = ({
   direction,
   children,
   ...props
-}: CardSectionProps): React.Node => (
+}: CardSectionProps): Node => (
   <div className={classNames('card-section', direction !== 'row' ? 'column' : 'row', className)} {...props}>
     {children}
   </div>

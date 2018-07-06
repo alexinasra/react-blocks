@@ -1,12 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 import BottomLine from '@components/BottomLine';
 
 type CheckboxProps = {
-  onRef?: (e: React.SyntheticEvent) => void | boolean,
-  onChange?: (e: React.SyntheticEvent) => void | boolean,
+  onRef?: (e: SyntheticEvent) => void | boolean,
+  onChange?: (e: SyntheticEvent) => void | boolean,
   checked: boolean | 'mixed',
   label: string,
   className?: string,
@@ -46,7 +48,7 @@ export default class Checkbox extends Component<CheckboxProps> {
     this.toggle();
   }
 
-  handleKeyPress(e: React.SyntheticEvent) {
+  handleKeyPress(e: SyntheticEvent) {
     if (e.key === 'Enter' || e.key === ' ') {
       this.toggle();
     }
@@ -69,7 +71,7 @@ export default class Checkbox extends Component<CheckboxProps> {
     this.setState({ active: false });
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       onRef,
       label,

@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type SubheaderProps = {
   className?: string,
-  children: React.Node
+  children: Node
 };
-const Subheader = ({ className, children, ...props }: SubheaderProps): React.Node => (
+const Subheader = ({ className, children, ...props }: SubheaderProps): Node => (
   <span className={classNames('subheader', className)} {...props}>
     {children}
   </span>

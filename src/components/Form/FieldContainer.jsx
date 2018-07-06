@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 
 import BottomLine from '@components/BottomLine';
@@ -15,9 +17,9 @@ type FieldContainerProps = {
   touched?: boolean,
   dirty?: boolean,
   focused?: boolean,
-  onClick: (e: React.SyntheticEvent) => void | boolean,
-  errorList: React.Node,
-  children: React.Node,
+  onClick: (e: SyntheticEvent) => void | boolean,
+  errorList: Node,
+  children: Node,
   [string]: mixed
 };
 
@@ -43,7 +45,7 @@ class FieldContainer extends Component<FieldContainerProps> {
 
   props: FieldContainerProps;
 
-  handleKeyPress(e: React.SyntheticEvent) {
+  handleKeyPress(e: SyntheticEvent) {
     const { onClick } = this.props;
     if (e.key === 'Enter' || e.key === ' ') {
       if (onClick) {
@@ -52,7 +54,7 @@ class FieldContainer extends Component<FieldContainerProps> {
     }
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       disabled,
       touched,

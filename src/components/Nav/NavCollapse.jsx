@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
@@ -15,7 +17,7 @@ const NavCollapse = ({
   iconName,
   className,
   ...props
-}: NavCollapseProps): React.Node => (
+}: NavCollapseProps): Node => (
   <div className={classnames('nav-link nav-action', className)} {...props}>
     <span>
       {iconName && <Icon name={iconName} />}

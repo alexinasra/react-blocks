@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type NavProps = {
-  children: React.Node,
+  children: Node,
   className?: string,
   direction: 'row' | 'column',
   [string]: mixed
 };
 
-const Nav = ({ direction, className, children, ...props }: NavProps): React.Node => (
+const Nav = ({ direction, className, children, ...props }: NavProps): Node => (
   <div className={classnames('nav', direction, className)} {...props}>
     {children}
   </div>

@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type IconProps = {
@@ -7,7 +9,7 @@ type IconProps = {
   name: string
 };
 
-const Icon = ({ name, className, ...props }: IconProps): React.Node => (
+const Icon = ({ name, className, ...props }: IconProps): Node => (
   <i className={classnames('material-icons', 'icon', className)} {...props}>
     {name}
   </i>

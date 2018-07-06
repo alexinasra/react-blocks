@@ -1,9 +1,11 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type CollapseProps = {
-  children: React.Node,
+  children: Node,
   collapsed?: boolean,
   className?: string
 };
@@ -13,7 +15,7 @@ const Collapse = ({
   collapsed,
   children,
   ...props
-}: CollapseProps): React.Node => (
+}: CollapseProps): Node => (
   <div className={classnames('collapse', { 'is-collapsed': collapsed }, className)} {...props}>
     {children}
   </div>

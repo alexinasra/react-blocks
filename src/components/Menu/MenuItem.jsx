@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 
@@ -17,7 +19,7 @@ const MenuItem = ({
   shortcut,
   className,
   ...props
-}: MenuItemProps): React.Node => (
+}: MenuItemProps): Node => (
   <div tabIndex={0} role="menuitem" className={classnames('menu-item', className)} {...props}>
     {iconName && <Icon name={iconName} />}
     {label && (

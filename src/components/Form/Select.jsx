@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 import Dropdown from '@components/Dropdown';
 import Menu, { MenuItem } from '@components/Menu';
@@ -15,7 +17,7 @@ type SelectItem = {
 type SelectProps = {
   className?: string,
   label?: string,
-  onSelect?: (e: React.SyntheticEvent) => void | boolean,
+  onSelect?: (e: SyntheticEvent) => void | boolean,
   value: SelectItem,
   items: Array<SelectItem>,
   disabled?: boolean,
@@ -54,7 +56,7 @@ export default class Select extends Component<SelectProps> {
     this.dropdown.close();
   }
 
-  handleKeyPress(e: React.SyntheticEvent) {
+  handleKeyPress(e: SyntheticEvent) {
     if (e.key === ' ' || e.key === 'Enter') {
       this.handleMenuOpen();
     }
@@ -80,7 +82,7 @@ export default class Select extends Component<SelectProps> {
     this.setState({ active: false });
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       className,
       items,
@@ -94,7 +96,7 @@ export default class Select extends Component<SelectProps> {
       active
     } = this.state;
 
-    const menuItems = items.map((item: SelectItem): React.Node => (
+    const menuItems = items.map((item: SelectItem): Node => (
       <MenuItem key={item.key}
         className={classnames('select-item', {
           'is-selected': value && (value.key === item.key),

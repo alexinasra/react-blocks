@@ -1,14 +1,16 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type ButtonGroupProps = {
-  children: React.Node,
+  children: Node,
   className?: string,
   [string]: mixed
 };
 
-const ButtonGroup = ({ className, children, ...props }: ButtonGroupProps): React.Node => (
+const ButtonGroup = ({ className, children, ...props }: ButtonGroupProps): Node => (
   <div className={classnames('button_group', className)} {...props}>
     {children}
   </div>

@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 import Icon from '@components/Icon';
@@ -17,7 +19,7 @@ const NavRouterLink = ({
   className,
   activeClassName,
   ...props
-}: NavRouterLinkProps): React.Node => (
+}: NavRouterLinkProps): Node => (
   <NavLink activeClassName={classnames('active', activeClassName)}
     className={classnames('nav-link nav-router_link', className)}
     {...props}>

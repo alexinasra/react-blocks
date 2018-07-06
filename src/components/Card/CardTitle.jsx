@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 import Title from '@components/Title/Title';
 import Subheader from '@components/Subheader';
 
 type CardTitleProps = {
   className?: string,
-  avatar: React.Node,
+  avatar: Node,
   title: string,
   subheader?: string,
   [string]: mixed
@@ -17,7 +19,7 @@ const CardTitle = ({
   subheader,
   avatar,
   ...props
-}: CardTitleProps): React.Node => (
+}: CardTitleProps): Node => (
   <div className={classNames('card-title', { 'has-avatar': !!avatar, 'has-subheader': !!subheader }, className)} {...props}>
     {avatar && (
       <div className="avatar-container">

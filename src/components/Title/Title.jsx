@@ -1,14 +1,16 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type TitleProps = {
   className?: string,
-  children: React.Node,
+  children: Node,
   [string]: mixed
 };
 
-const Title = ({ className, children, ...props }: TitleProps): React.Node => (
+const Title = ({ className, children, ...props }: TitleProps): Node => (
   <span className={classNames('title', className)} {...props}>
     {children}
   </span>

@@ -1,10 +1,12 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type ListItemProps = {
   className?: string,
-  children: React.Node,
+  children: Node,
   [string]: mixed
 };
 
@@ -12,7 +14,7 @@ const ListItem = ({
   className,
   children,
   ...props
-}: ListItemProps): React.Node => (
+}: ListItemProps): Node => (
   <div className={classNames('list-item', className)} {...props}>
     {children}
   </div>

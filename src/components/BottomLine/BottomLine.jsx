@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type BottomLineProps = {
@@ -13,7 +15,7 @@ const BottomLine = ({
   disabled,
   className,
   ...props
-}: BottomLineProps): React.Node => (
+}: BottomLineProps): Node => (
   <div
     className={classnames(
       'bottom-line',

@@ -1,10 +1,12 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type GridRowProps = {
   className?: string,
-  children: React.Node,
+  children: Node,
   [string]: mixed
 };
 

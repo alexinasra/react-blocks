@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 import Title from '@components/Title';
@@ -7,9 +9,9 @@ import Subheader from '@components/Subheader';
 
 type ToolbarProps = {
   className?: string,
-  children: React.Node,
-  menuButton: React.Node,
-  logo: React.Node,
+  children: Node,
+  menuButton: Node,
+  logo: Node,
   title?: string,
   subheader?: string,
   [string]: mixed
@@ -22,7 +24,7 @@ const Toolbar = ({
   className,
   children,
   ...props
-}: ToolbarProps): React.Node => (
+}: ToolbarProps): Node => (
   <div className={classnames('toolbar', className)} {...props}>
     {menuButton && (
       <div className="menubutton-container">

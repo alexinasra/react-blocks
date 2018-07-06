@@ -1,6 +1,8 @@
 /* @flow */
 /* eslint-disable  import/prefer-default-export */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent, ComponentType } from 'react';
+
 import classnames from 'classnames';
 
 
@@ -9,8 +11,8 @@ function CssClassToggle(
   offEvent: string = 'onMouseUp',
   onClass: string = 'active',
   offClass: string = undefined
-): React.Node {
-  return ((WrappedComponent: React.Node): React.Node => (
+): Node {
+  return ((WrappedComponent: ComponentType): Node => (
     class extends Component<{ className?: string }> {
       constructor(props: { [string]: object }) {
         super(props);
@@ -19,7 +21,7 @@ function CssClassToggle(
         };
       }
 
-      render(): React.Node {
+      render(): Node {
         const { className, ...props } = this.props;
         const { isOn } = this.state;
         const stateToClass: { [string]: mixed } = {
@@ -30,7 +32,7 @@ function CssClassToggle(
         }
         const classes = classnames(stateToClass, className);
         const oldOn = props[onEvent];
-        const on = (e: React.SyntheticEvent) => {
+        const on = (e: SyntheticEvent) => {
           if (!isOn) {
             this.setState({ isOn: true });
           }
@@ -40,7 +42,7 @@ function CssClassToggle(
         };
         props[onEvent] = on;
         const oldOff = props[offEvent];
-        const off = (e: React.SyntheticEvent) => {
+        const off = (e: SyntheticEvent) => {
           if (isOn) {
             this.setState({ isOn: false });
           }

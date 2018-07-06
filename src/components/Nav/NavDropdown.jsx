@@ -1,25 +1,27 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 import Icon from '@components/Icon';
 import Dropdown from '@components/Dropdown';
 
 type NavDropdownProps = {
   className?: string,
-  menu: React.Node,
+  menu: Node,
   iconName?: string,
   label: string,
   [string]: mixed
 };
 
 class NavDropdown extends Component<NavDropdownProps> {
-  render(): React.Node {
+  render(): Node {
     const { className, iconName, menu, label, ...props } = this.props;
     return (
       <Dropdown
         className={classnames('nav-link nav-dropdown', className)}
         direction="down"
-        ref={(ref: React.Node) => { this.dropdown = ref; }}
+        ref={(ref: Node) => { this.dropdown = ref; }}
         menu={menu}>
         <a
           role="button"

@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classNames from 'classnames';
 
 type CardProps = {
   className?: string,
-  children: React.Node,
+  children: Node,
   direction?: 'column' | 'row',
   [string]: mixed
 };
 
-const Card = ({ className, direction, children, ...props }: CardProps): React.Node => (
+const Card = ({ className, direction, children, ...props }: CardProps): Node => (
   <div className={classNames('card', direction !== 'row' ? 'column' : 'row', className)} {...props}>
     {children}
   </div>

@@ -1,5 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 import classnames from 'classnames';
 
 import TextCounter from '@components/TextCounter';
@@ -55,7 +57,7 @@ class TextField extends Component<TextFieldProps> {
     this.setState({ hasFocus: false });
   }
 
-  handleOnInputChange(e: React.SyntheticEvent) {
+  handleOnInputChange(e: SyntheticEvent) {
     const { max } = this.props;
 
     if ((max > 0) && (e.target.value.length > max)) {
@@ -68,7 +70,7 @@ class TextField extends Component<TextFieldProps> {
     this.input.focus();
   }
 
-  render(): React.Node {
+  render(): Node {
     const {
       className,
       disabled,
@@ -102,7 +104,7 @@ class TextField extends Component<TextFieldProps> {
         onClick={this.handleLabelClick}>
         {
           lines <= 1 ? (
-            <input ref={(input: React.Node) => { this.input = input; }}
+            <input ref={(elm?: Node) => { this.input = elm; }}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}
               onChange={this.handleOnInputChange}
@@ -111,7 +113,7 @@ class TextField extends Component<TextFieldProps> {
               disabled={disabled}
               placeholder={hint} />
           ) : (
-            <textarea ref={(input: React.Node) => { this.input = input; }}
+            <textarea ref={(elm?: Node) => { this.input = elm; }}
               rows={lines}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}

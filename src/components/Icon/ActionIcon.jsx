@@ -1,13 +1,15 @@
 /* @flow */
 import React, { Component } from 'react';
+import type { Node, SyntheticEvent } from 'react';
+
 
 import Icon from './Icon';
 
 type ActionIconProps = {
   name: string,
   hoverName?: string,
-  onMouseEnter?: (e: React.SyntheticEvent) => void | boolean,
-  onMouseLeave?: (e: React.SyntheticEvent) => void | boolean,
+  onMouseEnter?: (e: SyntheticEvent) => void | boolean,
+  onMouseLeave?: (e: SyntheticEvent) => void | boolean,
   [string]: mixed
 };
 
@@ -33,7 +35,7 @@ class ActionIcon extends Component<ActionIconProps> {
     this.setState({ iconName: nextProps.name });
   }
 
-  handleMouseEnter(e: React.SyntheticEvent) {
+  handleMouseEnter(e: SyntheticEvent) {
     const { onMouseEnter, hoverName, name } = this.props;
 
     this.setState({ iconName: hoverName || name });
@@ -43,7 +45,7 @@ class ActionIcon extends Component<ActionIconProps> {
     }
   }
 
-  handleMouseLeave(e: React.SyntheticEvent) {
+  handleMouseLeave(e: SyntheticEvent) {
     const { onMouseLeave, name } = this.props;
     this.setState({ iconName: name });
     if (onMouseLeave) {
@@ -51,7 +53,7 @@ class ActionIcon extends Component<ActionIconProps> {
     }
   }
 
-  render(): React.Node {
+  render(): Node {
     const { name, hoverName, ...props } = this.props;
     const { iconName } = this.state;
     return (

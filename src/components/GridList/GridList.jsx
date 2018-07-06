@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react';
+import type { Node } from 'react';
+
 import classnames from 'classnames';
 
 type GridListProps = {
-  children: React.Node,
+  children: Node,
   columns?: number,
   className?: string,
   [string]: mixed
 };
 
-const GridList = ({ columns, className, children, ...props }: GridListProps): React.Node => (
+const GridList = ({ columns, className, children, ...props }: GridListProps): Node => (
   <div className={classnames('gridlist', className)} {...props}>
     {children}
   </div>
