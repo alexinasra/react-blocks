@@ -82,7 +82,7 @@ module.exports = {
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-no-bind": 0,
     "react/jsx-filename-extension": 0,
-    "react/destructuring-assignment": [1, "never"],
+    "react/destructuring-assignment": [2, "always"],
     "import/no-extraneous-dependencies": 0,
     "object-property-newline": 0,
     "no-console": "warn",
