@@ -48,12 +48,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css'],
-    alias: {
-      '@hocs': path.resolve(__dirname, 'src/hocs'),
-      '@context': path.resolve(__dirname, 'src/context'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@scss-mixins': path.resolve(__dirname, 'src/mixins')
-    }
+    alias: require(path.join(__dirname, 'config', 'aliases'))
   },
   module: {
     rules: [
