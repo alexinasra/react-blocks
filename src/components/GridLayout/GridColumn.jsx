@@ -9,9 +9,9 @@ type GridColumnProps = {
   [string]: mixed
 };
 
-const GridColumn = ({ className, span, ...props }: GridColumnProps): React.Node => (
+const GridColumn = ({ className, span, children, ...props }: GridColumnProps): React.Node => (
   <div className={classnames(`grid-col-${typeof span === 'string' ? span.toLowerCase() : span}`, className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 GridColumn.defaultProps = {

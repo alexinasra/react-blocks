@@ -56,7 +56,9 @@ class TextField extends Component<TextFieldProps> {
   }
 
   handleOnInputChange(e: React.SyntheticEvent) {
-    if ((this.props.max > 0) && (e.target.value.length > this.props.max)) {
+    const { max } = this.props;
+
+    if ((max > 0) && (e.target.value.length > max)) {
       return;
     }
     this.setState({ isDirty: true, value: e.target.value });
@@ -67,41 +69,61 @@ class TextField extends Component<TextFieldProps> {
   }
 
   render(): React.Node {
+    const {
+      className,
+      disabled,
+      label,
+      fixedLabel,
+      helperText,
+      lines,
+      type,
+      hint,
+      max,
+      min
+    } = this.props;
+
+    const {
+      isTouched,
+      isDirty,
+      value,
+      hasFocus
+    } = this.state;
+
     return (
-      <FieldContainer className={classnames('text-field', this.props.className)}
-        disabled={this.props.disabled}
-        touched={this.state.isTouched}
-        dirty={this.state.isDirty}
-        focused={this.state.hasFocus}
-        empty={!this.state.value}
-        label={this.props.label}
-        fixedLabel={this.props.fixedLabel}
-        helperText={this.props.helperText}
+      <FieldContainer className={classnames('text-field', className)}
+        disabled={disabled}
+        touched={isTouched}
+        dirty={isDirty}
+        focused={hasFocus}
+        empty={!value}
+        label={label}
+        fixedLabel={fixedLabel}
+        helperText={helperText}
         onClick={this.handleLabelClick}>
         {
-          this.props.lines <= 1 ? (
+          lines <= 1 ? (
             <input ref={(input: React.Node) => { this.input = input; }}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}
               onChange={this.handleOnInputChange}
-              type={this.props.type}
-              value={this.state.value}
-              disabled={this.props.disabled}
-              placeholder={this.props.hint} />
+              type={type}
+              value={value}
+              disabled={disabled}
+              placeholder={hint} />
           ) : (
             <textarea ref={(input: React.Node) => { this.input = input; }}
-              rows={this.props.lines}
+              rows={lines}
               onFocus={this.handleOnInputFocus}
               onBlur={this.handleOnInputBlur}
               onChange={this.handleOnInputChange}
-              type={this.props.type}
-              value={this.state.value}
-              disabled={this.props.disabled}
-              placeholder={this.props.hint} />
+              type={type}
+              value={value}
+              disabled={disabled}
+              placeholder={hint} />
           )
         }
-        {(this.props.max > 0 || this.props.min > 0) && (
-          <TextCounter className="text-field__counter" text={this.state.value} min={this.props.min} max={this.props.max} />
+        {(max > 0 || min > 0) && (
+          <TextCounter className="text-field__counter" text={value} min={min} max={max} />
         )}
       </FieldContainer>
     );

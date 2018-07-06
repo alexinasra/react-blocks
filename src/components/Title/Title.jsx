@@ -8,9 +8,9 @@ type TitleProps = {
   [string]: mixed
 };
 
-const Title = ({ className, ...props }: TitleProps): React.Node => (
+const Title = ({ className, children, ...props }: TitleProps): React.Node => (
   <span className={classNames('title', className)} {...props}>
-    {props.children}
+    {children}
   </span>
 );
 

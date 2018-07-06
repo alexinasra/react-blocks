@@ -21,16 +21,17 @@ function CssClassToggle(
 
       render(): React.Node {
         const { className, ...props } = this.props;
+        const { isOn } = this.state;
         const stateToClass: { [string]: mixed } = {
-          [onClass]: this.state.isOn
+          [onClass]: isOn
         };
         if (offClass) {
-          stateToClass[offClass] = !this.state.isOn;
+          stateToClass[offClass] = !isOn;
         }
         const classes = classnames(stateToClass, className);
         const oldOn = props[onEvent];
         const on = (e: React.SyntheticEvent) => {
-          if (!this.state.isOn) {
+          if (!isOn) {
             this.setState({ isOn: true });
           }
           if (oldOn) {
@@ -40,7 +41,7 @@ function CssClassToggle(
         props[onEvent] = on;
         const oldOff = props[offEvent];
         const off = (e: React.SyntheticEvent) => {
-          if (this.state.isOn) {
+          if (isOn) {
             this.setState({ isOn: false });
           }
           if (oldOff) {

@@ -44,7 +44,8 @@ export default class Select extends Component<SelectProps> {
   }
 
   handleMenuOpen() {
-    if (!this.props.disabled) {
+    const { disabled } = this.props;
+    if (!disabled) {
       this.dropdown.open();
     }
   }
@@ -63,7 +64,11 @@ export default class Select extends Component<SelectProps> {
   }
 
   select(item: SelectItem) {
-    this.props.onSelect(item);
+    const { onSelect } = this.props;
+    if (onSelect) {
+      onSelect(item);
+    }
+
     this.dropdown.close();
   }
 
@@ -84,16 +89,23 @@ export default class Select extends Component<SelectProps> {
       disabled,
       ...props
     } = this.props;
+
+    const {
+      active
+    } = this.state;
+
     const menuItems = items.map((item: SelectItem): React.Node => (
       <MenuItem key={item.key}
         className={classnames('select-item', {
-          'is-selected': this.props.value && (this.props.value.key === item.key),
-          'is-disabled': this.props.disabled
+          'is-selected': value && (value.key === item.key),
+          'is-disabled': disabled
         })}
         onClick={() => { this.select(item); }}
         label={item.label} />
     ));
+
     let displayText = '';
+
     if (value) {
       displayText = value.label;
     } else if (label) {
@@ -101,6 +113,7 @@ export default class Select extends Component<SelectProps> {
     } else if (items[0]) {
       displayText = items[0].label;
     }
+
     return (
       <Dropdown className={classnames('select', className, { 'is-disabled': disabled })}
         onFocus={this.handleFocus}
@@ -122,7 +135,7 @@ export default class Select extends Component<SelectProps> {
             {displayText}
           </span>
           <Icon name="arrow_drop_down" />
-          <BottomLine disabled={this.props.disabled} active={this.state.active} />
+          <BottomLine disabled={disabled} active={active} />
         </span>
       </Dropdown>
     );

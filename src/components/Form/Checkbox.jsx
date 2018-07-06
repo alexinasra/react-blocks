@@ -35,7 +35,11 @@ export default class Checkbox extends Component<CheckboxProps> {
   }
 
   componentDidMount() {
-    this.props.onRef(this);
+    const { onRef } = this.props;
+
+    if (onRef) {
+      onRef(this);
+    }
   }
 
   handleClick() {
@@ -49,8 +53,11 @@ export default class Checkbox extends Component<CheckboxProps> {
   }
 
   toggle() {
-    if (!this.props.disabled) {
-      this.props.onChange(!this.props.checked);
+    const { disabled, checked, onChange } = this.props;
+    if (!disabled) {
+      if (onChange) {
+        onChange(!checked);
+      }
     }
   }
 
@@ -71,6 +78,8 @@ export default class Checkbox extends Component<CheckboxProps> {
       className,
       disabled,
       ...props } = this.props;
+
+    const { active } = this.state;
     let iconName = 'check_box_outline_blank';
 
     if (checked === 'mixed') {
@@ -92,7 +101,7 @@ export default class Checkbox extends Component<CheckboxProps> {
         <span className="label">
           {label}
         </span>
-        <BottomLine active={this.state.active} disabled={this.props.disabled} />
+        <BottomLine active={active} disabled={disabled} />
       </div>
     );
   }

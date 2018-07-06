@@ -31,16 +31,17 @@ export default class Radio extends Component<RadioProps> {
 
   handleKeyDown(e: React.SyntheticEvent) {
     if (e.key.startsWith('Arrow')) {
+      const { value, options, onChange } = this.props;
       const findIdx = (o: RadioOption): boolean => (
-        this.props.value && (this.props.value.key === o.key)
+        value && (value.key === o.key)
       );
-      let i = this.props.options.findIndex(findIdx);
+      let i = options.findIndex(findIdx);
 
       switch (e.key) {
       case 'ArrowUp':
       case 'ArrowLeft': {
         if (i === 0) {
-          i = this.props.options.length - 1;
+          i = options.length - 1;
         } else {
           i -= 1;
         }
@@ -48,7 +49,7 @@ export default class Radio extends Component<RadioProps> {
       }
       case 'ArrowDown':
       case 'ArrowRight': {
-        if (i === this.props.options.length - 1) {
+        if (i === options.length - 1) {
           i = 0;
         } else {
           i += 1;
@@ -57,7 +58,10 @@ export default class Radio extends Component<RadioProps> {
       }
       default:
       }
-      this.props.onChange(this.props.options[i]);
+
+      if (onChange) {
+        onChange(options[i]);
+      }
     }
   }
 

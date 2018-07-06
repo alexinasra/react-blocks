@@ -6,9 +6,9 @@ type SubheaderProps = {
   className?: string,
   children: React.Node
 };
-const Subheader = ({ className, ...props }: SubheaderProps): React.Node => (
+const Subheader = ({ className, children, ...props }: SubheaderProps): React.Node => (
   <span className={classNames('subheader', className)} {...props}>
-    {props.children}
+    {children}
   </span>
 );
 

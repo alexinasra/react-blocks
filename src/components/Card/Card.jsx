@@ -9,9 +9,9 @@ type CardProps = {
   [string]: mixed
 };
 
-const Card = ({ className, direction, ...props }: CardProps): React.Node => (
+const Card = ({ className, direction, children, ...props }: CardProps): React.Node => (
   <div className={classNames('card', direction !== 'row' ? 'column' : 'row', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 Card.defaultProps = {

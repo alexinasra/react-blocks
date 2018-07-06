@@ -8,9 +8,9 @@ type CheckboxGroupProps = {
   [string]: mixed
 };
 
-const CheckboxGroup = ({ className, ...props }: CheckboxGroupProps): React.Node => (
-  <div className={classnames('checkbox_group', className)} role="group">
-    {props.children}
+const CheckboxGroup = ({ className, children, ...props }: CheckboxGroupProps): React.Node => (
+  <div className={classnames('checkbox_group', className)} role="group" {...props}>
+    {children}
   </div>
 );
 

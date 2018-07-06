@@ -10,9 +10,9 @@ type TabsNavProps = {
   [string]: mixed
 };
 
-const TabsNav = ({ className, ...props }: TabsNavProps): React.Node => (
+const TabsNav = ({ className, children, ...props }: TabsNavProps): React.Node => (
   <Nav className={classnames('tabs-nav', className)} {...props}>
-    {props.children}
+    {children}
   </Nav>
 );
 

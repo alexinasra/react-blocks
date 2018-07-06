@@ -8,9 +8,9 @@ type GridLayoutProps = {
   [string]: mixed
 };
 
-const GridLayout = ({ className, ...props }: GridLayoutProps): React.Node => (
+const GridLayout = ({ className, children, ...props }: GridLayoutProps): React.Node => (
   <div className={classnames('grid-layout', 'grid-container', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 GridLayout.defaultProps = {

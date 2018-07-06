@@ -44,49 +44,72 @@ class FieldContainer extends Component<FieldContainerProps> {
   props: FieldContainerProps;
 
   handleKeyPress(e: React.SyntheticEvent) {
+    const { onClick } = this.props;
     if (e.key === 'Enter' || e.key === ' ') {
-      this.props.onClick(e);
+      if (onClick) {
+        onClick(e);
+      }
     }
   }
 
   render(): React.Node {
+    const {
+      disabled,
+      touched,
+      required,
+      dirty,
+      focused,
+      empty,
+      label,
+      fixedLabel,
+      helperText,
+      errorList,
+      className,
+      children,
+      onClick,
+      ...props
+    } = this.props;
+
     return (
-      <div className={classnames(
-        'field-container',
-        { 'is-disabled': this.props.disabled,
-          'is-touched': this.props.touched,
-          'is-required': this.props.required,
-          'is-dirty': this.props.dirty,
-          'has-focus': this.props.focused,
-          'has-value': this.props.empty,
-          'has-label': this.props.label,
-          'fixed-label': this.props.fixedLabel },
-        this.props.className
-      )}>
+      <div
+        className={classnames(
+          'field-container',
+          { 'is-disabled': disabled,
+            'is-touched': touched,
+            'is-required': required,
+            'is-dirty': dirty,
+            'has-focus': focused,
+            'has-value': empty,
+            'has-label': label,
+            'fixed-label': fixedLabel },
+          className
+        )}
+        {...props}
+      >
         <div className="field-container__input">
-          {this.props.children}
+          {children}
         </div>
-        {this.props.label && (
+        {label && (
           <div className="field-container__label">
             <span
-              onClick={this.props.onClick}
+              onClick={onClick}
               onKeyUp={this.handleKeyPress}
               role="button"
               tabIndex={0}
             >
-              {this.props.label}
+              {label}
             </span>
           </div>
         )}
-        <BottomLine disabled={this.props.disabled} active={this.props.focused} />
-        {this.props.helperText && (
+        <BottomLine disabled={disabled} active={focused} />
+        {helperText && (
           <div className="field-container__helper-text">
-            {this.props.helperText}
+            {helperText}
           </div>
         )}
-        {this.props.errorList && (
+        {errorList && (
           <div className="field-container__error-text">
-            {this.props.errorList}
+            {errorList}
           </div>
         )}
       </div>

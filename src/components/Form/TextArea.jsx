@@ -37,21 +37,32 @@ class TextArea extends Component<TextAreaProps> {
   }
 
   render(): React.Node {
+    const {
+      label,
+      className,
+      hintText
+    } = this.props;
+
+    const {
+      lines,
+      value
+    } = this.state;
+
     return (
-      <div className={classnames('textarea', this.props.className)}>
-        {this.props.label && (
+      <div className={classnames('textarea', className)}>
+        {label && (
           <div className="label-container">
             <span className="label">
-              {this.props.label}
+              {label}
             </span>
           </div>
         )}
         <Scrollbar>
           <textarea
-            rows={this.state.lines}
+            rows={lines}
             onChange={this.handleChange}
-            value={this.state.value}
-            placeholder={this.props.hintText} />
+            value={value}
+            placeholder={hintText} />
         </Scrollbar>
         <BottomLine active />
       </div>

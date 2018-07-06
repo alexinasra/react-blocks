@@ -12,10 +12,11 @@ type CardSectionProps = {
 const CardSection = ({
   className,
   direction,
+  children,
   ...props
 }: CardSectionProps): React.Node => (
   <div className={classNames('card-section', direction !== 'row' ? 'column' : 'row', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 CardSection.defaultProps = {

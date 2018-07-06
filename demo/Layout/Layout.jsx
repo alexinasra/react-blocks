@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
 import GridLayout, { GridRow, GridColumn } from '@components/GridLayout';
@@ -6,7 +7,7 @@ import GridLayout, { GridRow, GridColumn } from '@components/GridLayout';
 import AppNav from './AppNav';
 import SideNav from './SideNav';
 
-export default (props: { [string]: mixed }): React.Node => (
+export default ({ children, ...props }: { [string]: mixed }): React.Node => (
   <GridLayout>
     <GridRow>
       <GridColumn span="grow">
@@ -18,7 +19,7 @@ export default (props: { [string]: mixed }): React.Node => (
         <SideNav />
       </GridColumn>
       <GridColumn span="grow">
-        {props.children}
+        {children}
       </GridColumn>
     </GridRow>
   </GridLayout>

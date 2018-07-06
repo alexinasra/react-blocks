@@ -7,9 +7,9 @@ type MenuProps = {
   className?: string,
   [string]: mixed
 };
-const Menu = ({ className, ...props }: MenuProps): React.Node => (
+const Menu = ({ className, children, ...props }: MenuProps): React.Node => (
   <div className={classnames('menu', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

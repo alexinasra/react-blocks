@@ -13,6 +13,7 @@ type ScrollbarRailInternalProps = {
 
 const ScrollbarRailInternal = ({
   className,
+  children,
   ...props
 }: ScrollbarRailInternalProps): React.Node => {
   const classes = [
@@ -21,7 +22,7 @@ const ScrollbarRailInternal = ({
   ];
   return (
     <div className={classnames(classes)} {...props}>
-      { props.children }
+      { children }
     </div>
   );
 };

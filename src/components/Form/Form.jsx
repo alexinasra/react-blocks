@@ -9,9 +9,9 @@ type FormProps = {
   [string]: mixed
 };
 
-const Form = ({ className, ...props }: FormProps): React.Node => (
+const Form = ({ className, children, ...props }: FormProps): React.Node => (
   <div className={classnames('form', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

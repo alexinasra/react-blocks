@@ -11,10 +11,11 @@ type CollapseProps = {
 const Collapse = ({
   className,
   collapsed,
+  children,
   ...props
 }: CollapseProps): React.Node => (
   <div className={classnames('collapse', { 'is-collapsed': collapsed }, className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

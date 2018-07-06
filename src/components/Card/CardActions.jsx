@@ -9,10 +9,11 @@ type CardActionsProps = {
 };
 const CardActions = ({
   className,
+  children,
   ...props
 }: CardActionsProps): React.Node => (
   <div className={classNames('card-actions', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

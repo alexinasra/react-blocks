@@ -34,24 +34,28 @@ class ActionIcon extends Component<ActionIconProps> {
   }
 
   handleMouseEnter(e: React.SyntheticEvent) {
-    this.setState({ iconName: this.props.hoverName || this.props.name });
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(e);
+    const { onMouseEnter, hoverName, name } = this.props;
+
+    this.setState({ iconName: hoverName || name });
+
+    if (onMouseEnter) {
+      onMouseEnter(e);
     }
   }
 
   handleMouseLeave(e: React.SyntheticEvent) {
-    this.setState({ iconName: this.props.name });
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
+    const { onMouseLeave, name } = this.props;
+    this.setState({ iconName: name });
+    if (onMouseLeave) {
+      onMouseLeave(e);
     }
   }
 
   render(): React.Node {
     const { name, hoverName, ...props } = this.props;
-
+    const { iconName } = this.state;
     return (
-      <Icon name={this.state.iconName}
+      <Icon name={iconName}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         {...props} />

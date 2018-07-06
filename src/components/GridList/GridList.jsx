@@ -9,9 +9,9 @@ type GridListProps = {
   [string]: mixed
 };
 
-const GridList = ({ columns, className, ...props }: GridListProps): React.Node => (
+const GridList = ({ columns, className, children, ...props }: GridListProps): React.Node => (
   <div className={classnames('gridlist', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

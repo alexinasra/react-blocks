@@ -44,8 +44,15 @@ class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
   }
 
   handleClick(e: React.SyntheticEvent) {
-    this.props.onToggle(e);
-    if (this.state.isActive) {
+    const { onToggle } = this.props;
+    const { isActive } = this.state;
+
+    if (onToggle) {
+      onToggle(e);
+    }
+
+
+    if (isActive) {
       this.switchOff();
     } else {
       this.switchOn();
@@ -53,7 +60,10 @@ class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
   }
 
   render(): React.Node {
-    const name = this.state.isActive ? this.props.activeIconName : this.props.inactiveIconName;
+    const { isActive } = this.state;
+    const { activeIconName, inactiveIconName } = this.props;
+
+    const name = isActive ? activeIconName : inactiveIconName;
 
     return (
       <ActionIcon name={name}

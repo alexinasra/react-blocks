@@ -22,8 +22,6 @@ class Scrollbar extends Component<ScrollbarProps> {
   constructor(props: ScrollbarProps) {
     super(props);
     this.state = {
-      hasVerticalRail: false,
-      hasHorizontalRail: false,
       hasFocus: false
     };
     this.initVerticalRail = this.initVerticalRail.bind(this);
@@ -36,8 +34,8 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 
   componentDidMount() {
-    this.initHorizontalRail(this.hasHorizontalRail());
-    this.initVerticalRail(this.hasVerticalRail());
+    this.initHorizontalRail();
+    this.initVerticalRail();
   }
 
   getClientWidth(): number {
@@ -89,7 +87,8 @@ class Scrollbar extends Component<ScrollbarProps> {
 
   handleOnWheel(e: React.SyntheticEvent) {
     const { deltaY } = e.nativeEvent;
-    const horizontalPosition = this.state.horizontalPosition + deltaY;
+    let { horizontalPosition } = this.state;
+    horizontalPosition += deltaY;
 
     const maxTop = this.getMaxTop();
     if (horizontalPosition >= 0 && horizontalPosition <= maxTop) {
@@ -99,13 +98,15 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 
   handleMouseOverScrollbar() {
-    if (!this.state.hasFocus) {
+    const { hasFocus } = this.state;
+    if (!hasFocus) {
       this.setState({ hasFocus: true });
     }
   }
 
   handleMouseOutScrollbar() {
-    if (this.state.hasFocus) {
+    const { hasFocus } = this.state;
+    if (hasFocus) {
       this.setState({ hasFocus: false });
     }
   }
@@ -114,12 +115,14 @@ class Scrollbar extends Component<ScrollbarProps> {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
+
+    const { horizontalOffsetY } = this.state;
     const horizontalPosition = (
       e.pageY
       - this.rootElement.getBoundingClientRect().top
       - document.documentElement.scrollTop
       - 8
-      - this.state.horizontalOffsetY
+      - horizontalOffsetY
     );
     this.scrollTop(horizontalPosition);
   }
@@ -140,13 +143,15 @@ class Scrollbar extends Component<ScrollbarProps> {
     e.preventDefault();
     // only left mouse button
     if (e.button !== 0) return;
+    const { direction } = this.props;
+    const { verticalOffsetX } = this.state;
     let verticalPosition = (
       e.pageX
       - this.rootElement.getBoundingClientRect().left
       - 8
-      - this.state.verticalOffsetX
+      - verticalOffsetX
     );
-    if (this.props.direction === 'rtl') {
+    if (direction === 'rtl') {
       verticalPosition = this.getClientWidth()
         - this.getVerticalThumbWidth()
         - verticalPosition;
@@ -156,9 +161,12 @@ class Scrollbar extends Component<ScrollbarProps> {
 
   scrollLeft(verticalPosition: number) {
     const maxLeft = this.getMaxLeft();
+
     if (verticalPosition >= 0 && verticalPosition <= maxLeft) {
       const percentage = (verticalPosition / maxLeft) * 100;
-      if (this.props.direction === 'rtl') {
+      const { direction } = this.props;
+
+      if (direction === 'rtl') {
         this.contentElement.scrollLeft = this.getScrollWidth()
            - this.getClientWidth()
            - Math.round(((percentage * (this.getScrollWidth() - this.getClientWidth())) / 100));
@@ -170,16 +178,14 @@ class Scrollbar extends Component<ScrollbarProps> {
     }
   }
 
-  initHorizontalRail(show: boolean = false) {
+  initHorizontalRail() {
     this.setState({
-      hasHorizontalRail: show,
       horizontalPosition: 0
     });
   }
 
-  initVerticalRail(show: boolean = false) {
+  initVerticalRail() {
     this.setState({
-      hasVerticalRail: show,
       verticalPosition: 0
     });
     this.scrollLeft(0);
@@ -194,13 +200,15 @@ class Scrollbar extends Component<ScrollbarProps> {
   }
 
   render(): React.Node {
-    const { className, direction, ...props } = this.props;
+    const { className, direction, children, ...props } = this.props;
+    const { hasFocus, horizontalPosition, verticalPosition } = this.state;
+
     const classes: string = classnames(
       'scrollbar',
       {
-        'has-horizontal': this.state.hasHorizontalRail,
-        'has-vertical': this.state.hasVerticalRail,
-        'has-focus': this.state.hasFocus
+        'has-horizontal': this.hasHorizontalRail(),
+        'has-vertical': this.hasVerticalRail(),
+        'has-focus': hasFocus
       },
       className
     );
@@ -220,12 +228,12 @@ class Scrollbar extends Component<ScrollbarProps> {
           onWheel={this.handleOnWheel}
           ref={(elm: React.Node) => { this.contentElement = elm; }}
         >
-          { this.props.children }
+          { children }
         </div>
         { this.hasHorizontalRail() && (
           <HorizontalScrollbarRail>
             <HorizontalScrollbarThumb height={this.getHorizontalThumbHeight()}
-              top={this.state.horizontalPosition}
+              top={horizontalPosition}
               draggable
               onMouseDown={(e: React.SyntheticEvent) => {
                 this.setState({ horizontalOffsetY: e.nativeEvent.offsetY });
@@ -240,7 +248,7 @@ class Scrollbar extends Component<ScrollbarProps> {
         { this.hasVerticalRail() && (
           <VerticalScrollbarRail>
             <VerticalScrollbarThumb
-              left={this.state.verticalPosition}
+              left={verticalPosition}
               width={this.getVerticalThumbWidth()}
               direction={direction}
               draggable

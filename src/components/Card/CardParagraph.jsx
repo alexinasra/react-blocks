@@ -11,11 +11,12 @@ type CardParagraphProps = {
 
 const CardParagraph = ({
   className,
+  children,
   ...props
 }: CardParagraphProps): React.Node => (
   <div className={classNames('card-paragraph', className)} {...props}>
     <Scrollbar style={{ height: '220px', width: '100%' }}>
-      {props.children}
+      {children}
     </Scrollbar>
   </div>
 );

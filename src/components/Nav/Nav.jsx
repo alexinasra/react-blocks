@@ -9,9 +9,9 @@ type NavProps = {
   [string]: mixed
 };
 
-const Nav = ({ direction, className, ...props }: NavProps): React.Node => (
+const Nav = ({ direction, className, children, ...props }: NavProps): React.Node => (
   <div className={classnames('nav', direction, className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 Nav.defaultProps = {

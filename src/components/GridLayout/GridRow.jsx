@@ -8,9 +8,9 @@ type GridRowProps = {
   [string]: mixed
 };
 
-const GridRow = ({ className, ...props }: GridRowProps): React.props => (
+const GridRow = ({ className, children, ...props }: GridRowProps): React.props => (
   <div className={classnames('grid-row', className)} {...props}>
-    {props.children}
+    {children}
   </div>
 );
 

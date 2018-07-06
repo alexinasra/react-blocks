@@ -38,8 +38,11 @@ class Dropdown extends Component<DropdownProps> {
     const containerWidth = this.containerDomRef ? this.containerDomRef.clientWidth : 0;
     const heightDiff = Math.abs(containerHeight - height);
     const widthDiff = Math.abs(containerWidth - width);
-
-    switch (this.props.direction) {
+    const {
+      direction,
+      onRef
+    } = this.props;
+    switch (direction) {
     case 'up':
       this.setPosition({
         right: -widthDiff / 2,
@@ -106,14 +109,15 @@ class Dropdown extends Component<DropdownProps> {
       });
     }
 
-    if (this.props.onRef) {
-      this.props.onRef(this);
+    if (onRef) {
+      onRef(this);
     }
   }
 
   componentWillUnmount() {
-    if (this.props.onRef) {
-      this.props.onRef(undefined);
+    const { onRef } = this.props;
+    if (onRef) {
+      onRef(undefined);
     }
   }
 
@@ -132,18 +136,21 @@ class Dropdown extends Component<DropdownProps> {
   }
 
   open() {
+    const { onOpen } = this.props;
     this.setState({ isOpen: true });
     document.addEventListener('click', this.handleOutsideClick, false);
-    if (this.props.onOpen) {
-      this.props.onOpen();
+    if (onOpen) {
+      onOpen();
     }
   }
 
   close() {
+    const { onClose } = this.state;
+
     this.setState({ isOpen: false });
     document.removeEventListener('click', this.handleOutsideClick, false);
-    if (this.props.onClose) {
-      this.props.onClose();
+    if (onClose) {
+      onClose();
     }
   }
 
@@ -157,6 +164,8 @@ class Dropdown extends Component<DropdownProps> {
 
   render(): React.Node {
     const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
+    const { up, down, right, left, isOpen } = this.state;
+
     return (
       <div ref={(elm: React.Node) => { this.domRef = elm; }}
         className={
@@ -164,16 +173,16 @@ class Dropdown extends Component<DropdownProps> {
             'dropdown',
             className,
             `open-${direction}`,
-            { 'is-open': this.state.isOpen }
+            { 'is-open': isOpen }
           )}
         {...props}>
         {props.children}
         <div ref={(elm: React.Node) => { this.containerDomRef = elm; }}
           style={{
-            up: this.state.up,
-            down: this.state.down,
-            right: this.state.right,
-            left: this.state.left }}
+            up,
+            down,
+            right,
+            left }}
           className="menu-container">
           {menu}
         </div>
