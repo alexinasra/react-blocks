@@ -20,8 +20,16 @@ const MenuItem = ({
 }: MenuItemProps): React.Node => (
   <div tabIndex={0} role="menuitem" className={classnames('menu-item', className)} {...props}>
     {iconName && <Icon name={iconName} />}
-    {label && <span className="label">{label}</span>}
-    {shortcut && <span className="shortcut">{shortcut}</span>}
+    {label && (
+      <span className="label">
+        {label}
+      </span>
+    )}
+    {shortcut && (
+      <span className="shortcut">
+        {shortcut}
+      </span>
+    )}
   </div>
 );
 

@@ -33,7 +33,7 @@ type VerticalScrollbarThumbInternalProps = {
   style?: undefined | { [string]: mixed },
   width: number,
   left: number,
-  direction?: string
+  direction?: 'ltr' | 'rtl'
 };
 
 const VerticalScrollbarThumbInternal = ({

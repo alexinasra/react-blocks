@@ -10,7 +10,7 @@ function CssClassToggle(
   onClass: string = 'active',
   offClass: string = undefined
 ): React.Node {
-  return (WrappedComponent: React.Node): React.Node => (
+  return ((WrappedComponent: React.Node): React.Node => (
     class extends Component<{ className?: string }> {
       constructor(props: { [string]: object }) {
         super(props);
@@ -21,7 +21,7 @@ function CssClassToggle(
 
       render(): React.Node {
         const { className, ...props } = this.props;
-        const stateToClass = {
+        const stateToClass: { [string]: mixed } = {
           [onClass]: this.state.isOn
         };
         if (offClass) {
@@ -53,7 +53,7 @@ function CssClassToggle(
         );
       }
     }
-  );
+  ));
 }
 
 export default CssClassToggle;

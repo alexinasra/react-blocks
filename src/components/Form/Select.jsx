@@ -23,6 +23,13 @@ type SelectProps = {
 };
 
 export default class Select extends Component<SelectProps> {
+  static defaultProps: SelectProps = {
+    className: undefined,
+    label: undefined,
+    onSelect: () => {},
+    disabled: false
+  };
+
   constructor(props: SelectProps) {
     super(props);
     this.state = {
@@ -35,14 +42,17 @@ export default class Select extends Component<SelectProps> {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
+
   handleMenuOpen() {
     if (!this.props.disabled) {
       this.dropdown.open();
     }
   }
+
   handleMenuClose() {
     this.dropdown.close();
   }
+
   handleKeyPress(e: React.SyntheticEvent) {
     if (e.key === ' ' || e.key === 'Enter') {
       this.handleMenuOpen();
@@ -51,16 +61,20 @@ export default class Select extends Component<SelectProps> {
       this.handleMenuClose();
     }
   }
+
   select(item: SelectItem) {
     this.props.onSelect(item);
     this.dropdown.close();
   }
+
   handleFocus() {
     this.setState({ active: true });
   }
+
   handleBlur() {
     this.setState({ active: false });
   }
+
   render(): React.Node {
     const {
       className,
@@ -104,7 +118,9 @@ export default class Select extends Component<SelectProps> {
           tabIndex={0}
           onKeyUp={this.handleKeyPress}
           onClick={this.handleMenuOpen}>
-          <span className="text">{displayText}</span>
+          <span className="text">
+            {displayText}
+          </span>
           <Icon name="arrow_drop_down" />
           <BottomLine disabled={this.props.disabled} active={this.state.active} />
         </span>

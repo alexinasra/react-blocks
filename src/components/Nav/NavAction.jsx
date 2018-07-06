@@ -18,7 +18,9 @@ const NavAction = ({
 }: NavActionProps): React.Node => (
   <a className={classnames('nav-link nav-action', className)} {...props}>
     {iconName && <Icon name={iconName} />}
-    <span className="label">{label}</span>
+    <span className="label">
+      {label}
+    </span>
   </a>
 );
 NavAction.defaultProps = {

@@ -15,8 +15,12 @@ type CheckboxProps = {
 
 export default class Checkbox extends Component<CheckboxProps> {
   static defaultProps: CheckboxProps = {
-    className: undefined
+    className: undefined,
+    onRef: () => {},
+    onChange: () => {},
+    disabled: false
   }
+
   constructor(props: CheckboxProps) {
     super(props);
 
@@ -33,25 +37,31 @@ export default class Checkbox extends Component<CheckboxProps> {
   componentDidMount() {
     this.props.onRef(this);
   }
+
   handleClick() {
     this.toggle();
   }
+
   handleKeyPress(e: React.SyntheticEvent) {
     if (e.key === 'Enter' || e.key === ' ') {
       this.toggle();
     }
   }
+
   toggle() {
     if (!this.props.disabled) {
       this.props.onChange(!this.props.checked);
     }
   }
+
   handleFocus() {
     this.setState({ active: true });
   }
+
   handleBlur() {
     this.setState({ active: false });
   }
+
   render(): React.Node {
     const {
       onRef,

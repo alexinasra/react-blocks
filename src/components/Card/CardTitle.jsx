@@ -25,8 +25,16 @@ const CardTitle = ({
       </div>
     )}
     <div className="text-container">
-      <Title>{title}</Title>
-      {subheader && <Subheader>{subheader}</Subheader>}
+      <Title>
+        {title}
+      </Title>
+      {
+        subheader && (
+          <Subheader>
+            {subheader}
+          </Subheader>
+        )
+      }
     </div>
   </div>
 );

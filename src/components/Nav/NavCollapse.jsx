@@ -19,7 +19,9 @@ const NavCollapse = ({
   <div className={classnames('nav-link nav-action', className)} {...props}>
     <span>
       {iconName && <Icon name={iconName} />}
-      <span className="label">{label}</span>
+      <span className="label">
+        {label}
+      </span>
     </span>
   </div>
 );

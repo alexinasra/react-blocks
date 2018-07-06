@@ -26,9 +26,12 @@ class NavDropdown extends Component<NavDropdownProps> {
           tabIndex={0}
           onKeyPress={() => {}}
           onClick={() => { this.dropdown.open(); }}
-          {...props}>
+          {...props}
+        >
           {iconName && <Icon name={iconName} />}
-          <span className="label">{label}</span>
+          <span className="label">
+            {label}
+          </span>
         </a>
       </Dropdown>
     );

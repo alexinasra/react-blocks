@@ -68,7 +68,12 @@ class FieldContainer extends Component<FieldContainerProps> {
         </div>
         {this.props.label && (
           <div className="field-container__label">
-            <span onClick={this.props.onClick} onKeyUp={this.handleKeyPress} role="button" tabIndex={0} >
+            <span
+              onClick={this.props.onClick}
+              onKeyUp={this.handleKeyPress}
+              role="button"
+              tabIndex={0}
+            >
               {this.props.label}
             </span>
           </div>

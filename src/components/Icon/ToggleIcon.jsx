@@ -16,6 +16,11 @@ type ToggleIconState = {
 };
 
 class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
+  static defaultProps: ToggleIconProps = {
+    active: false,
+    onToggle: () => {}
+  }
+
   constructor(props: ToggleIconProps) {
     super(props);
 
@@ -31,6 +36,7 @@ class ToggleIcon extends Component<ToggleIconProps, ToggleIconState> {
       isActive: true
     });
   }
+
   switchOff() {
     this.setState({
       isActive: false

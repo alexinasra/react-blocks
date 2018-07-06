@@ -13,6 +13,13 @@ type TextAreaProps = {
 };
 
 class TextArea extends Component<TextAreaProps> {
+  static defaultProps: TextAreaProps = {
+    className: undefined,
+    value: '',
+    label: undefined,
+    hintText: undefined
+  };
+
   constructor(props: TextAreaProps) {
     super(props);
     this.state = {
@@ -34,10 +41,12 @@ class TextArea extends Component<TextAreaProps> {
       <div className={classnames('textarea', this.props.className)}>
         {this.props.label && (
           <div className="label-container">
-            <span className="label">{this.props.label}</span>
+            <span className="label">
+              {this.props.label}
+            </span>
           </div>
         )}
-        <Scrollbar watchSize>
+        <Scrollbar>
           <textarea
             rows={this.state.lines}
             onChange={this.handleChange}

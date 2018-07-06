@@ -8,7 +8,9 @@ type IconProps = {
 };
 
 const Icon = ({ name, className, ...props }: IconProps): React.Node => (
-  <i className={classnames('material-icons', 'icon', className)} {...props}>{name}</i>
+  <i className={classnames('material-icons', 'icon', className)} {...props}>
+    {name}
+  </i>
 );
 
 Icon.defaultProps = {

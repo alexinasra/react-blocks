@@ -12,6 +12,12 @@ type ActionIconProps = {
 };
 
 class ActionIcon extends Component<ActionIconProps> {
+  static defaultProps: ActionIcon = {
+    hoverName: undefined,
+    onMouseEnter: () => {},
+    onMouseLeave: () => {}
+  }
+
   constructor(props: ActionIconProps) {
     super(props);
 
@@ -22,6 +28,7 @@ class ActionIcon extends Component<ActionIconProps> {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
+
   componentWillReceiveProps(nextProps: ActionIconProps) {
     this.setState({ iconName: nextProps.name });
   }

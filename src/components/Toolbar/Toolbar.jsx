@@ -39,8 +39,13 @@ const Toolbar = ({
         'title-container',
         { 'has-subheader': subheader }
       )}>
-        <Title>{title}</Title>
-        {subheader && (<Subheader>{subheader}</Subheader>)}
+        <Title>
+          {title}
+        </Title>
+        {subheader && (
+          <Subheader>
+            {subheader}
+          </Subheader>)}
       </div>
     )}
     <div className="siparator" />

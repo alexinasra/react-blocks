@@ -18,9 +18,17 @@ const NavOuterLink = ({
   className,
   ...props
 }: NavOuterLinkProps): React.Node => (
-  <a href={to} target="_blank" className={classnames('nav-link nav-outer_link', className)} {...props}>
+  <a
+    href={to}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={classnames('nav-link nav-outer_link', className)}
+    {...props}
+  >
     {iconName && <Icon name={iconName} />}
-    <span className="label">{label}</span>
+    <span className="label">
+      {label}
+    </span>
   </a>
 );
 NavOuterLink.defaultProps = {

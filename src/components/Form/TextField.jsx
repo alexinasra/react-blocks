@@ -20,6 +20,19 @@ type TextFieldProps = {
 };
 
 class TextField extends Component<TextFieldProps> {
+  static defaultProps: TextFieldProps = {
+    max: 0,
+    min: 0,
+    helperText: undefined,
+    hint: undefined,
+    fixedLabel: false,
+    disabled: false,
+    className: undefined,
+    value: undefined,
+    label: undefined,
+    lines: 1
+  }
+
   constructor(props: TextFieldProps) {
     super(props);
     this.state = {
@@ -37,18 +50,22 @@ class TextField extends Component<TextFieldProps> {
   handleOnInputFocus() {
     this.setState({ hasFocus: true, isTouched: true });
   }
+
   handleOnInputBlur() {
     this.setState({ hasFocus: false });
   }
+
   handleOnInputChange(e: React.SyntheticEvent) {
     if ((this.props.max > 0) && (e.target.value.length > this.props.max)) {
       return;
     }
     this.setState({ isDirty: true, value: e.target.value });
   }
+
   handleLabelClick() {
     this.input.focus();
   }
+
   render(): React.Node {
     return (
       <FieldContainer className={classnames('text-field', this.props.className)}

@@ -9,7 +9,9 @@ type TitleProps = {
 };
 
 const Title = ({ className, ...props }: TitleProps): React.Node => (
-  <span className={classNames('title', className)} {...props}>{props.children}</span>
+  <span className={classNames('title', className)} {...props}>
+    {props.children}
+  </span>
 );
 
 Title.defaultProps = {

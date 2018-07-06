@@ -21,6 +21,7 @@ export default class Radio extends Component<RadioProps> {
   static defaultProps: RadioProps ={
     className: undefined
   };
+
   constructor(props: RadioProps) {
     super(props);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -59,6 +60,7 @@ export default class Radio extends Component<RadioProps> {
       this.props.onChange(this.props.options[i]);
     }
   }
+
   render(): React.Node {
     const {
       value,
@@ -77,10 +79,12 @@ export default class Radio extends Component<RadioProps> {
             onClick={() => { onChange(option); }}
             onKeyDown={this.handleKeyDown}>
             <Icon name={
-              value && (option.key === value.key) ?
-                'radio_button_checked' : 'radio_button_unchecked'
+              value && (option.key === value.key)
+                ? 'radio_button_checked' : 'radio_button_unchecked'
             } />
-            <span className="label">{option.label}</span>
+            <span className="label">
+              {option.label}
+            </span>
           </div>
         );
       }

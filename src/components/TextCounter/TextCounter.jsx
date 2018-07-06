@@ -36,7 +36,10 @@ const TextCounter = ({
         {c}
       </span>
       <span className="out-of">
-        / <span className="max">{max}{postfix}</span>
+        /
+        <span className="max">
+          {`${max} ${postfix}`}
+        </span>
       </span>
     </div>
   );
