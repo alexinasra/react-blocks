@@ -1,0 +1,12 @@
+{
+  "Site": {
+    "titlePrefix": "React Blocks",
+    "titlePrefixSeparator": " - ",
+    "titlePostfix": "",
+    "titlePostfixSeparator": ""
+  },
+  "Home": {
+    "title": "Home Page",
+    "mainParagraph": ""
+  }
+}
