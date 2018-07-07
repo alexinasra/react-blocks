@@ -10,14 +10,14 @@ import BottomLine from '@components/BottomLine';
 
 type SelectItem = {
   key: string,
-  value: string,
+  value: mixed,
   label: string
 };
 
 type SelectProps = {
   className?: string,
   label?: string,
-  onSelect?: (e: SyntheticEvent) => void | boolean,
+  onSelect?: (e: SelectItem) => void,
   value: SelectItem,
   items: Array<SelectItem>,
   disabled?: boolean,
