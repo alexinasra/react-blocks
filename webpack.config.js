@@ -94,6 +94,7 @@ module.exports = {
     host: HOST,
     port: PORT,
 
+    before: require(path.join(DEMO, 'api')),
     // CopyWebpackPlugin: This is required for webpack-dev-server.
     // The path should be an absolute path to your build destination.
     contentBase: BUILD
