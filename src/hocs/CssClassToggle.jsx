@@ -11,8 +11,8 @@ function CssClassToggle(
   offEvent: string = 'onMouseUp',
   onClass: string = 'active',
   offClass: string = undefined
-): Node {
-  return ((WrappedComponent: ComponentType): Node => (
+): ComponentType {
+  return ((WrappedComponent: ComponentType): ComponentType => (
     class extends Component<{ className?: string }> {
       constructor(props: { [string]: object }) {
         super(props);
