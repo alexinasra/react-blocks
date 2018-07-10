@@ -5,7 +5,9 @@
   justify-content: flex-start;
   color: $color-primary;
   a { outline:  none }
-  & > a, .nav-link {
+  & > a,
+  .nav-link {
+    color: $color-primary;
     text-align: center;
     margin: 6px 9px;
     padding: 3px 9px;
