@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import Icon from '@components/Icon';
 
 type NavRouterLinkProps = {
+  to: string,
   label: string,
   iconName?: string,
   className?: string,
@@ -24,7 +25,9 @@ const NavRouterLink = ({
     className={classnames('nav-link nav-router_link', className)}
     {...props}>
     {iconName && <Icon name={iconName} />}
-    <span className="label">{label}</span>
+    <span className="label">
+      {label}
+    </span>
   </NavLink>
 );
 NavRouterLink.defaultProps = {
