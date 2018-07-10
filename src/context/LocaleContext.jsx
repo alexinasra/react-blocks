@@ -11,7 +11,7 @@ type LocaleContext = {
 export default LocaleContext;
 
 const { Provider, Consumer } = React.createContext({
-  lang: 'en',
+  lng: 'en',
   direction: 'ltr',
   currency: 'USD',
   timeFormat: 'hh:mm',
