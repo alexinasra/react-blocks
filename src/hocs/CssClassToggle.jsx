@@ -12,7 +12,7 @@ function CssClassToggle(
   onClass: string = 'active',
   offClass: string = undefined
 ): ComponentType {
-  return ((WrappedComponent: ComponentType): ComponentType => (
+  return ((WrappedComponent: ComponentType): Node => (
     class extends Component<{ className?: string }> {
       constructor(props: { [string]: object }) {
         super(props);

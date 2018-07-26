@@ -1,31 +1,33 @@
 import React from 'react';
-import Nav, { NavAction, NavDropdown } from '@components/Nav';
-import Menu, { MenuItem } from '@components/Menu';
-import Scrollbar from '@components/Scrollbar';
+import type { Node } from 'react';
+import { I18n } from 'react-i18next';
 
-const MenuOne = (props: { [string]: mixed }): React.Node => (
-  <Menu>
-    <Scrollbar style={{ height: '100px' }}>
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 1" />
-    </Scrollbar>
-  </Menu>
-);
+import Nav, { NavRouterLink } from '@components/Nav';
 
-export default (props: { [string]: mixed }): React.Node => (
-  <Nav direction="row">
-    <NavDropdown label="Dropdown" menu={<MenuOne />} />
-    <NavDropdown label="Dropdown" menu={<MenuOne />} />
-    <NavDropdown label="Dropdown" menu={<MenuOne />} />
-    <NavDropdown label="Dropdown" menu={<MenuOne />} />
-    <NavAction label="Action" />
-    <NavAction label="Action" />
-    <NavAction label="Action" />
-  </Nav>
+import type LocaleContext from '@context/LocaleContext';
+import { LocaleContextConsumer } from '@context/LocaleContext';
+
+
+export default (): Node => (
+  <LocaleContextConsumer>
+    {
+      (localeContext: LocaleContext): Node => (
+        <I18n>
+          {
+            (t: (string) => string, { i18n }: { [key: string]: mixed }): Node => (
+              <Nav direction="row"
+                className="app_nav">
+                <NavRouterLink
+                  label={t('Navigations.Home.label')}
+                  to={`/${localeContext.lng}`} />
+                <NavRouterLink
+                  label={t('Navigations.Form.label')}
+                  to={`/${localeContext.lng}/form`} />
+              </Nav>
+            )
+          }
+        </I18n>
+      )
+    }
+  </LocaleContextConsumer>
 );

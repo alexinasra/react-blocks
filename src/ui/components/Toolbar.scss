@@ -8,15 +8,22 @@
   padding: 8px 16px;
 
   user-select: none;
-  background: $color-primary;
-  color: $color-white;
+  background: get-color('primary', 'light');
+  color: get-color('text-alternative', 'light');
   //margin-bottom: 16px;
-  .siparator{
+  .separator{
     flex-grow: 1;
   }
+  .logo-container {
+    min-width: 120px;
+    text-align: center;
+  }
   .actions-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     * {
-      color: $color-white;
+      color: get-color('text-alternative', 'light');
     }
   }
   .title-container {

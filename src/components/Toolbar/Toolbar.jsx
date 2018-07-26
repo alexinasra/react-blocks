@@ -10,8 +10,8 @@ import Subheader from '@components/Subheader';
 type ToolbarProps = {
   className?: string,
   children: Node,
-  menuButton: Node,
-  logo: Node,
+  menuButton?: Node,
+  logo?: Node,
   title?: string,
   subheader?: string,
   [string]: mixed
@@ -50,7 +50,6 @@ const Toolbar = ({
           </Subheader>)}
       </div>
     )}
-    <div className="siparator" />
     <div className="actions-container">
       {children}
     </div>
@@ -60,7 +59,9 @@ const Toolbar = ({
 Toolbar.defaultProps = {
   className: undefined,
   title: undefined,
-  subheader: undefined
+  subheader: undefined,
+  logo: undefined,
+  menuButton: undefined
 };
 
 export default Toolbar;

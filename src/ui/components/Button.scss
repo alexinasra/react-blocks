@@ -1,5 +1,11 @@
 $flat_button-focused-background: darken($color-background, 15%);
-$flat_button-pressed-background: darken($color-background, 30%);
+
+$flat-button-text-light: darken(get-color('background', 'light'), 87%);
+$flat-button-bg-focues-light: darken(get-color('background', 'light'), 15%);
+
+$flat-button-text-dark: lighten(get-color('background', 'dark'), 87%);
+$flat-button-bg-focues-dark: lighten(get-color('background', 'dark'), 15%);
+
 .button {
   @extend %ripple;
   border: none;
@@ -10,14 +16,13 @@ $flat_button-pressed-background: darken($color-background, 30%);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 14px;
-  color: $color-text-button;
+  color: $flat-button-text-light;
   border-radius: 2px;
   padding: 0 8px;
   margin: 0 8px;
   height: 36px;
   min-width: 88px;
   & > span {
-
     vertical-align: middle;
   }
   & > .icon {
@@ -38,45 +43,9 @@ $flat_button-pressed-background: darken($color-background, 30%);
 .button.flat {
   border: 8px;
   &:focus, &:hover {
-    background: $flat_button-focused-background;
+    background: $flat-button-bg-focues-light;
   }
 
-}
-
-.flat.button.primary {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
-}
-
-.flat.button.secondary {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
-}
-
-.flat.button.success {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
-}
-
-.flat.button.info {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
-}
-
-.flat.button.warning {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
-}
-
-.flat.button.danger {
-  &:focus {
-    background: $flat_button-focused-background;
-  }
 }
 
 .flat.button:disabled {

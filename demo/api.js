@@ -1,3 +1,4 @@
+const express = require('express');
 const i18next = require('i18next'),
   FilesystemBackend = require('i18next-sync-fs-backend'),
   i18nextMiddleware = require('i18next-express-middleware');
@@ -8,7 +9,7 @@ i18next
   .use(FilesystemBackend)
   .init(
     {
-      debug: true,
+      debug: false,
       initImmediate: false,
       fallbackLng: 'en',
       whitelist: ['en', 'ar'],
@@ -32,6 +33,7 @@ i18next
 
 module.exports = function (app) {
   app.use(i18nextMiddleware.handle(i18next));
+  app.use('/locales', express.static(path.join(__dirname, './data/locales/')));
   app.get('/api/locales/site/:key', (req, res) => {
     const key = req.params.key;
 

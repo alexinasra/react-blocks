@@ -1,0 +1,22 @@
+{
+  "Navigations": {
+    "Home": {
+      "label": "ألصفحه الرئيسيه"
+    },
+    "Form": {
+      "label": "استمارة"
+    }
+  },
+  "LanguageSelect": {
+    "en": "English",
+    "ar": "العربيه"
+  },
+  "Views": {
+    "Form": {
+      "fullName": "الأسم الكامل",
+      "email": "البريد الألكتروني",
+      "password": "كلمه مرور",
+      "signup": "تسجيل"
+    }
+  }
+}

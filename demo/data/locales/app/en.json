@@ -1,0 +1,22 @@
+{
+  "Navigations": {
+    "Home": {
+      "label": "Home"
+    },
+    "Form": {
+      "label": "Form"
+    }
+  },
+  "LanguageSelect": {
+    "en": "English",
+    "ar": "Arabic (العربيه)"
+  },
+  "Views": {
+    "Form": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "signup": "Signup"
+    }
+  }
+}

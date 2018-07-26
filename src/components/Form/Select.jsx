@@ -8,7 +8,7 @@ import Menu, { MenuItem } from '@components/Menu';
 import Icon from '@components/Icon';
 import BottomLine from '@components/BottomLine';
 
-type SelectItem = {
+export type SelectItem = {
   key: string,
   value: mixed,
   label: string
@@ -18,7 +18,7 @@ type SelectProps = {
   className?: string,
   label?: string,
   onSelect?: (e: SelectItem) => void,
-  value: SelectItem,
+  value: SelectItem | string,
   items: Array<SelectItem>,
   disabled?: boolean,
   [string]: mixed
@@ -59,9 +59,11 @@ export default class Select extends Component<SelectProps> {
   handleKeyPress(e: SyntheticEvent) {
     if (e.key === ' ' || e.key === 'Enter') {
       this.handleMenuOpen();
+      e.preventDefault();
     }
     if (e.key === 'Escape') {
       this.handleMenuClose();
+      e.preventDefault();
     }
   }
 
@@ -96,6 +98,7 @@ export default class Select extends Component<SelectProps> {
       active
     } = this.state;
 
+
     const menuItems = items.map((item: SelectItem): Node => (
       <MenuItem key={item.key}
         className={classnames('select-item', {
@@ -109,7 +112,12 @@ export default class Select extends Component<SelectProps> {
     let displayText = '';
 
     if (value) {
-      displayText = value.label;
+      if (typeof value === 'string') {
+        const item = items.find((i: SelectItem): boolean => (i.value === value));
+        displayText = item.label;
+      } else {
+        displayText = value.label;
+      }
     } else if (label) {
       displayText = label;
     } else if (items[0]) {

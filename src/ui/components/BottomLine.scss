@@ -1,0 +1,75 @@
+$bottom-line-bg-active-light: get-color('primary', 'light');
+$bottom-line-bg-unactive-light: get-color('text', 'light');
+$bottom-line-bg-disabled-light: get-color('disabled', 'light');
+
+$bottom-line-bg-active-dark: get-color('primary', 'dark');
+$bottom-line-bg-unactive-dark: get-color('text', 'dark');
+$bottom-line-bg-disabled-dark: get-color('disabled', 'dark');
+
+
+.bottom-line{
+  position: relative;
+  height: 2px;
+  .unactive-line{
+    position: absolute;
+    background: $bottom-line-bg-unactive-light;
+    top: 1px;
+    height: 1px;
+    width: 100%;
+  }
+  .active-line {
+    position: absolute;
+    display: block;
+    background: $bottom-line-bg-active-light;
+    border-radius: 1px;
+    height: 2px;
+    left: 50%;
+    width: 0;
+    transition: 220ms;
+  }
+  .disabled-line {
+    position: absolute;
+    display: none;
+    background: $bottom-line-bg-disabled-light;
+    box-sizing: border-box;
+    height: 2px;
+    width: 100%;
+  }
+  &.is-active {
+    .active-line  {
+      width: 100%;
+      left:0;
+    }
+  }
+  &.is-disabled {
+    .active-line, .unactive-line {
+      display: none;
+    }
+    .disabled-line {
+      display: block;
+    }
+  }
+
+  @include light {
+    .unactive-line{
+      background: $bottom-line-bg-unactive-light;
+    }
+    .active-line {
+      background: $bottom-line-bg-active-light;
+    }
+    .disabled-line {
+      border-bottom: 1px dotted $bottom-line-bg-disabled-light;
+    }
+  }
+  @include dark {
+    .unactive-line{
+      background: $bottom-line-bg-unactive-dark;
+    }
+    .active-line {
+      background: $bottom-line-bg-active-dark;
+    }
+    .disabled-line {
+      border-bottom: 1px dotted $bottom-line-bg-disabled-dark;
+    }
+  }
+}

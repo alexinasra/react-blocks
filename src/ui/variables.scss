@@ -7,7 +7,52 @@ $radius-unit: 2.5px !default;
 // font
 $font-size: 14px !default;
 
+$colors: (
+  light: (
+    primary: lighten(#FF911D, 20%),
+    secondary: #177D9F,
+    white: #FFF,
+    black: #000,
+    background: #FFF,
+    success: #4dbd74,
+    info: #63c2de,
+    warning: #f8cb00,
+    danger: #f83c3b,
+    text: lighten(#000, 15%),
+    text-alternative: #FFF,
+    disabled: darken(#FFF, 25%)
+  ),
+  dark: (
+    primary: #FF911D,
+    secondary: #177D9F,
+    white: #FFF,
+    black: #000,
+    background: #FFF,
+    success: #4dbd74,
+    info: #63c2de,
+    warning: #f8cb00,
+    danger: #f83c3b,
+    text: lighten(#000, 15%),
+    text-alternative: #FFF,
+    disabled: darken(#FFF, 25%)
+  )
+) !default;
 
+@function get-color($name, $variant) {
+  @return map-get(map-get($colors, $variant), $name);
+}
+
+@mixin dark {
+  .dark &, &.dark {
+    @content;
+  }
+}
+
+@mixin light {
+  .light &, &.light {
+    @content;
+  }
+}
 // colors
 $color-primary:             #FF911D !default;
 $color-secondary:           #177D9F !default;

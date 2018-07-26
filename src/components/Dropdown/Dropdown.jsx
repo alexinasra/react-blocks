@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Component, Element } from 'react';
+import React, { Component } from 'react';
 import type { Node } from 'react';
 import classnames from 'classnames';
 import Menu from '@components/Menu';
@@ -10,7 +10,7 @@ type DropdownProps = {
   onRef?: (e: Node) => void | boolean,
   children: Node,
   className?: string,
-  menu: Element<Menu>,
+  menu: Menu,
   direction?: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
 };
 

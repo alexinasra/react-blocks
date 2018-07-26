@@ -1,16 +1,16 @@
 @import '~draft-js/dist/Draft.css';
-@import './variables.scss';
-@import './mixins/context-direction.scss';
-@import './mixins/include-media.scss';
-@import './scss/fonts.scss';
-@import './scss/reset.scss';
-@import './scss/helper_classes.scss';
+@import './ui/variables.scss';
+@import './ui/mixins/context-direction.scss';
+@import './ui/mixins/include-media.scss';
+@import './ui/utils/fonts.scss';
+@import './ui/utils/reset.scss';
+@import './ui/utils/helper_classes.scss';
 
 
-@import './scss/placeholders/ripple.scss';
-@import './scss/placeholders/caption.scss';
-@import './scss/utils/grid.scss';
-@import './scss/utils/common-classes.scss';
+@import './ui/placeholders/ripple.scss';
+@import './ui/placeholders/caption.scss';
+@import './ui/utils/grid.scss';
+@import './ui/utils/common-classes.scss';
 
 %display {
   color: $color-text-display;
@@ -19,59 +19,42 @@
   @extend %display;
   font-size: 76px;
 }
+$colors: (
+  light: (
+    primary: #FF911D,
+    secondary: #177D9F,
+    white: #FFF,
+    black: #000,
+    background: #FFF,
+    success: #4dbd74,
+    info: #63c2de,
+    warning: #f8cb00,
+    danger: #f83c3b,
+    text: lighten(#000, 15%),
+    text-alternative: #FFF
+  ),
+  dark: (
+    primary: #FF911D,
+    secondary: #177D9F,
+    white: #FFF,
+    black: #000,
+    background: lighten(#FF911D, 10%),
+    success: #4dbd74,
+    info: #63c2de,
+    warning: #f8cb00,
+    danger: #f83c3b,
+    text: darken(#FFF, 15%),
+    text-alternative: #FFF
+  )
+);
 
+body {
+  background: get-color('background', 'light');
+  color: get-color('text', 'light');
+}
+body.dark {
+  background: get-color('background', 'dark');
+  color: get-color('text', 'dark');
+}
 //components
-
-
-@import './components/Avatar/Avatar';
-@import './components/Icon/Icon';
-@import './components/Button/Button';
-@import './components/Button/ButtonGroup';
-@import './components/Divider/Divider';
-@import './components/BottomLine/BottomLine';
-@import './components/TextCounter/TextCounter';
-@import './components/Title/Title';
-@import './components/Subheader/Subheader';
-
-// Menu
-@import './components/Menu/Menu';
-
-// Dropdown
-@import './components/Dropdown/Dropdown';
-
-// Scrollbar
-@import './components/Scrollbar/ScrollbarThumb';
-@import './components/Scrollbar/ScrollbarRail';
-@import './components/Scrollbar/Scrollbar';
-
-//Collapse
-@import './components/Collapse/Collapse';
-
-// List
-@import './components/List/List';
-@import './components/List/ListItem';
-
-// GridList
-@import './components/GridList/GridList';
-
-// Form
-@import './components/Form/Form';
-@import './components/Form/FieldContainer';
-@import './components/Form/TextArea';
-@import './components/Form/Checkbox';
-@import './components/Form/CheckboxGroup';
-@import './components/Form/Radio';
-@import './components/Form/Select';
-
-//Card
-@import './components/Card/Card';
-@import './components/Card/CardTitle';
-@import './components/Card/CardSection';
-@import './components/Card/CardImage';
-@import './components/Card/CardParagraph';
-
-//Toolbar
-@import './components/Toolbar/Toolbar';
-
-//Nav
-@import './components/Nav/Nav';
+@import './ui/components/components';

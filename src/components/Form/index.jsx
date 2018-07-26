@@ -8,6 +8,8 @@ import Checkbox from './Checkbox';
 import CheckboxGroup from './CheckboxGroup';
 import Radio from './Radio';
 
+import type { SelectItem } from './Select';
+
 export default Form;
 export {
   FieldContainer,
@@ -16,5 +18,6 @@ export {
   Select,
   Checkbox,
   CheckboxGroup,
-  Radio
+  Radio,
+  SelectItem
 };

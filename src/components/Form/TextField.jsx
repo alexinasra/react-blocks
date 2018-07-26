@@ -49,6 +49,14 @@ class TextField extends Component<TextFieldProps> {
     this.handleLabelClick = this.handleLabelClick.bind(this);
   }
 
+  componentDidMount() {
+    if (this.input) {
+      this.input.onchage = this.handleOnInputChange;
+      this.input.onfocus = this.handleOnInputFocus;
+      this.input.onblur = this.handleOnInputBlur;
+    }
+  }
+
   handleOnInputFocus() {
     this.setState({ hasFocus: true, isTouched: true });
   }
@@ -105,9 +113,6 @@ class TextField extends Component<TextFieldProps> {
         {
           lines <= 1 ? (
             <input ref={(elm?: Node) => { this.input = elm; }}
-              onFocus={this.handleOnInputFocus}
-              onBlur={this.handleOnInputBlur}
-              onChange={this.handleOnInputChange}
               type={type}
               value={value}
               disabled={disabled}
@@ -115,9 +120,6 @@ class TextField extends Component<TextFieldProps> {
           ) : (
             <textarea ref={(elm?: Node) => { this.input = elm; }}
               rows={lines}
-              onFocus={this.handleOnInputFocus}
-              onBlur={this.handleOnInputBlur}
-              onChange={this.handleOnInputChange}
               type={type}
               value={value}
               disabled={disabled}

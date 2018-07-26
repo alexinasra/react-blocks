@@ -2,7 +2,6 @@
   box-sizing: border-box;
   padding: 16px 0 8px;
   position: relative;
-  background: white;
 
   .field-container__input {
     position: relative;
@@ -17,8 +16,8 @@
       font-family: 'Roboto', sans-serif;
       font-size: 16px;
 
+      background: transparent;
       line-height: 16px;
-      color: darken($color-white, 54%);
       border: none;
       width: 100%;
     }
@@ -51,7 +50,6 @@
     position: absolute;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: darken($color-white, 54%);
     span:focus, span:active {
       outline: none;
     }
@@ -69,6 +67,39 @@
     .field-container__input {
       opacity: 1;
     }
+  }
+}
+
+
+
+.light .field-container, .field-container.light {
+
+  .field-container__input {
+    textarea, input {
+      color: darken($color-white, 54%);
+    }
+  }
+  &.has-value {
+    .field-container__label {
+    }
+    .field-container__input {
+    }
+  }
+  &.has-changed {
+  }
+  &.is-touched {
+
+  }
+  &.is-dirty {
+  }
+}
+.field-container.has-label {
+  .field-container__label {
+    color: darken($color-white, 54%);
+  }
+
+  .field-container__input {
+    opacity: 0;
   }
   &.has-focus, &.has-value {
     .field-container__label {
