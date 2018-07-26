@@ -17,8 +17,8 @@ type FieldContainerProps = {
   touched?: boolean,
   dirty?: boolean,
   focused?: boolean,
-  onClick: (e: SyntheticEvent) => void | boolean,
-  errorList: Node,
+  onClick?: (e: SyntheticEvent) => void | boolean,
+  errorList?: Node,
   children: Node,
   [string]: mixed
 };
@@ -35,7 +35,9 @@ class FieldContainer extends Component<FieldContainerProps> {
     helperText: undefined,
     touched: false,
     dirty: false,
-    focused: false
+    focused: false,
+    errorList: undefined,
+    onClick: () => {}
   };
 
   constructor(props: FieldContainer) {
