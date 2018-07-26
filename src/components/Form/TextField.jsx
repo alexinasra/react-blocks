@@ -51,7 +51,7 @@ class TextField extends Component<TextFieldProps> {
 
   componentDidMount() {
     if (this.input) {
-      this.input.onchage = this.handleOnInputChange;
+      this.input.onchange = this.handleOnInputChange;
       this.input.onfocus = this.handleOnInputFocus;
       this.input.onblur = this.handleOnInputBlur;
     }
