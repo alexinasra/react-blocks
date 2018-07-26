@@ -127,7 +127,7 @@ class TextField extends Component<TextFieldProps> {
           )
         }
         {(max > 0 || min > 0) && (
-          <TextCounter className="text-field__counter" text={value} min={min} max={max} />
+          <TextCounter className="text-field__counter" text={value || ''} min={min} max={max} />
         )}
       </FieldContainer>
     );
