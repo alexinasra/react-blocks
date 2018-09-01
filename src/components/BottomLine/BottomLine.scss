@@ -1,10 +1,10 @@
-$bottom-line-bg-active-light: get-color('primary', 'light');
-$bottom-line-bg-unactive-light: get-color('text', 'light');
-$bottom-line-bg-disabled-light: get-color('disabled', 'light');
+$bottom-line-bg-active-light: get-color('primary', 'light') !default;
+$bottom-line-bg-unactive-light: get-color('text', 'light') !default;
+$bottom-line-bg-disabled-light: get-color('disabled', 'light') !default;
 
-$bottom-line-bg-active-dark: get-color('primary', 'dark');
-$bottom-line-bg-unactive-dark: get-color('text', 'dark');
-$bottom-line-bg-disabled-dark: get-color('disabled', 'dark');
+$bottom-line-bg-active-dark: get-color('primary', 'dark') !default;
+$bottom-line-bg-unactive-dark: get-color('text', 'dark') !default;
+$bottom-line-bg-disabled-dark: get-color('disabled', 'dark') !default;
 
 
 .bottom-line{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import type { Node } from 'react';
 import { I18n } from 'react-i18next';
 
@@ -10,49 +10,120 @@ import GridLayout, {
   GridRow,
   GridColumn
 } from '@components/GridLayout';
+import List, { ListItem } from '@components/List';
+import Dropdown from '@components/Dropdown';
+import Menu, { MenuItem } from '@components/Menu';
 
-const FormPage = (): Node => (
-  <I18n>
-    {
-      (t: (string) => string): Node => (
-        <div>
-          <Form>
+type FormPageProps = {};
+class FormPage extends Component<FormPageProps> {
+  constructor(props: FormPageProps) {
+    super(props);
+
+    this.state = {
+      fullName: '',
+      email: ''
+    };
+
+    this.handleFullNameChange = this.handleFullNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+  }
+
+  handleFullNameChange(fullName: string) {
+    console.log(fullName);
+    this.setState({ fullName });
+  }
+
+  handleEmailChange(email: string) {
+    this.setState({ email });
+  }
+
+  render(): Node {
+    const { fullName, email } = this.state;
+
+    return (
+      <I18n>
+        {
+          (t: (string) => string): Node => (
             <GridLayout>
               <GridRow>
-                <GridColumn span={4}>
-                  <TextField
-                    name="full_name"
-                    type="text"
-                    label={t('Views.Form.fullName')} />
+                <GridColumn span="grow">
+                  <Dropdown
+                    direction="down"
+                    ref={(ref: Node) => { this.dropdown1 = ref; }}
+                    menu={(
+                      <Menu>
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                      </Menu>
+                    )}
+                    >
+                    <Button label="click" onClick={() => { this.dropdown1.open(); }} />
+                  </Dropdown>
+                  <Dropdown
+                    direction="up"
+                    ref={(ref: Node) => { this.dropdown2 = ref; }}
+                    menu={(
+                      <Menu>
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                      </Menu>
+                    )}
+                    >
+                    <Button label="click" onClick={() => { this.dropdown2.open(); }} />
+                  </Dropdown>
+                  <Dropdown
+                    direction="upLeft"
+                    ref={(ref: Node) => { this.dropdown3 = ref; }}
+                    menu={(
+                      <Menu>
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                        <MenuItem icon="menu" label="DropdownItem" />
+                      </Menu>
+                    )}
+                    >
+                    <Button label="click" onClick={() => { this.dropdown3.open(); }} />
+                  </Dropdown>
                 </GridColumn>
-              </GridRow>
-              <GridRow>
-                <GridColumn span={4}>
-                  <TextField
-                    name="email"
-                    type="email"
-                    label={t('Views.Form.email')} />
+                <GridColumn span={8}>
+                  <Form>
+                    <List>
+                      <ListItem>
+                        <TextField
+                          name="full_name"
+                          type="text"
+                          value={fullName}
+                          onChange={this.handleFullNameChange}
+                          label={t('Views.Form.fullName')} />
+                      </ListItem>
+                      <ListItem>
+                        <TextField
+                          name="email"
+                          type="email"
+                          value={email}
+                          onChange={this.handleEmailChange}
+                          label={t('Views.Form.email')} />
+                      </ListItem>
+                      <ListItem>
+                        <Button type="submit" label={t('Views.Form.signup')} />
+                      </ListItem>
+                    </List>
+                  </Form>
                 </GridColumn>
+                <GridColumn span="grow" />
               </GridRow>
-              <GridRow>
-                <GridColumn span={4}>
-                  <TextField
-                    name="pwd"
-                    type="password"
-                    label={t('Views.Form.password')} />
-                </GridColumn>
-              </GridRow>
-              <GridRow>
-                <GridColumn span={4}>
-                  <Button type="submit" label={t('Views.Form.signup')} />
-                </GridColumn>
-              </GridRow>
+
             </GridLayout>
-          </Form>
-        </div>
-      )
-    }
-  </I18n>
-);
+          )
+        }
+      </I18n>
+    );
+  }
+}
 
 export default FormPage;

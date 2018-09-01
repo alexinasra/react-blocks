@@ -3,29 +3,25 @@ import classNames from 'classnames';
 import type { Node } from 'react';
 
 import Toolbar from '@components/Toolbar';
-
+import Button from '@components/Button';
 import LanguageSelect from './LanguageSelect';
-import AppNav from './AppNav';
 
 type AppToolbarProps = {
-  stage: 'top' | 'scroll'
+  expanded: boolean,
+  onMenuToggle: (state: boolean) => void
 };
 
-const AppToolbar = ({ stage }: AppToolbarProps): Node => (
+const AppToolbar = ({ expanded, onMenuToggle }: AppToolbarProps): Node => (
   <Toolbar
     className={
       classNames(
-        'app_toolbar',
-        `on-${stage}`
+        'app_toolbar'
       )
     }
-    logo={(
-      <span>
-        React Blocks
-      </span>
+    menuButton={(
+      <Button iconName="menu" onClick={() => { onMenuToggle(!expanded); }} />
     )}
   >
-    <AppNav />
     <div className="separator" />
     <LanguageSelect />
   </Toolbar>

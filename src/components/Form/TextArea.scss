@@ -2,7 +2,7 @@
 .textarea {
   margin: 3px;
 
-  border: 1px solid $color-text-caption;
+  border: 1px solid get-color('caption', 'light');
   border-radius: 2px;
   .label-container {
     padding: 8px 16px;

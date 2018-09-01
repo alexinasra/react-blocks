@@ -10,13 +10,11 @@ type DropdownProps = {
   onRef?: (e: Node) => void | boolean,
   children: Node,
   className?: string,
-  menu: Menu,
-  direction?: 'down' | 'up' | 'left' | 'right' | 'upLeft' | 'upRight' | 'downLeft' | 'downRight'
+  menu: Menu
 };
 
 class Dropdown extends Component<DropdownProps> {
   static defaultProps: DropdownProps = {
-    direction: 'down',
     className: undefined,
     onRef: () => {},
     onOpen: () => {},
@@ -33,83 +31,7 @@ class Dropdown extends Component<DropdownProps> {
   }
 
   componentDidMount() {
-    const height = this.domRef ? this.domRef.clientHeight : 0;
-    const width = this.domRef ? this.domRef.clientWidth : 0;
-    const containerHeight = this.containerDomRef ? this.containerDomRef.clientHeight : 0;
-    const containerWidth = this.containerDomRef ? this.containerDomRef.clientWidth : 0;
-    const heightDiff = Math.abs(containerHeight - height);
-    const widthDiff = Math.abs(containerWidth - width);
-    const {
-      direction,
-      onRef
-    } = this.props;
-    switch (direction) {
-    case 'up':
-      this.setPosition({
-        right: -widthDiff / 2,
-        left: -widthDiff / 2,
-        up: 'auto',
-        down: 0
-      });
-      break;
-    case 'down':
-      this.setPosition({
-        right: -widthDiff / 2,
-        left: -widthDiff / 2,
-        up: 0,
-        down: 'auto'
-      });
-      break;
-    case 'left':
-      this.setPosition({
-        right: 'auto',
-        left: 0,
-        up: -heightDiff / 2,
-        down: -heightDiff / 2
-      });
-      break;
-    case 'right':
-      this.setPosition({
-        left: 'auto',
-        right: 0,
-        up: -heightDiff / 2,
-        down: -heightDiff / 2
-      });
-      break;
-    case 'upLeft':
-      this.setPosition({
-        left: 'auto',
-        right: 0,
-        up: 'auto',
-        down: 0
-      });
-      break;
-    case 'upRight':
-      this.setPosition({
-        right: 'auto',
-        left: 0,
-        up: 'auto',
-        down: 0
-      });
-      break;
-    case 'downLeft':
-      this.setPosition({
-        left: 'auto',
-        right: 0,
-        up: 0,
-        down: 'auto'
-      });
-      break;
-    case 'downRight':
-    default:
-      this.setPosition({
-        left: 0,
-        right: 'auto',
-        up: 0,
-        down: 'auto'
-      });
-    }
-
+    const { onRef } = this.props;
     if (onRef) {
       onRef(this);
     }
@@ -164,8 +86,8 @@ class Dropdown extends Component<DropdownProps> {
   }
 
   render(): Node {
-    const { menu, direction, className, onOpen, onClose, onRef, ...props } = this.props;
-    const { up, down, right, left, isOpen } = this.state;
+    const { menu, className, onOpen, onClose, onRef, ...props } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div ref={(elm?: Node) => { this.domRef = elm; }}
@@ -173,17 +95,11 @@ class Dropdown extends Component<DropdownProps> {
           classnames(
             'dropdown',
             className,
-            `open-${direction}`,
             { 'is-open': isOpen }
           )}
         {...props}>
         {props.children}
         <div ref={(elm?: Node) => { this.containerDomRef = elm; }}
-          style={{
-            up,
-            down,
-            right,
-            left }}
           className="menu-container">
           {menu}
         </div>

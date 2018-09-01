@@ -6,13 +6,13 @@
   }
   &.is-long {
     .max, .count {
-      color: $color-danger;
+      color: get-color('danger', 'light');
       font-weight: bold;
     }
   }
   &.is-short {
     .count {
-      color: $color-danger;
+      color: get-color('danger', 'light');
       font-weight: bold;
     }
   }

@@ -2,35 +2,4 @@ html, body {
   padding: 0;
   margin: 0;
 }
-.demo-active {
-  background: red;
-  transition: background 330ms;
-}
-.demo-unactive {
-  background: green;
-  transition: background 130ms;
-}
-
-.app_nav__lang-select{
-  width: 120px;
-  .select {
-    .value {
-      background: $color-primary;
-    }
-    .bottom-line .active-line, .menu{
-      background: $color-secondary;
-    }
-  }
-}
-.app_toolbar {
-  padding-top: 90px;
-  transition: 220ms transform;
-  z-index: 9999;
-}
-.app_toolbar.on-scroll {
-  position: fixed;
-  left: 0;
-  right: 0;
-  transform: translateY(-82px);
-  box-shadow: 0 4px 0 0px rgba($color-text-disabled, .4);
-}
+@import './Layout/Layout';

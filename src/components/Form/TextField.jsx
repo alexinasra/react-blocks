@@ -18,7 +18,8 @@ type TextFieldProps = {
   helperText?: string,
   max?: number,
   min?: number,
-  lines?: number
+  lines?: number,
+  onChange?: (value: string) => void
 };
 
 class TextField extends Component<TextFieldProps> {
@@ -32,7 +33,8 @@ class TextField extends Component<TextFieldProps> {
     className: undefined,
     value: undefined,
     label: undefined,
-    lines: 1
+    lines: 1,
+    onChange: () => {}
   }
 
   constructor(props: TextFieldProps) {
@@ -41,7 +43,7 @@ class TextField extends Component<TextFieldProps> {
       isDirty: false,
       isTouched: false,
       hasFocus: false,
-      value: props.value
+      value: props.value || ''
     };
     this.handleOnInputFocus = this.handleOnInputFocus.bind(this);
     this.handleOnInputBlur = this.handleOnInputBlur.bind(this);
@@ -51,7 +53,7 @@ class TextField extends Component<TextFieldProps> {
 
   componentDidMount() {
     if (this.input) {
-      this.input.onmousedown = this.handleOnInputChange;
+      this.input.onchange = this.handleOnInputChange;
       this.input.onfocus = this.handleOnInputFocus;
       this.input.onblur = this.handleOnInputBlur;
     }
@@ -66,12 +68,15 @@ class TextField extends Component<TextFieldProps> {
   }
 
   handleOnInputChange(e: SyntheticEvent) {
-    const { max } = this.props;
-
+    console.log('change');
+    const { max, onChange } = this.props;
+    const { value } = e.target;
     if ((max > 0) && (e.target.value.length > max)) {
       return;
     }
-    this.setState({ isDirty: true, value: e.target.value });
+      console.log(e.target);
+    this.setState({ isDirty: true, value });
+    onChange(value);
   }
 
   handleLabelClick() {
@@ -114,14 +119,14 @@ class TextField extends Component<TextFieldProps> {
           lines <= 1 ? (
             <input ref={(elm?: Node) => { this.input = elm; }}
               type={type}
-              value={value}
+              defaultValue={value}
               disabled={disabled}
               placeholder={hint} />
           ) : (
             <textarea ref={(elm?: Node) => { this.input = elm; }}
               rows={lines}
               type={type}
-              value={value}
+              defaultValue={value}
               disabled={disabled}
               placeholder={hint} />
           )

@@ -4,9 +4,8 @@
   margin: 8px 16px;
   border-radius: 2px;
   &.raised {
-    box-shadow: 0 1px 2px 1px rgba($color-black, 0.5);
+    box-shadow: 0 1px 2px 1px rgba(#000, 0.5);
     .button {
-      @extend .raised;
       margin: 0;
       box-shadow: none;
     }

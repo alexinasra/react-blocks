@@ -76,7 +76,7 @@
 
   .field-container__input {
     textarea, input {
-      color: darken($color-white, 54%);
+      color: get-color('caption', 'light');
     }
   }
   &.has-value {
@@ -95,7 +95,7 @@
 }
 .field-container.has-label {
   .field-container__label {
-    color: darken($color-white, 54%);
+    color: get-color('caption', 'light');
   }
 
   .field-container__input {
@@ -103,14 +103,14 @@
   }
   &.has-focus, &.has-value {
     .field-container__label {
-      color: $color-primary;
+      color: get-color('primary', 'light');
     }
   }
 }
 
 .field-container.is-disabled {
   .field-container__label {
-    color: $color-text-disabled;
+    color: get-color('disabled', 'light');
   }
   .field-container__input {
 

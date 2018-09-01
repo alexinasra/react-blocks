@@ -8,7 +8,6 @@
   .value {
     text-transform: capitalize;
     min-width: 90px;
-    background: $color-background;
     border-radius: 2px;
     display: block;
 
@@ -31,14 +30,14 @@
     height: 24px;
     line-height: 24px;
     &.is-selected {
-      background: rgba($color-black, 0.2);
+      background: rgba(#000, 0.2);
     }
   }
 
   &.is-disabled {
     cursor: not-allowed;
     .value {
-      color: $color-text-disabled;
+      color: get-color('disabled', 'light');
     }
   }
 }

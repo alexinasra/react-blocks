@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import type { Node } from 'react';
-
+import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import type LocaleContext from '@context/LocaleContext';
 import { LocaleContextProvider } from '@context/LocaleContext';
 
 import GridLayout, { GridRow, GridColumn } from '@components/GridLayout';
-
+import Scrollbar from '@components/Scrollbar';
 import AppToolbar from './AppToolbar';
 import SideNav from './SideNav';
 import type LocaleState, { LocaleAction } from '../store/LocaleReducer/actions';
@@ -29,12 +29,11 @@ class Layout extends Component<{ [string]: mixed }> {
   constructor(props: { [string]: mixed }) {
     super(props);
     this.state = {
-      top: 0
+      expanded: true
     };
   }
 
   componentWillMount() {
-    console.dir(this.props);
     const { params } = this.props.match;
     this.props.ChangeLanguage(params.lng);
   }
@@ -42,12 +41,6 @@ class Layout extends Component<{ [string]: mixed }> {
   componentDidMount() {
     const { lng, direction } = this.props.locale.localeContext;
     setDocumentLanguage(lng, direction);
-    let top = document.documentElement.scrollTop || document.body.scrollTop;
-    this.setTop(top);
-    window.onscroll = () => {
-      top = document.documentElement.scrollTop || document.body.scrollTop;
-      this.setTop(top);
-    };
   }
 
   componentDidUpdate(prevProps: { [string]: mixed }) {
@@ -62,39 +55,34 @@ class Layout extends Component<{ [string]: mixed }> {
     }
   }
 
-  setTop(top: number) {
-    this.setState({ top });
-  }
 
   render(): Node {
     const { children, loading, ...props } = this.props;
-    const { top } = this.state;
+    const { expanded } = this.state;
 
     return (
       <LocaleContextProvider value={this.props.locale.localeContext}>
         <ThemeContextProvider value={{ themeName: 'default', mode: 'ligth' }}>
-          <GridLayout className="app_layout">
-            <GridRow>
-              <GridColumn span="grow" style={{ height: '160px' }}>
-                <AppToolbar stage={
-                    (top > 0) ? 'scroll' : 'top'} />
-              </GridColumn>
-            </GridRow>
-            <GridRow>
-              <GridColumn span={2}>
-                <SideNav />
-              </GridColumn>
-              <GridColumn span="grow">
-                {
-                  loading.isLoading ? (
-                    <div>
-                      Loading ...
-                    </div>
-                  ) : children
-                }
-              </GridColumn>
-            </GridRow>
-          </GridLayout>
+          <div className={classnames('app_layout', { expanded })}>
+              <AppToolbar
+                expanded={expanded}
+                onMenuToggle={(e: boolean) => { this.setState({ expanded: e }); }}
+              />
+            <SideNav expanded={expanded} />
+            <div className="app_page">
+              {
+                loading.isLoading ? (
+                  <div>
+                    Loading ...
+                  </div>
+                ) : (
+                  <Scrollbar>
+                    {children}
+                  </Scrollbar>
+                )
+              }
+            </div>
+          </div>
         </ThemeContextProvider>
       </LocaleContextProvider>
     );

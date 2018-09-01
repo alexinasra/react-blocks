@@ -4,8 +4,5 @@
   font-weight: 600;
   font-size: 24px;
   text-transform: capitalize;
-  color: $color-text-display;
-}
-.title.invert, .invert .title {
-  color: $color-text-display-alternate;
+  color: get-color('text', 'light');
 }

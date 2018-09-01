@@ -1,5 +1,5 @@
 body {
-  color: $color-text-display;
+  color: get-color('text', 'light');
   font-family: 'Roboto', sans-serif;
   @include rtl {
     line-height: 1.2;

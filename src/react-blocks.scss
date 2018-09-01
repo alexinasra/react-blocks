@@ -1,24 +1,4 @@
-@import '~draft-js/dist/Draft.css';
-@import './ui/variables.scss';
-@import './ui/mixins/context-direction.scss';
-@import './ui/mixins/include-media.scss';
-@import './ui/utils/fonts.scss';
-@import './ui/utils/reset.scss';
-@import './ui/utils/helper_classes.scss';
-
-
-@import './ui/placeholders/ripple.scss';
-@import './ui/placeholders/caption.scss';
-@import './ui/utils/grid.scss';
-@import './ui/utils/common-classes.scss';
-
-%display {
-  color: $color-text-display;
-}
-%display-1 {
-  @extend %display;
-  font-size: 76px;
-}
+//@import '~draft-js/dist/Draft.css';
 $colors: (
   light: (
     primary: #FF911D,
@@ -30,23 +10,42 @@ $colors: (
     info: #63c2de,
     warning: #f8cb00,
     danger: #f83c3b,
-    text: lighten(#000, 15%),
-    text-alternative: #FFF
+    text: darken(#FFF, 87%),
+    text-alternative: #FFF,
+    disabled: darken(#FFF, 25%),
+    caption: darken(#FFF, 54%)
   ),
   dark: (
     primary: #FF911D,
     secondary: #177D9F,
     white: #FFF,
     black: #000,
-    background: lighten(#FF911D, 10%),
+    background: darken(#FF911D, 40%),
     success: #4dbd74,
     info: #63c2de,
     warning: #f8cb00,
     danger: #f83c3b,
-    text: darken(#FFF, 15%),
-    text-alternative: #FFF
+    text: darken(#fff, 15%),
+    text-alternative: #000,
+    disabled: lighten(#000, 25%),
+    caption: lighten(#000, 54%)
   )
 );
+
+@import "./ui/animate";
+@import './ui/variables';
+@import './ui/mixins/context-direction';
+@import './ui/mixins/include-media';
+
+@import './ui/utils/fonts';
+@import './ui/utils/reset';
+@import './ui/utils/grid.scss';
+@import './ui/utils/common-classes.scss';
+
+
+@import './ui/placeholders/ripple.scss';
+@import './ui/placeholders/caption.scss';
+
 
 body {
   background: get-color('background', 'light');
@@ -57,4 +56,4 @@ body.dark {
   color: get-color('text', 'dark');
 }
 //components
-@import './ui/components/components';
+@import './ui/components';

@@ -1,0 +1,98 @@
+
+
+@mixin button($mode) {
+
+  .button {
+    @extend %ripple;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    background: transparent;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: get-color('text', $mode);
+    border-radius: 2px;
+    padding: 0 8px;
+    margin: 0 8px;
+    height: 36px;
+    min-width: 88px;
+    & > span {
+      vertical-align: middle;
+    }
+    & > .icon {
+      font-size: 18px;
+      padding: 0;
+      margin: 0;
+      vertical-align: middle;
+    }
+    .icon + .label {
+      @include ltr{
+        margin-left: 8px;
+      }
+      @include rtl{
+        margin-right: 8px;
+      }
+    }
+  }
+  .button.flat {
+    border: 8px;
+    &:focus, &:hover {
+      @if $mode == 'dark' {
+        background: lighten(get-color('background', $mode), 15%);
+      }
+      @if $mode == 'light' {
+        background: darken(get-color('background', $mode), 15%);
+      }
+    }
+
+  }
+
+  $button-colors: 'primary', 'secondary', 'success', 'info', 'warning', 'danger';
+
+
+  @each $c in $button-colors {
+    .button.flat.#{$c} {
+      color: get-color($c, $mode);
+    }
+  }
+
+  .flat.button:disabled {
+    background-color: darken(#FFF, 12%);
+    color: get-color('caption', $mode);
+  }
+
+
+  .raised.button {
+    background: get-color('caption', $mode);
+    color: get-color('background', $mode);
+    margin: 4px 8px;
+    &:active {
+      box-shadow: 0 1px 4px 2px rgba(#000, 0.5);
+    }
+    &:focus {
+      background-color: darken(get-color('caption', $mode), 15%);
+    }
+    &:disabled {
+      background-color: darken(get-color('caption', $mode), 12%);
+      color: get-color('disabled', $mode);
+    }
+  }
+
+  @each $c in $button-colors {
+    .button.raised.#{$c} {
+      background: get-color($c, $mode);
+      &:active {
+        box-shadow: 0 1px 4px 2px rgba(get-color($c, $mode), 0.7);
+      }
+      &:focus {
+        background: darken(get-color($c, $mode), 5%);
+      }
+    }
+  }
+}
+@include button('light');
+.dark {
+  @include button('dark');
+}

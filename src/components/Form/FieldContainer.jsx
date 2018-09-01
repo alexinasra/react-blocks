@@ -83,7 +83,7 @@ class FieldContainer extends Component<FieldContainerProps> {
             'is-required': required,
             'is-dirty': dirty,
             'has-focus': focused,
-            'has-value': empty,
+            'has-value': !empty,
             'has-label': label,
             'fixed-label': fixedLabel },
           className

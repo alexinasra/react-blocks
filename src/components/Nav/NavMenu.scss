@@ -1,0 +1,12 @@
+.nav-menu {
+  & > .container {
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    opacity: 0;
+  }
+  &.open > .container {
+    height: auto;
+    opacity: 1;
+  }
+}

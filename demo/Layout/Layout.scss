@@ -1,0 +1,99 @@
+.app_layout {
+
+}
+
+.app_toolbar {
+  position: fixed;
+  background: get-color('background', 'light');
+  @include left(60px);
+  @include right(0);
+  @include padding-right(16px);
+  .app_nav__lang-select {
+    width: 120px;
+  }
+  .select {
+    @include padding-right(90px);
+  }
+  @include ltr {
+    transition: left 120ms 300ms;
+  }
+  @include rtl {
+    transition: right 120ms 300ms;
+  }
+  .select .text, .select .icon {
+    color: get-color('text', 'light');
+  }
+}
+.expanded .app_toolbar {
+  @include left(300px);
+}
+
+.app_side-nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  top: 0;
+  bottom: 0;
+  @include left(0);
+  width: 60px;
+  background: get-color('primary', 'light');
+
+  transition: width 120ms 300ms;
+  .profile {
+    height: 90px;
+    background: darken(get-color('primary', 'light'), 10%);
+    text-align: center;
+    color: get-color('background', 'light');
+    padding-top: 10px;
+    .title {
+      color: get-color('background', 'light');
+    }
+    .avatar {
+      padding: 0 6px;
+    }
+    .profile_actions{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        margin: 0;
+        padding: 2px;
+      }
+    }
+  }
+}
+.expanded .app_side-nav {
+  width: 300px;
+  .profile {
+  }
+}
+
+.app_page {
+
+  box-sizing: border-box;
+  padding-top: 60px;
+  height: calc(100vh);
+  @include padding-left(60px);
+  @include padding-right(20px);
+  @include ltr {
+    transition: padding-left 120ms 300ms;
+  }
+  @include rtl {
+    transition: padding-right 120ms 300ms;
+  }
+  .scrollbar {
+    height: calc(100vh - 60px);
+  }
+}
+.expanded .app_page {
+  @include padding-left(300px);
+}
+.app_nav__lang-select {
+  width: 60px;
+  .menu{
+    background-color: get-color('secondary', 'light');
+  }
+}

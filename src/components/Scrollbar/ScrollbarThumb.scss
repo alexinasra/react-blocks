@@ -18,7 +18,7 @@
     height: 2px;
     top:2px;
     border-radius: 1px;
-    background: $color-text-disabled;
+    background: get-color('disabled', 'light');
   }
 }
 .thumb.horizontal-thumb {
@@ -32,15 +32,15 @@
     width: 2px;
     left:2px;
     border-radius: 1px;
-    background: $color-text-disabled;
+    background: get-color('disabled', 'light');
   }
 }
 
 .mouse-over.thumb ,
 .drag-start.thumb {
-  background: rgba(lighten($color-primary, 0.15), 0.2);
+  background: rgba(lighten(get-color('primary', light), 0.15), 0.2);
 
     div {
-      background: $color-primary;
+      background: get-color('primary', light);
     }
 }

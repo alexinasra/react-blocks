@@ -8,8 +8,10 @@ import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from './store';
 
+import './main.scss';
 import App from './App';
 import i18n from './i18n';
+
 
 // Create browser history to use in the Redux store
 const history = createBrowserHistory();

@@ -4,8 +4,8 @@
   align-items: stretch;
   user-select: none;
   min-width: 90px;
-  box-shadow: 0 1px 2px 0 rgba($color-black, 0.7);
-  background: $color-background;
+  box-shadow: 0 1px 2px 0 rgba(#000, 0.7);
+  background: get-color('background', 'light');
   border-radius: 2px;
   .menu-item {
     display: flex;
@@ -15,7 +15,7 @@
     font-family: "Roboto";
     font-size: 12px;
     font-weight: bold;
-    color: $color-text-menu;
+    color: get-color('text', 'light');
     text-transform: capitalize;
     white-space: nowrap;
     .icon {
@@ -35,14 +35,14 @@
     }
     .shortcut {
       font-size: 8px;
-      color: $color-text-caption;
+      color: get-color('caption', 'light');
       vertical-align: middle;
     }
     &:active, &:focus {
       outline: none;
     }
     &:hover {
-      background: rgba($color-black, 0.4)
+      background: rgba(#000, 0.4)
     }
   }
 }

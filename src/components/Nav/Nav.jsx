@@ -7,17 +7,20 @@ import classnames from 'classnames';
 type NavProps = {
   children: Node,
   className?: string,
-  direction: 'row' | 'column',
+  direction?: 'row' | 'column',
+  compact?: boolean,
   [string]: mixed
 };
 
-const Nav = ({ direction, className, children, ...props }: NavProps): Node => (
-  <div className={classnames('nav', direction, className)} {...props}>
+const Nav = ({ compact, direction, className, children, ...props }: NavProps): Node => (
+  <div className={classnames('nav', { compact }, direction, className)} {...props}>
     {children}
   </div>
 );
 Nav.defaultProps = {
-  className: undefined
+  className: undefined,
+  compact: false,
+  direction: 'column'
 };
 
 export default Nav;

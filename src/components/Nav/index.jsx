@@ -3,7 +3,7 @@ import Nav from './Nav';
 import TabsNav from './TabsNav';
 import NavAction from './NavAction';
 import NavCollapse from './NavCollapse';
-import NavDropdown from './NavDropdown';
+import NavMenu from './NavMenu';
 import NavRouterLink from './NavRouterLink';
 import NavOuterLink from './NavOuterLink';
 
@@ -12,7 +12,7 @@ export {
   TabsNav,
   NavAction,
   NavCollapse,
-  NavDropdown,
+  NavMenu,
   NavRouterLink,
   NavOuterLink
 };

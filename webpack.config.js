@@ -37,8 +37,7 @@ module.exports = {
 
     // Demo App
     main: [
-      path.join(DEMO, 'main'),
-      path.join(DEMO, 'main.scss')
+      path.join(DEMO, 'main')
     ]
   },
   output: {

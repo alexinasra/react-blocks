@@ -1,5 +1,0 @@
-@mixin theme($name, $variant) {
-  .#{$name}.#{$variant} &, &.default.{$variant} {
-    @content;
-  }
-}

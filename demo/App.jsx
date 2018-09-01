@@ -7,6 +7,8 @@ import Layout from './Layout';
 
 import HomePage from './HomePage';
 import FormPage from './FormPage';
+import UiNav from './UiComponents/UiNav';
+import UiButtons from './UiComponents/UiButtons';
 
 class App extends Component {
   render() {
@@ -14,6 +16,8 @@ class App extends Component {
       <Switch>
         <Route path="/:lng">
           <Layout>
+            <Route path="/:lng/ui-nav" exact component={UiNav} />
+            <Route path="/:lng/ui-buttons" exact component={UiButtons} />
             <Route path="/:lng/form" exact component={FormPage} />
             <Route path="/:lng" exact component={HomePage} />
           </Layout>
