@@ -13,7 +13,6 @@ module.exports = (env) => {
     Dropdown: './src/components/Dropdown/index.jsx',
     Form: './src/components/Form/index.jsx',
     GridLayout: './src/components/GridLayout/index.jsx',
-    GridList: './src/components/GridList/index.jsx',
     Icon: './src/components/Icon/index.jsx',
     List: './src/components/List/index.jsx',
     Menu: './src/components/Menu/index.jsx',
