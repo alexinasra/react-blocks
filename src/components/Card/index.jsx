@@ -12,7 +12,7 @@ export default Card;
 export {
   CardActions,
   CardImage,
-  CardParagraph,
   CardSection,
+  CardParagraph,
   CardTitle
 };

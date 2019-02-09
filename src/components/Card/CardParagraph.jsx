@@ -3,7 +3,6 @@ import React from 'react';
 import type { Node } from 'react';
 
 import classNames from 'classnames';
-import Scrollbar from '@components/Scrollbar';
 
 type CardParagraphProps = {
   className?: string,
@@ -17,9 +16,7 @@ const CardParagraph = ({
   ...props
 }: CardParagraphProps): Node => (
   <div className={classNames('card-paragraph', className)} {...props}>
-    <Scrollbar style={{ height: '220px', width: '100%' }}>
-      {children}
-    </Scrollbar>
+    {children}
   </div>
 );
 
