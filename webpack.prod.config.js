@@ -33,8 +33,6 @@ module.exports = (env) => {
   const output = {
     path: path.join(__dirname, './dist/'),
     filename: '[name].js',
-    library: 'ReactBlocks',
-    libraryTarget: 'commonjs2',
     publicPath: '/dist/'
   };
 
