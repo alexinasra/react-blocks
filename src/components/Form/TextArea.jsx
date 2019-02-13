@@ -11,6 +11,7 @@ type TextAreaProps = {
   value?: string,
   label?: string,
   hintText?: string,
+  onChange?: (value: string) => void,
   [string]: mixed
 };
 
@@ -19,7 +20,8 @@ class TextArea extends Component<TextAreaProps> {
     className: undefined,
     value: '',
     label: undefined,
-    hintText: undefined
+    hintText: undefined,
+    onChange: () => {}
   };
 
   constructor(props: TextAreaProps) {
@@ -34,8 +36,14 @@ class TextArea extends Component<TextAreaProps> {
 
   handleChange(e: SyntheticEvent) {
     const height = e.target.scrollHeight;
-
-    this.setState({ value: e.target.value, lines: (height / 16) });
+    const { value } = this.state;
+    const { onChange } = this.props;
+    if (e.target.value !== value) {
+      this.setState({ value: e.target.value, lines: (height / 16) });
+      if (onChange) {
+        onChange(value);
+      }
+    }
   }
 
   render(): Node {
